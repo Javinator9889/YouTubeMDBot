@@ -46,6 +46,6 @@ CREATE TABLE IF NOT EXISTS preferences (
 CREATE TABLE IF NOT EXISTS "User" (
     user_id    INT NOT NULL,
     username   VARCHAR2(45 CHAR),
-    name       CLOB,
+    name       TEXT,
     PRIMARY KEY (user_id)
 );
