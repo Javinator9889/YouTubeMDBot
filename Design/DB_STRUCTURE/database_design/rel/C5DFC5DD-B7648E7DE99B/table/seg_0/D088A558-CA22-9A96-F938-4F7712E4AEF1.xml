@@ -1,0 +1,103 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="D088A558-CA22-9A96-F938-4F7712E4AEF1" name="Preferences">
+<createdBy>Javier Alonso Silva</createdBy>
+<createdTime>2018-06-18 14:51:13 UTC</createdTime>
+<generatorID>312E0255-FAA7-1630-54E5-A4FCB50F6276</generatorID>
+<ownerDesignName>database_design</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="audio_quality" id="F6A481E9-1265-91A9-3936-E8A79D924643">
+<createdBy>Javier Alonso Silva</createdBy>
+<createdTime>2018-06-18 14:51:13 UTC</createdTime>
+<generatorID>2DFD054F-D34B-E405-1BE4-892DD74BA271</generatorID>
+<ownerDesignName>database_design</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>5 CHAR</dataTypeSize>
+<ownDataTypeParameters>5 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="audio_format" id="4A4788CA-F09C-13DB-16BE-E381506ACD66">
+<createdBy>Javier Alonso Silva</createdBy>
+<createdTime>2018-06-18 14:51:13 UTC</createdTime>
+<generatorID>DA295574-77E1-2B18-8034-394D422AFB44</generatorID>
+<ownerDesignName>database_design</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>5 CHAR</dataTypeSize>
+<ownDataTypeParameters>5 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="os" id="559E1A0B-1DD2-CE99-49E2-03F5504E9CB2">
+<createdBy>Javier Alonso Silva</createdBy>
+<createdTime>2018-06-18 14:51:13 UTC</createdTime>
+<generatorID>6A072B91-6717-56AE-E792-D79219943063</generatorID>
+<ownerDesignName>database_design</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>10 CHAR</dataTypeSize>
+<ownDataTypeParameters>10 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="should_ask_metadata" id="6359C17F-BB55-BF0A-2119-A210438C83E2">
+<createdBy>Javier Alonso Silva</createdBy>
+<createdTime>2018-06-18 14:51:13 UTC</createdTime>
+<generatorID>861DF039-AE33-7187-ED33-DE8065B1D145</generatorID>
+<ownerDesignName>database_design</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT006</logicalDatatype>
+<dataTypeSize>1 BYTE</dataTypeSize>
+<ownDataTypeParameters>1 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="User_user_id" id="ED4B8B19-788A-C6AB-2B29-E06AA357326F">
+<createdBy>Javier Alonso Silva</createdBy>
+<createdTime>2018-06-18 14:51:13 UTC</createdTime>
+<generatorID>41D91414-1277-D3D5-F7EF-FBB7131C89A4</generatorID>
+<ownerDesignName>database_design</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="C7DC4550-6D2C-B38B-5C23-5E37D6D8832D" referredColumn="7794EE2F-2CCF-4261-4CE3-DF17DC38EB8E"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="D45887E7-B0C8-4329-CD2C-2339022EA6B9" name="Preferences__IDX">
+<createdBy>Javier Alonso Silva</createdBy>
+<createdTime>2018-06-18 14:51:13 UTC</createdTime>
+<ownerDesignName>database_design</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<relationGeneratorID>C49FD692-24A0-3030-2280-A4D5B8CDFC01</relationGeneratorID>
+<indexColumnUsage>
+<colUsage columnID="ED4B8B19-788A-C6AB-2B29-E06AA357326F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="83FE0090-5C03-399C-F8A0-507E18B766B4" name="Preferences_User_FK">
+<createdBy>Javier Alonso Silva</createdBy>
+<createdTime>2018-06-18 14:51:13 UTC</createdTime>
+<generatorID>C49FD692-24A0-3030-2280-A4D5B8CDFC01</generatorID>
+<ownerDesignName>database_design</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="ED4B8B19-788A-C6AB-2B29-E06AA357326F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,73 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="52FEBBBF-C76E-AEF4-45C5-3341E59BD946" name="Playlist">
+<createdBy>Javier Alonso Silva</createdBy>
+<createdTime>2018-06-18 14:37:34 UTC</createdTime>
+<ownerDesignName>database_design</ownerDesignName>
+<engineerTo>
+<item key="C5DFC5DD-35E9-B422-B2BF-B7648E7DE99B" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="playlist_id" id="16C788DC-D5DE-47B4-78C1-EA4DE822865E">
+<createdBy>Javier Alonso Silva</createdBy>
+<createdTime>2018-06-18 14:37:39 UTC</createdTime>
+<ownerDesignName>database_design</ownerDesignName>
+<engineerTo>
+<item key="C5DFC5DD-35E9-B422-B2BF-B7648E7DE99B" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>256 CHAR</dataTypeSize>
+<ownDataTypeParameters>256 CHAR,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="number_elements" id="50EBAA05-F745-2124-1987-2152ACF6FF08">
+<createdBy>Javier Alonso Silva</createdBy>
+<createdTime>2018-06-18 14:38:11 UTC</createdTime>
+<ownerDesignName>database_design</ownerDesignName>
+<engineerTo>
+<item key="C5DFC5DD-35E9-B422-B2BF-B7648E7DE99B" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="times_requested" id="41476BC0-DA37-E595-3F64-45358C275271">
+<createdBy>Javier Alonso Silva</createdBy>
+<createdTime>2018-06-18 14:39:24 UTC</createdTime>
+<ownerDesignName>database_design</ownerDesignName>
+<engineerTo>
+<item key="C5DFC5DD-35E9-B422-B2BF-B7648E7DE99B" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="E3C428C4-0B62-6F66-F2BC-DB1AEE9F9400" name="Playlist PK">
+<createdBy>Javier Alonso Silva</createdBy>
+<createdTime>2018-06-18 14:38:08 UTC</createdTime>
+<ownerDesignName>database_design</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="C5DFC5DD-35E9-B422-B2BF-B7648E7DE99B" value="false"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>16C788DC-D5DE-47B4-78C1-EA4DE822865E</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

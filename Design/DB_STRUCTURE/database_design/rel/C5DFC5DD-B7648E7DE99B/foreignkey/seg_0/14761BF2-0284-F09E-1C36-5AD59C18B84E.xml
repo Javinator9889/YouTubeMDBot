@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="14761BF2-0284-F09E-1C36-5AD59C18B84E" containerWithKeyObject="F0AD5A40-5659-C806-BEA1-595FD0DB5F39" localFKIndex="F4787963-BEB2-ACB7-3BF2-7B6E392B75DE" name="History_Music_FK">
+<createdBy>Javier Alonso Silva</createdBy>
+<createdTime>2018-06-18 14:53:19 UTC</createdTime>
+<generatorID>DDBAFE8B-B820-1773-EE96-8B363262CAA9</generatorID>
+<ownerDesignName>database_design</ownerDesignName>
+<referredTableLongName>Music</referredTableLongName>
+<deleteRule>CASCADE</deleteRule>
+<referredTableID>25DE0936-5106-79A2-1678-9EAA1E0DA843</referredTableID>
+<keyObject>5EE86BBE-3C43-6A0D-DECB-B287A7214DD4</keyObject>
+<referredKeyID>5EE86BBE-3C43-6A0D-DECB-B287A7214DD4</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>file_id</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

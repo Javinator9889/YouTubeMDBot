@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="History" directorySegmentName="seg_0" id="DDBAFE8B-B820-1773-EE96-8B363262CAA9">
+<createdBy>Javier Alonso Silva</createdBy>
+<createdTime>2018-06-18 14:36:55 UTC</createdTime>
+<ownerDesignName>database_design</ownerDesignName>
+<engineerTo>
+<item key="C5DFC5DD-35E9-B422-B2BF-B7648E7DE99B" value="true"/>
+</engineerTo>
+<targetPk>2F9B98EF-2E48-6530-04A0-1E62A0B7E323</targetPk>
+<identifying>false</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>96125017-F1D2-153D-CBAC-D12E0939CF4E</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>FB782D70-50E0-0A98-4654-5E94050F8458</targetEntity>
+<transferable>true</transferable>
+<deleteRule>CASCADE</deleteRule>
+</Relation>

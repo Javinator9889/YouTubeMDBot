@@ -1,0 +1,100 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="25DE0936-5106-79A2-1678-9EAA1E0DA843" name="Music">
+<createdBy>Javier Alonso Silva</createdBy>
+<createdTime>2018-06-18 14:51:13 UTC</createdTime>
+<generatorID>FB782D70-50E0-0A98-4654-5E94050F8458</generatorID>
+<ownerDesignName>database_design</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="file_id" id="1F1E7DDA-F1AD-9264-27B3-CC9CC8B4A8FB">
+<createdBy>Javier Alonso Silva</createdBy>
+<createdTime>2018-06-18 14:51:13 UTC</createdTime>
+<generatorID>CAFF56A3-E241-F64F-19BE-CEA2E258C602</generatorID>
+<ownerDesignName>database_design</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>256 CHAR</dataTypeSize>
+<ownDataTypeParameters>256 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="video_id" id="B2272C58-988F-9FD9-CD26-C89F6F6E72A5">
+<createdBy>Javier Alonso Silva</createdBy>
+<createdTime>2018-06-18 14:51:13 UTC</createdTime>
+<generatorID>F8C2F601-3EC1-B326-E4FF-67F526339C68</generatorID>
+<ownerDesignName>database_design</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20 CHAR</dataTypeSize>
+<ownDataTypeParameters>20 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="audio_quality" id="1A16F378-0DFC-2403-B78D-6E480A73D80F">
+<createdBy>Javier Alonso Silva</createdBy>
+<createdTime>2018-06-18 14:51:13 UTC</createdTime>
+<generatorID>B61AEEA2-7623-7334-D69C-F52A0DCF68A1</generatorID>
+<ownerDesignName>database_design</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="audio_format" id="CC8C045A-384B-03FC-28A5-2BD3B4510BD6">
+<createdBy>Javier Alonso Silva</createdBy>
+<createdTime>2018-06-18 14:51:13 UTC</createdTime>
+<generatorID>5AEEEE54-E69D-8679-E7E7-646D336C8773</generatorID>
+<ownerDesignName>database_design</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="times_requested" id="1B8B92C7-16C5-D32F-C04B-852EBEE2F1C4">
+<createdBy>Javier Alonso Silva</createdBy>
+<createdTime>2018-06-18 14:51:13 UTC</createdTime>
+<generatorID>571F95C4-86B3-8290-242D-003807560AFA</generatorID>
+<ownerDesignName>database_design</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="is_metadata_by_user" id="C3FBA2D2-F257-F159-AFD9-1E5273DF1069">
+<createdBy>Javier Alonso Silva</createdBy>
+<createdTime>2018-06-18 14:51:13 UTC</createdTime>
+<generatorID>1017AB39-0480-C236-5621-1E00FD454B4C</generatorID>
+<ownerDesignName>database_design</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT006</logicalDatatype>
+<dataTypeSize>1 BYTE</dataTypeSize>
+<ownDataTypeParameters>1 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="5EE86BBE-3C43-6A0D-DECB-B287A7214DD4" name="Music_PK">
+<createdBy>Javier Alonso Silva</createdBy>
+<createdTime>2018-06-18 14:51:13 UTC</createdTime>
+<generatorID>2F9B98EF-2E48-6530-04A0-1E62A0B7E323</generatorID>
+<ownerDesignName>database_design</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="1F1E7DDA-F1AD-9264-27B3-CC9CC8B4A8FB"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

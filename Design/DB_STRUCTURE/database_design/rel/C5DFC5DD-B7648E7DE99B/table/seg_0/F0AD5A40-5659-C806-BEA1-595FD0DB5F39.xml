@@ -1,0 +1,76 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="F0AD5A40-5659-C806-BEA1-595FD0DB5F39" name="History">
+<createdBy>Javier Alonso Silva</createdBy>
+<createdTime>2018-06-18 14:53:19 UTC</createdTime>
+<ownerDesignName>database_design</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="User_user_id" id="6D5B6125-966E-B23F-72CC-DA0BDFA0336F">
+<createdBy>Javier Alonso Silva</createdBy>
+<createdTime>2018-06-18 14:53:19 UTC</createdTime>
+<ownerDesignName>database_design</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="6AA622A5-D308-C63C-2AF6-730CF06EBF34" referredColumn="7794EE2F-2CCF-4261-4CE3-DF17DC38EB8E"/>
+</associations>
+</Column>
+<Column name="Music_file_id" id="82E0414D-6D05-78CB-67DE-A112D001ED33">
+<createdBy>Javier Alonso Silva</createdBy>
+<createdTime>2018-06-18 14:53:19 UTC</createdTime>
+<ownerDesignName>database_design</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>256 CHAR</dataTypeSize>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="14761BF2-0284-F09E-1C36-5AD59C18B84E" referredColumn="1F1E7DDA-F1AD-9264-27B3-CC9CC8B4A8FB"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="367D70B2-2ECE-7917-5A09-60611F717824" name="History_PK">
+<createdBy>Javier Alonso Silva</createdBy>
+<createdTime>2018-06-18 14:53:19 UTC</createdTime>
+<ownerDesignName>database_design</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="6D5B6125-966E-B23F-72CC-DA0BDFA0336F"/>
+<colUsage columnID="82E0414D-6D05-78CB-67DE-A112D001ED33"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="7854E7A3-36BD-5278-CD52-59B6D1C94E9E" name="History_User_FK">
+<createdBy>Javier Alonso Silva</createdBy>
+<createdTime>2018-06-18 14:53:19 UTC</createdTime>
+<generatorID>DDBAFE8B-B820-1773-EE96-8B363262CAA9</generatorID>
+<ownerDesignName>database_design</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="6D5B6125-966E-B23F-72CC-DA0BDFA0336F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="F4787963-BEB2-ACB7-3BF2-7B6E392B75DE" name="History_Music_FK">
+<createdBy>Javier Alonso Silva</createdBy>
+<createdTime>2018-06-18 14:53:19 UTC</createdTime>
+<generatorID>DDBAFE8B-B820-1773-EE96-8B363262CAA9</generatorID>
+<ownerDesignName>database_design</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="82E0414D-6D05-78CB-67DE-A112D001ED33"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

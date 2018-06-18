@@ -1,0 +1,89 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="312E0255-FAA7-1630-54E5-A4FCB50F6276" name="Preferences">
+<createdBy>Javier Alonso Silva</createdBy>
+<createdTime>2018-06-18 14:29:16 UTC</createdTime>
+<ownerDesignName>database_design</ownerDesignName>
+<engineerTo>
+<item key="351C3A3B-985F-1B54-60FE-A46161E8F350" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="audio_quality" id="2DFD054F-D34B-E405-1BE4-892DD74BA271">
+<createdBy>Javier Alonso Silva</createdBy>
+<createdTime>2018-06-18 14:29:24 UTC</createdTime>
+<ownerDesignName>database_design</ownerDesignName>
+<engineerTo>
+<item key="351C3A3B-985F-1B54-60FE-A46161E8F350" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>5 CHAR</dataTypeSize>
+<ownDataTypeParameters>5 CHAR,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="audio_format" id="DA295574-77E1-2B18-8034-394D422AFB44">
+<createdBy>Javier Alonso Silva</createdBy>
+<createdTime>2018-06-18 14:29:37 UTC</createdTime>
+<ownerDesignName>database_design</ownerDesignName>
+<engineerTo>
+<item key="351C3A3B-985F-1B54-60FE-A46161E8F350" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>5 CHAR</dataTypeSize>
+<ownDataTypeParameters>5 CHAR,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="os" id="6A072B91-6717-56AE-E792-D79219943063">
+<createdBy>Javier Alonso Silva</createdBy>
+<createdTime>2018-06-18 14:29:54 UTC</createdTime>
+<ownerDesignName>database_design</ownerDesignName>
+<engineerTo>
+<item key="351C3A3B-985F-1B54-60FE-A46161E8F350" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>10 CHAR</dataTypeSize>
+<ownDataTypeParameters>10 CHAR,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="should_ask_metadata" id="861DF039-AE33-7187-ED33-DE8065B1D145">
+<createdBy>Javier Alonso Silva</createdBy>
+<createdTime>2018-06-18 14:30:07 UTC</createdTime>
+<ownerDesignName>database_design</ownerDesignName>
+<engineerTo>
+<item key="351C3A3B-985F-1B54-60FE-A46161E8F350" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT006</logicalDatatype>
+<dataTypeSize>1 BYTE</dataTypeSize>
+<ownDataTypeParameters>1 BYTE,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="user_id" id="41D91414-1277-D3D5-F7EF-FBB7131C89A4">
+<createdBy>Javier Alonso Silva</createdBy>
+<createdTime>2018-06-18 14:43:31 UTC</createdTime>
+<generatorID>C49FD692-24A0-3030-2280-A4D5B8CDFC01</generatorID>
+<ownerDesignName>database_design</ownerDesignName>
+<engineerTo>
+<item key="351C3A3B-985F-1B54-60FE-A46161E8F350" value="true"/>
+</engineerTo>
+<referedAttribute>8775EFB1-2319-5282-E470-92105C133D68</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+</Entity>

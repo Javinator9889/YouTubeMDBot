@@ -1,0 +1,73 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="96125017-F1D2-153D-CBAC-D12E0939CF4E" name="User">
+<createdBy>Javier Alonso Silva</createdBy>
+<createdTime>2018-06-18 14:28:40 UTC</createdTime>
+<ownerDesignName>database_design</ownerDesignName>
+<engineerTo>
+<item key="C5DFC5DD-35E9-B422-B2BF-B7648E7DE99B" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="user_id" id="8775EFB1-2319-5282-E470-92105C133D68">
+<createdBy>Javier Alonso Silva</createdBy>
+<createdTime>2018-06-18 14:28:44 UTC</createdTime>
+<ownerDesignName>database_design</ownerDesignName>
+<engineerTo>
+<item key="C5DFC5DD-35E9-B422-B2BF-B7648E7DE99B" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="username" id="DD1E5201-1D06-B0BD-F764-99D672888063">
+<createdBy>Javier Alonso Silva</createdBy>
+<createdTime>2018-06-18 14:28:57 UTC</createdTime>
+<ownerDesignName>database_design</ownerDesignName>
+<engineerTo>
+<item key="C5DFC5DD-35E9-B422-B2BF-B7648E7DE99B" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>45 CHAR</dataTypeSize>
+<ownDataTypeParameters>45 CHAR,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="name" id="E8A2F3A1-63F6-7D92-7D9A-B9668238C030">
+<createdBy>Javier Alonso Silva</createdBy>
+<createdTime>2018-06-18 14:29:07 UTC</createdTime>
+<ownerDesignName>database_design</ownerDesignName>
+<engineerTo>
+<item key="C5DFC5DD-35E9-B422-B2BF-B7648E7DE99B" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT040</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="3E09607E-650C-5E05-C7AC-0E839F482CA2" name="User PK">
+<createdBy>Javier Alonso Silva</createdBy>
+<createdTime>2018-06-18 14:28:55 UTC</createdTime>
+<ownerDesignName>database_design</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="C5DFC5DD-35E9-B422-B2BF-B7648E7DE99B" value="false"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>8775EFB1-2319-5282-E470-92105C133D68</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>
