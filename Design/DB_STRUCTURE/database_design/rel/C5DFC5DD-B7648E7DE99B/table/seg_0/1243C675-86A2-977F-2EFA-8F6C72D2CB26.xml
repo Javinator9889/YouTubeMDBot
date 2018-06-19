@@ -1,0 +1,88 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="1243C675-86A2-977F-2EFA-8F6C72D2CB26" name="Statistics">
+<createdBy>Javier Alonso Silva</createdBy>
+<createdTime>2018-06-19 17:07:52 UTC</createdTime>
+<generatorID>B1A287E6-50CA-DB8B-0AAD-60C303A2A402</generatorID>
+<ownerDesignName>database_design</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="lang" id="71506711-481D-6C32-6A24-2BCCAC05A576">
+<createdBy>Javier Alonso Silva</createdBy>
+<createdTime>2018-06-19 17:07:52 UTC</createdTime>
+<generatorID>89D674D7-31F9-D93D-73E0-665EFF65C20A</generatorID>
+<ownerDesignName>database_design</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>5 CHAR</dataTypeSize>
+<ownDataTypeParameters>5 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="downloads" id="76E36E0B-3F39-720B-E5E1-E931F34CB950">
+<createdBy>Javier Alonso Silva</createdBy>
+<createdTime>2018-06-19 17:07:52 UTC</createdTime>
+<generatorID>19C812C7-2829-FCC6-7AB0-8EF0080E3DF5</generatorID>
+<ownerDesignName>database_design</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="last_time_active" id="75598DA3-6766-33A1-6645-F3AF8FF1AB59">
+<createdBy>Javier Alonso Silva</createdBy>
+<createdTime>2018-06-19 17:07:52 UTC</createdTime>
+<generatorID>E22158FC-409E-A487-CC46-78530525C255</generatorID>
+<ownerDesignName>database_design</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="User_user_id" id="44652E9D-2CE9-68CD-D636-F466221E35AD">
+<createdBy>Javier Alonso Silva</createdBy>
+<createdTime>2018-06-19 17:07:52 UTC</createdTime>
+<generatorID>0C4521CC-B720-4EEA-EF48-2AB477F192BB</generatorID>
+<ownerDesignName>database_design</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="51EE3780-3B5D-E1A1-65B0-7ED699DD5948" referredColumn="7794EE2F-2CCF-4261-4CE3-DF17DC38EB8E"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="B01BAEC5-2ADC-175D-E1E6-96B4E3DAA8EE" name="Statistics__IDX">
+<createdBy>Javier Alonso Silva</createdBy>
+<createdTime>2018-06-19 17:07:52 UTC</createdTime>
+<ownerDesignName>database_design</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<relationGeneratorID>B934A368-41CA-2247-7505-4DDD707ADAB7</relationGeneratorID>
+<indexColumnUsage>
+<colUsage columnID="44652E9D-2CE9-68CD-D636-F466221E35AD"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="F4D0C2D4-6598-EAB3-C5B6-B3A1428D7822" name="Statistics_User_FK">
+<createdBy>Javier Alonso Silva</createdBy>
+<createdTime>2018-06-19 17:07:52 UTC</createdTime>
+<generatorID>B934A368-41CA-2247-7505-4DDD707ADAB7</generatorID>
+<ownerDesignName>database_design</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="44652E9D-2CE9-68CD-D636-F466221E35AD"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -49,3 +49,11 @@ CREATE TABLE IF NOT EXISTS "User" (
     name       TEXT,
     PRIMARY KEY (user_id)
 );
+
+CREATE TABLE IF NOT EXISTS Statistics (
+    lang                VARCHAR2(5 CHAR),
+    downloads           INT,
+    last_time_active    DATE,
+    user_id             INT NOT NULL,
+    PRIMARY KEY (user_id)
+)
