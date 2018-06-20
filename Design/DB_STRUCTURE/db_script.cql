@@ -1,59 +1,55 @@
+CREATE KEYSPACE IF NOT EXISTS YouTubeMDApp
+    WITH replication = {'class': 'SimpleStrategy', 'replication_factor': 3}
+
+
 CREATE TABLE IF NOT EXISTS history (
-    user_id    INT NOT NULL,
-    file_id    VARCHAR2(256 CHAR) NOT NULL
+    user_id    int NOT NULL,
+    file_id    varchar NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS metadata (
-    title           VARCHAR2(256 CHAR),
-    artist          VARCHAR2(256 CHAR),
-    cover           TEXT,
-    duration        VARCHAR2(20 CHAR),
-    music_file_id   VARCHAR2(256 CHAR) NOT NULL,
+    title           varchar,
+    artist          varchar,
+    cover           text,
+    duration        varchar,
+    music_file_id   varchar NOT NULL,
     PRIMARY KEY (music_file_id)
 );
 
 CREATE TABLE IF NOT EXISTS music (
-    file_id               VARCHAR2(256 CHAR) NOT NULL,
-    video_id              VARCHAR2(20 CHAR),
-    audio_quality         INT,
-    audio_format          INT,
-    times_requested       INT,
-    is_metadata_by_user   CHAR(1),
+    file_id               varchar NOT NULL,
+    video_id              varchar,
+    audio_quality         int,
+    audio_format          int,
+    times_requested       int,
+    is_metadata_by_user   boolean,
     PRIMARY KEY (file_id)
 );
 
 CREATE TABLE IF NOT EXISTS playlist (
-    playlist_id       VARCHAR2(256 CHAR) NOT NULL,
-    number_elements   INT,
-    times_requested   INT,
+    playlist_id       varchar NOT NULL,
+    number_elements   int,
+    times_requested   int,
     PRIMARY KEY (playlist_id)
 );
 
 CREATE TABLE IF NOT EXISTS playlist_has_music (
-    playlist_playlist_id   VARCHAR2(256 CHAR) NOT NULL,
-    music_file_id          VARCHAR2(256 CHAR) NOT NULL
+    playlist_playlist_id   varchar NOT NULL,
+    music_file_id          varchar NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS preferences (
-    audio_quality         VARCHAR2(5 CHAR),
-    audio_format          VARCHAR2(5 CHAR),
-    os                    VARCHAR2(10 CHAR),
-    should_ask_metadata   CHAR(1),
-    user_id          	  INT NOT NULL,
+    audio_quality         varchar,
+    audio_format          varchar,
+    os                    varchar,
+    should_ask_metadata   boolean,
+    user_id               int NOT NULL,
     PRIMARY KEY (user_id)
 );
 
 CREATE TABLE IF NOT EXISTS "User" (
-    user_id    INT NOT NULL,
-    username   VARCHAR2(45 CHAR),
-    name       TEXT,
+    user_id    int NOT NULL,
+    username   varchar,
+    name       text,
     PRIMARY KEY (user_id)
 );
-
-CREATE TABLE IF NOT EXISTS Statistics (
-    lang                VARCHAR2(5 CHAR),
-    downloads           INT,
-    last_time_active    DATE,
-    user_id             INT NOT NULL,
-    PRIMARY KEY (user_id)
-)
