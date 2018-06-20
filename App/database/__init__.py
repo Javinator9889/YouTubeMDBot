@@ -57,3 +57,28 @@ class InsertOperations(DatabaseOperationsBase):
         """
         self.__session.execute(query, (file_id, video_id, audio_quality, audio_format, times_requested,
                                        is_metadata_by_user))
+
+    def registerNewPlaylist(self, playlist_id: str, number_elements: int, times_requested: int):
+        query = """
+        INSERT INTO YouTubeMDApp.playlist(playlist_id, number_elements, times_requested) VALUES (%s, %s, %s)
+        """
+        self.__session.execute(query, (playlist_id, number_elements, times_requested))
+
+    def registerNewSongForPlaylist(self, playlist_id: str, file_id: str, playlist_quality: str, playlist_format: str):
+        query = """
+        INSERT INTO YouTubeMDApp.playlist_has_music 
+        (playlist_playlist_id, music_file_id, playlist_quality, playlist_format) VALUES (%s, %s, %s, %s)
+        """
+        self.__session.execute(query, (playlist_id, file_id, playlist_quality, playlist_format))
+
+    def registerNewSongMetadata(self, title: str, artist: str, cover: str, duration: str, file_id: str):
+        query = """
+        INSERT INTO YouTubeMDApp.metadata(title, artist, cover, duration, music_file_id) VALUES (%s, %s, %s, %s, %s)
+        """
+        self.__session.execute(query, (title, artist, cover, duration, file_id))
+
+    def registerNewSongInHistory(self, user_id: int, file_id: str):
+        query = """
+        INSERT INTO YouTubeMDApp.history(user_id, file_id) VALUES (%s, %s)
+        """
+        self.__session.execute(query, (user_id, file_id))

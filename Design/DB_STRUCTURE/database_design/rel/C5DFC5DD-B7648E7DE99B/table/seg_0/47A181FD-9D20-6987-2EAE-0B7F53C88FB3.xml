@@ -37,6 +37,28 @@
 <colAssociation fkAssociation="B59DC6EC-C75B-86D4-AFA3-705630B49873" referredColumn="1F1E7DDA-F1AD-9264-27B3-CC9CC8B4A8FB"/>
 </associations>
 </Column>
+<Column name="playlist_quality" id="37D138F2-15D2-216D-04B4-9E7D510E4AB4">
+<createdBy>Javier Alonso Silva</createdBy>
+<createdTime>2018-06-20 19:09:34 UTC</createdTime>
+<ownerDesignName>database_design</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="playlist_format" id="8C829605-2812-5AB3-DA74-D18B5CDF8A18">
+<createdBy>Javier Alonso Silva</createdBy>
+<createdTime>2018-06-20 19:09:45 UTC</createdTime>
+<ownerDesignName>database_design</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
 <ind_PK_UK id="26077F0B-DF80-4C22-9679-E91111201BFD" name="Playlist_has_Music_PK">
