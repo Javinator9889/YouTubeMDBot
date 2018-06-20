@@ -3,23 +3,33 @@ from cassandra.auth import PlainTextAuthProvider
 
 
 # Singleton class
-class DatabaseOperations(object):
+class DatabaseOperationsBase(object):
     __instance = None
 
-    def __new__(cls, username: str, password: str):
-        if DatabaseOperations.__instance is None:
-            DatabaseOperations.__instance = object.__new__(cls)
-        auth_provider = PlainTextAuthProvider(username=username, password=password)
-        cluster = Cluster(auth_provider=auth_provider)
-        DatabaseOperations.__instance.__session = cluster.connect()
-        DatabaseOperations.__instance.__createTables()
-        return DatabaseOperations.__instance
+    def __new__(cls, username: str=None, password: str=None):
+        if DatabaseOperationsBase.__instance is None:
+            if username is None or password is None:
+                raise ValueError("You must provide the DB user and password at least the first time")
+            DatabaseOperationsBase.__instance = object.__new__(cls)
+            auth_provider = PlainTextAuthProvider(username=username, password=password)
+            cluster = Cluster(auth_provider=auth_provider)
+            DatabaseOperationsBase.__instance.__session = cluster.connect()
+            DatabaseOperationsBase.__instance.__createTables()
+        return DatabaseOperationsBase.__instance
+
+    def getInstance(self):
+        return self.__instance
 
     def __createTables(self):
         with open("../../Design/db_script.cql", "r") as sql_script:
             queries = sql_script.read().splitlines()
             for query in queries:
                 self.__session.execute(query)
+
+
+class InsertOperations(DatabaseOperationsBase):
+    def __new__(cls, *args, **kwargs):
+        return super().__new__(cls)
 
     def registerNewUser(self, user_id: int, username: str, name: str):
         query = """INSERT INTO YouTubeMDApp.User(user_id, username, name) VALUES (%s, %s, %s);"""
