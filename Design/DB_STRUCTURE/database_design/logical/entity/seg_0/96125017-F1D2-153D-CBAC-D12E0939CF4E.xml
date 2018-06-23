@@ -54,6 +54,19 @@
 <logicalDatatype>LOGDT040</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
+<Attribute name="first_use" id="E0AB3B5D-AAD7-7982-722B-F8C33F15B736">
+<createdBy>Javier Alonso Silva</createdBy>
+<createdTime>2018-06-23 11:11:47 UTC</createdTime>
+<ownerDesignName>database_design</ownerDesignName>
+<engineerTo>
+<item key="C5DFC5DD-35E9-B422-B2BF-B7648E7DE99B" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
 <identifier id="3E09607E-650C-5E05-C7AC-0E839F482CA2" name="User PK">

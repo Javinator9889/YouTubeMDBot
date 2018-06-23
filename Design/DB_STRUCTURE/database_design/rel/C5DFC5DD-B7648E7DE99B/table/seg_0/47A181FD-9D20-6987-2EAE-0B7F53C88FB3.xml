@@ -7,9 +7,9 @@
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="Playlist_playlist_id" id="F4245181-B774-E93A-39C8-0A248335545E">
+<Column name="playlist_unique_id" id="12CD1F60-BC0A-AD30-C213-ECD568579AA8">
 <createdBy>Javier Alonso Silva</createdBy>
-<createdTime>2018-06-18 14:51:13 UTC</createdTime>
+<createdTime>2018-06-23 10:17:02 UTC</createdTime>
 <ownerDesignName>database_design</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -19,7 +19,7 @@
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
-<colAssociation fkAssociation="518E00B2-30C8-083A-0841-D61034BE188E" referredColumn="9961C1BD-DFE5-9B3E-1C5F-5FEAC633680C"/>
+<colAssociation fkAssociation="518E00B2-30C8-083A-0841-D61034BE188E" referredColumn="A47AFEAF-BC88-3249-5ABE-C76700BAC437"/>
 </associations>
 </Column>
 <Column name="Music_file_id" id="3132AE0E-35F7-D5FB-7991-D900AE22AD43">
@@ -37,28 +37,6 @@
 <colAssociation fkAssociation="B59DC6EC-C75B-86D4-AFA3-705630B49873" referredColumn="1F1E7DDA-F1AD-9264-27B3-CC9CC8B4A8FB"/>
 </associations>
 </Column>
-<Column name="playlist_quality" id="37D138F2-15D2-216D-04B4-9E7D510E4AB4">
-<createdBy>Javier Alonso Silva</createdBy>
-<createdTime>2018-06-20 19:09:34 UTC</createdTime>
-<ownerDesignName>database_design</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
-<Column name="playlist_format" id="8C829605-2812-5AB3-DA74-D18B5CDF8A18">
-<createdBy>Javier Alonso Silva</createdBy>
-<createdTime>2018-06-20 19:09:45 UTC</createdTime>
-<ownerDesignName>database_design</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
 <ind_PK_UK id="26077F0B-DF80-4C22-9679-E91111201BFD" name="Playlist_has_Music_PK">
@@ -69,8 +47,8 @@
 <indexState>Primary Constraint</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="F4245181-B774-E93A-39C8-0A248335545E"/>
 <colUsage columnID="3132AE0E-35F7-D5FB-7991-D900AE22AD43"/>
+<colUsage columnID="12CD1F60-BC0A-AD30-C213-ECD568579AA8"/>
 </indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="2E42E7DB-DC1C-B6A6-1678-89DFBEE716F9" name="Playlist_has_Music_Playlist_FK">
@@ -81,7 +59,7 @@
 <indexState>Foreign Key</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="F4245181-B774-E93A-39C8-0A248335545E"/>
+<colUsage columnID="12CD1F60-BC0A-AD30-C213-ECD568579AA8"/>
 </indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="40965CD0-1F34-A725-D6F7-9DE5157A00AD" name="Playlist_has_Music_Music_FK">

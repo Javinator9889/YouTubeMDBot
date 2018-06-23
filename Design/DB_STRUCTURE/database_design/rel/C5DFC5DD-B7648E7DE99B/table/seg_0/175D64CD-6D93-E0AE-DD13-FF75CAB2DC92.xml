@@ -44,6 +44,17 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
+<Column name="first_use" id="36E601DB-7FA4-6D6B-C3DD-74BA6E8C9000">
+<createdBy>Javier Alonso Silva</createdBy>
+<createdTime>2018-06-23 11:12:16 UTC</createdTime>
+<ownerDesignName>database_design</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
 <ind_PK_UK id="D02538CD-C7A9-1C9E-7706-9BD9CDCB8B5D" name="User_PK">

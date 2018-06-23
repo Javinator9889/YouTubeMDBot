@@ -23,7 +23,7 @@
 </g>
 </svg>
 <clipPath clipPathUnits="userSpaceOnUse" id="clipPath4_0_">
-<rect x="0" y="0" width="253" height="110" />
+<rect x="0" y="0" width="253" height="140" />
 </clipPath>
 <clipPath clipPathUnits="userSpaceOnUse" id="clipPath7_0_">
 <rect x="0" y="0" width="235" height="127" />
@@ -80,7 +80,7 @@
 <polygon stroke="rgb(0,0,0)" stroke-dasharray="none" points="794 467 800 464 800 470" fill="rgb(0,0,0)" stroke-width="1" stroke-opacity="1.0"  />
 </g>
 <g  fill="rgb(255,255,180)" stroke="rgb(0,0,255)" fill-opacity="1.0" stroke-opacity="1.0" clip-path="url(#clipPath4_0_)" transform="translate(4,390)" >
-<rect x="0" y="0" width="252" height="109" />
+<rect x="0" y="0" width="252" height="139" />
 <text id="Playlist" x="108" y="14" fill="rgb(0,0,255)" font-weight="bold"  fill-opacity="1.0" font-size="10" stroke="none">
 Playlist
 </text>
@@ -92,33 +92,60 @@ Playlist
 P
 </text>
 <text x="26" y="32" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-playlist_id
+playlist_unique_id
 </text>
-<text x="131" y="32" fill="rgb(0,128,0)" fill-opacity="1.0" font-size="10" stroke="none">
+<text x="133" y="32" fill="rgb(0,128,0)" fill-opacity="1.0" font-size="10" stroke="none">
 VARCHAR2 (256 CHAR)
 </text>
 <text x="16" y="46" fill="rgb(255,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-
+*
 </text>
 <text x="26" y="46" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-number_elements
+playlist_id
 </text>
-<text x="131" y="46" fill="rgb(0,128,0)" fill-opacity="1.0" font-size="10" stroke="none">
-INTEGER
+<text x="133" y="46" fill="rgb(0,128,0)" fill-opacity="1.0" font-size="10" stroke="none">
+VARCHAR2 (256 CHAR)
 </text>
 <text x="16" y="60" fill="rgb(255,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
 
 </text>
 <text x="26" y="60" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-times_requested
+number_elements
 </text>
-<text x="131" y="60" fill="rgb(0,128,0)" fill-opacity="1.0" font-size="10" stroke="none">
+<text x="133" y="60" fill="rgb(0,128,0)" fill-opacity="1.0" font-size="10" stroke="none">
 INTEGER
 </text>
-<line x1="0" y1="66" x2="251" y2="66" fill="none" stroke="rgb(0,0,255)"/>
-<use xlink:href="#pk_sym" x="4" y="73" width="8" height="8" fill-opacity="1.0"/>
-<text x="16" y="80" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-Playlist_PK (playlist_id)
+<text x="16" y="74" fill="rgb(255,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
+
+</text>
+<text x="26" y="74" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
+times_requested
+</text>
+<text x="133" y="74" fill="rgb(0,128,0)" fill-opacity="1.0" font-size="10" stroke="none">
+INTEGER
+</text>
+<text x="16" y="88" fill="rgb(255,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
+
+</text>
+<text x="26" y="88" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
+playlist_quality
+</text>
+<text x="133" y="88" fill="rgb(0,128,0)" fill-opacity="1.0" font-size="10" stroke="none">
+INTEGER
+</text>
+<text x="16" y="102" fill="rgb(255,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
+
+</text>
+<text x="26" y="102" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
+playlist_format
+</text>
+<text x="133" y="102" fill="rgb(0,128,0)" fill-opacity="1.0" font-size="10" stroke="none">
+INTEGER
+</text>
+<line x1="0" y1="108" x2="251" y2="108" fill="none" stroke="rgb(0,0,255)"/>
+<use xlink:href="#pk_sym" x="4" y="115" width="8" height="8" fill-opacity="1.0"/>
+<text x="16" y="122" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
+Playlist_PK (playlist_unique_id)
 </text>
 </g>
 <g  fill="rgb(255,255,180)" stroke="rgb(0,0,255)" fill-opacity="1.0" stroke-opacity="1.0" clip-path="url(#clipPath7_0_)" transform="translate(284,402)" >
@@ -194,7 +221,7 @@ P
 <text x="26" y="32" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
 user_id
 </text>
-<text x="92" y="32" fill="rgb(0,128,0)" fill-opacity="1.0" font-size="10" stroke="none">
+<text x="84" y="32" fill="rgb(0,128,0)" fill-opacity="1.0" font-size="10" stroke="none">
 INTEGER
 </text>
 <text x="16" y="46" fill="rgb(255,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
@@ -203,7 +230,7 @@ INTEGER
 <text x="26" y="46" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
 username
 </text>
-<text x="92" y="46" fill="rgb(0,128,0)" fill-opacity="1.0" font-size="10" stroke="none">
+<text x="84" y="46" fill="rgb(0,128,0)" fill-opacity="1.0" font-size="10" stroke="none">
 VARCHAR2 (45 CHAR)
 </text>
 <text x="16" y="60" fill="rgb(255,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
@@ -212,12 +239,21 @@ VARCHAR2 (45 CHAR)
 <text x="26" y="60" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
 name
 </text>
-<text x="92" y="60" fill="rgb(0,128,0)" fill-opacity="1.0" font-size="10" stroke="none">
+<text x="84" y="60" fill="rgb(0,128,0)" fill-opacity="1.0" font-size="10" stroke="none">
 CLOB
 </text>
-<line x1="0" y1="66" x2="202" y2="66" fill="none" stroke="rgb(0,0,255)"/>
-<use xlink:href="#pk_sym" x="4" y="73" width="8" height="8" fill-opacity="1.0"/>
-<text x="16" y="80" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
+<text x="16" y="74" fill="rgb(255,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
+
+</text>
+<text x="26" y="74" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
+first_use
+</text>
+<text x="84" y="74" fill="rgb(0,128,0)" fill-opacity="1.0" font-size="10" stroke="none">
+DATE
+</text>
+<line x1="0" y1="80" x2="202" y2="80" fill="none" stroke="rgb(0,0,255)"/>
+<use xlink:href="#pk_sym" x="4" y="87" width="8" height="8" fill-opacity="1.0"/>
+<text x="16" y="94" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
 User_PK (user_id)
 </text>
 </g>
@@ -303,9 +339,9 @@ Playlist_has_Music
 PF
 </text>
 <text x="26" y="32" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-Playlist_playlist_id
+playlist_unique_id
 </text>
-<text x="134" y="32" fill="rgb(0,128,0)" fill-opacity="1.0" font-size="10" stroke="none">
+<text x="133" y="32" fill="rgb(0,128,0)" fill-opacity="1.0" font-size="10" stroke="none">
 VARCHAR2 (256 CHAR)
 </text>
 <text x="16" y="46" fill="rgb(255,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
@@ -317,39 +353,21 @@ PF
 <text x="26" y="46" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
 Music_file_id
 </text>
-<text x="134" y="46" fill="rgb(0,128,0)" fill-opacity="1.0" font-size="10" stroke="none">
+<text x="133" y="46" fill="rgb(0,128,0)" fill-opacity="1.0" font-size="10" stroke="none">
 VARCHAR2 (256 CHAR)
 </text>
-<text x="16" y="60" fill="rgb(255,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-
+<line x1="0" y1="52" x2="304" y2="52" fill="none" stroke="rgb(0,0,255)"/>
+<use xlink:href="#pk_sym" x="4" y="59" width="8" height="8" fill-opacity="1.0"/>
+<text x="16" y="66" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
+Playlist_has_Music_PK (Music_file_id, playlist_unique_id)
 </text>
-<text x="26" y="60" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-playlist_quality
-</text>
-<text x="134" y="60" fill="rgb(0,128,0)" fill-opacity="1.0" font-size="10" stroke="none">
-INTEGER
-</text>
-<text x="16" y="74" fill="rgb(255,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-
-</text>
-<text x="26" y="74" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-playlist_format
-</text>
-<text x="134" y="74" fill="rgb(0,128,0)" fill-opacity="1.0" font-size="10" stroke="none">
-INTEGER
-</text>
-<line x1="0" y1="80" x2="304" y2="80" fill="none" stroke="rgb(0,0,255)"/>
-<use xlink:href="#pk_sym" x="4" y="87" width="8" height="8" fill-opacity="1.0"/>
-<text x="16" y="94" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-Playlist_has_Music_PK (Playlist_playlist_id, Music_file_id)
-</text>
-<line x1="0" y1="100" x2="304" y2="100" fill="none" stroke="rgb(0,0,255)"/>
-<use xlink:href="#fk_sym" x="4" y="107" width="8" height="8" fill-opacity="1.0"/><a xlink:href="#Playlist" >
-<text x="16" y="114" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
-Playlist_has_Music_Playlist_FK (Playlist_playlist_id)
+<line x1="0" y1="72" x2="304" y2="72" fill="none" stroke="rgb(0,0,255)"/>
+<use xlink:href="#fk_sym" x="4" y="79" width="8" height="8" fill-opacity="1.0"/><a xlink:href="#Playlist" >
+<text x="16" y="86" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
+Playlist_has_Music_Playlist_FK (playlist_unique_id)
 </text></a>
-<use xlink:href="#fk_sym" x="4" y="121" width="8" height="8" fill-opacity="1.0"/><a xlink:href="#Music" >
-<text x="16" y="128" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
+<use xlink:href="#fk_sym" x="4" y="93" width="8" height="8" fill-opacity="1.0"/><a xlink:href="#Music" >
+<text x="16" y="100" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
 Playlist_has_Music_Music_FK (Music_file_id)
 </text></a>
 </g>

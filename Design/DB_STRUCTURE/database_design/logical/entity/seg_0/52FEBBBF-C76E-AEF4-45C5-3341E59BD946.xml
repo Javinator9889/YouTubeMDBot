@@ -15,6 +15,19 @@
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="playlist_unique_id" id="ADCC2E08-E4C7-1BEB-5C48-EFD99B682848">
+<createdBy>Javier Alonso Silva</createdBy>
+<createdTime>2018-06-23 10:18:07 UTC</createdTime>
+<ownerDesignName>database_design</ownerDesignName>
+<engineerTo>
+<item key="C5DFC5DD-35E9-B422-B2BF-B7648E7DE99B" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>256 CHAR</dataTypeSize>
+<ownDataTypeParameters>256 CHAR,,</ownDataTypeParameters>
+</Attribute>
 <Attribute name="playlist_id" id="16C788DC-D5DE-47B4-78C1-EA4DE822865E">
 <createdBy>Javier Alonso Silva</createdBy>
 <createdTime>2018-06-18 14:37:39 UTC</createdTime>
@@ -92,7 +105,7 @@
 </engineerTo>
 <pk>true</pk>
 <usedAttributes>
-<attributeRef>16C788DC-D5DE-47B4-78C1-EA4DE822865E</attributeRef>
+<attributeRef>ADCC2E08-E4C7-1BEB-5C48-EFD99B682848</attributeRef>
 </usedAttributes>
 </identifier>
 </identifiers>

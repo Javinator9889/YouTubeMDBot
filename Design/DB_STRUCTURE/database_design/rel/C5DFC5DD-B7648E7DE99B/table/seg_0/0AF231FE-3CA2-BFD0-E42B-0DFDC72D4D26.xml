@@ -8,6 +8,17 @@
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="playlist_unique_id" id="A47AFEAF-BC88-3249-5ABE-C76700BAC437">
+<createdBy>Javier Alonso Silva</createdBy>
+<createdTime>2018-06-23 10:17:02 UTC</createdTime>
+<ownerDesignName>database_design</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>256 CHAR</dataTypeSize>
+<ownDataTypeParameters>256 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
 <Column name="playlist_id" id="9961C1BD-DFE5-9B3E-1C5F-5FEAC633680C">
 <createdBy>Javier Alonso Silva</createdBy>
 <createdTime>2018-06-18 14:51:13 UTC</createdTime>
@@ -44,6 +55,28 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
+<Column name="playlist_quality" id="E2D34E29-DF92-4B69-860D-15FFCBDDA43F">
+<createdBy>Javier Alonso Silva</createdBy>
+<createdTime>2018-06-23 10:17:02 UTC</createdTime>
+<ownerDesignName>database_design</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="playlist_format" id="F6634F13-C5A1-CF16-A041-FF4A600E4D7D">
+<createdBy>Javier Alonso Silva</createdBy>
+<createdTime>2018-06-23 10:17:02 UTC</createdTime>
+<ownerDesignName>database_design</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
 <ind_PK_UK id="0AAA742E-85E9-ABBB-3457-D0D166522D31" name="Playlist_PK">
@@ -55,7 +88,7 @@
 <indexState>Primary Constraint</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="9961C1BD-DFE5-9B3E-1C5F-5FEAC633680C"/>
+<colUsage columnID="A47AFEAF-BC88-3249-5ABE-C76700BAC437"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>
