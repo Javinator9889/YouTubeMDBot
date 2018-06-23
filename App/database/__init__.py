@@ -82,3 +82,76 @@ class InsertOperations(DatabaseOperationsBase):
         INSERT INTO YouTubeMDApp.history(user_id, file_id) VALUES (%s, %s)
         """
         self.__session.execute(query, (user_id, file_id))
+
+
+class UpdateOperations(DatabaseOperationsBase):
+    def __new__(cls, *args, **kwargs):
+        return super().__new__(cls)
+
+    def updateUserUsername(self, new_username: str, user_id: int):
+        query = """
+        UPDATE YouTubeMDApp.user SET username = %s WHERE user_id = %s
+        """
+        self.__session.execute(query, (new_username, user_id))
+
+    def updateUserAudioQuality(self, user_id: int, audio_quality: str):
+        query = """
+        UPDATE YouTubeMDApp.preferences SET audio_quality = %s WHERE user_id = %s
+        """
+        self.__session.execute(query, (audio_quality, user_id))
+
+    def updateUserAudioFormat(self, user_id: int, audio_format: str):
+        query = """
+        UPDATE YouTubeMDApp.preferences SET audio_format = %s WHERE user_id = %s
+        """
+        self.__session.execute(query, (audio_format, user_id))
+
+    def updateUserOS(self, user_id: int, os: str):
+        query = """
+        UPDATE YouTubeMDApp.preferences SET os = %s WHERE user_id = %s
+        """
+        self.__session.execute(query, (os, user_id))
+
+    def updateIfUserMustBeRequestedForMetadata(self, user_id: int, shouldAskForMetadata: bool):
+        query = """
+        UPDATE YouTubeMDApp.preferences SET should_ask_metadata = %s WHERE user_id = %s
+        """
+        self.__session.execute(query, (shouldAskForMetadata, user_id))
+
+    def updateUserLang(self, user_id: int, lang: str):
+        query = """
+        UPDATE YouTubeMDApp.statistics SET lang = %s WHERE user_id = %s
+        """
+        self.__session.execute(query, (lang, user_id))
+
+    def updateUserDownloads(self, user_id: int):
+        query = """
+        UPDATE YouTubeMDApp.statistics SET downloads = downloads + 1 WHERE user_id = %s
+        """
+        self.__session.execute(query, (user_id, ))
+
+    def updateUserLastTimeActive(self, user_id: int):
+        from datetime import datetime
+        query = """
+        UPDATE YouTubeMDApp.statistics SET last_time_active = %s WHERE user_id = %s
+        """
+        self.__session.execute(query, (datetime.now(), user_id))
+
+    def updatePlaylistNumberOfElements(self, playlist_id: str, number_of_elements: int):
+        query = """
+        UPDATE YouTubeMDApp.playlist SET number_elements = %s WHERE playlist_id = %s
+        """
+        self.__session.execute(query, (number_of_elements, playlist_id))
+
+    def updatePlaylistTimesRequested(self, playlist_id: str):
+        query = """
+        UPDATE YouTubeMDApp.playlist SET times_requested = times_requested + 1 WHERE playlist_id = %s
+        """
+        self.__session.execute(query, (playlist_id, ))
+
+
+class SelectOperations(DatabaseOperationsBase):
+    def __new__(cls, *args, **kwargs):
+        super().__new__(cls)
+
+

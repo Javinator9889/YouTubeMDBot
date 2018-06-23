@@ -1,31 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ecb85847-acff-4336-b3d7-4f5563aac01d" name="Default" comment="Created class for database managing - files for database creation adapted to Cassandra model">
+    <list default="true" id="ecb85847-acff-4336-b3d7-4f5563aac01d" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/database/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db_script_pycharm.ddl" beforeDir="false" afterPath="$PROJECT_DIR$/db_script_pycharm.ddl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Design/DB_STRUCTURE/Logical.svg" beforeDir="false" afterPath="$PROJECT_DIR$/../Design/DB_STRUCTURE/Logical.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Design/DB_STRUCTURE/Relational.svg" beforeDir="false" afterPath="$PROJECT_DIR$/../Design/DB_STRUCTURE/Relational.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Design/DB_STRUCTURE/database_design/ChangeRequests.local" beforeDir="false" afterPath="$PROJECT_DIR$/../Design/DB_STRUCTURE/database_design/ChangeRequests.local" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Design/DB_STRUCTURE/database_design/businessinfo/Objects.local" beforeDir="false" afterPath="$PROJECT_DIR$/../Design/DB_STRUCTURE/database_design/businessinfo/Objects.local" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Design/DB_STRUCTURE/database_design/datatypes/DDLSelection.local" beforeDir="false" afterPath="$PROJECT_DIR$/../Design/DB_STRUCTURE/database_design/datatypes/DDLSelection.local" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Design/DB_STRUCTURE/database_design/datatypes/Diagrams.local" beforeDir="false" afterPath="$PROJECT_DIR$/../Design/DB_STRUCTURE/database_design/datatypes/Diagrams.local" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Design/DB_STRUCTURE/database_design/datatypes/Objects.local" beforeDir="false" afterPath="$PROJECT_DIR$/../Design/DB_STRUCTURE/database_design/datatypes/Objects.local" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Design/DB_STRUCTURE/database_design/dl_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Design/DB_STRUCTURE/database_design/dl_settings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Design/DB_STRUCTURE/database_design/logical/Diagrams.local" beforeDir="false" afterPath="$PROJECT_DIR$/../Design/DB_STRUCTURE/database_design/logical/Diagrams.local" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Design/DB_STRUCTURE/database_design/logical/Objects.local" beforeDir="false" afterPath="$PROJECT_DIR$/../Design/DB_STRUCTURE/database_design/logical/Objects.local" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Design/DB_STRUCTURE/database_design/logical/entity/seg_0/52FEBBBF-C76E-AEF4-45C5-3341E59BD946.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Design/DB_STRUCTURE/database_design/logical/entity/seg_0/52FEBBBF-C76E-AEF4-45C5-3341E59BD946.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Design/DB_STRUCTURE/database_design/logical/subviews/2C149101-C988-9E4D-2C9E-2746FB965570.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Design/DB_STRUCTURE/database_design/logical/subviews/2C149101-C988-9E4D-2C9E-2746FB965570.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Design/DB_STRUCTURE/database_design/mapping/DeletedMap_RMC5DFC5DD-35E9-B422-B2BF-B7648E7DE99B.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Design/DB_STRUCTURE/database_design/mapping/DeletedMap_RMC5DFC5DD-35E9-B422-B2BF-B7648E7DE99B.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Design/DB_STRUCTURE/database_design/pm/Objects.local" beforeDir="false" afterPath="$PROJECT_DIR$/../Design/DB_STRUCTURE/database_design/pm/Objects.local" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Design/DB_STRUCTURE/database_design/rdbms/database_design_RDBMSSites.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Design/DB_STRUCTURE/database_design/rdbms/database_design_RDBMSSites.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Design/DB_STRUCTURE/database_design/rel/C5DFC5DD-B7648E7DE99B/DDLSelection.local" beforeDir="false" afterPath="$PROJECT_DIR$/../Design/DB_STRUCTURE/database_design/rel/C5DFC5DD-B7648E7DE99B/DDLSelection.local" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Design/DB_STRUCTURE/database_design/rel/C5DFC5DD-B7648E7DE99B/Diagrams.local" beforeDir="false" afterPath="$PROJECT_DIR$/../Design/DB_STRUCTURE/database_design/rel/C5DFC5DD-B7648E7DE99B/Diagrams.local" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Design/DB_STRUCTURE/database_design/rel/C5DFC5DD-B7648E7DE99B/Objects.local" beforeDir="false" afterPath="$PROJECT_DIR$/../Design/DB_STRUCTURE/database_design/rel/C5DFC5DD-B7648E7DE99B/Objects.local" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Design/DB_STRUCTURE/database_design/rel/C5DFC5DD-B7648E7DE99B/subviews/DDF9FCBE-2830-5AB6-3DD0-B2CFAA840673.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Design/DB_STRUCTURE/database_design/rel/C5DFC5DD-B7648E7DE99B/subviews/DDF9FCBE-2830-5AB6-3DD0-B2CFAA840673.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Design/DB_STRUCTURE/database_design/rel/C5DFC5DD-B7648E7DE99B/table/seg_0/47A181FD-9D20-6987-2EAE-0B7F53C88FB3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Design/DB_STRUCTURE/database_design/rel/C5DFC5DD-B7648E7DE99B/table/seg_0/47A181FD-9D20-6987-2EAE-0B7F53C88FB3.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Design/DB_STRUCTURE/db_script.cql" beforeDir="false" afterPath="$PROJECT_DIR$/../Design/DB_STRUCTURE/db_script.cql" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -117,8 +96,8 @@
       <file leaf-file-name="__init__.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/database/__init__.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="554">
-              <caret line="84" column="4" lean-forward="true" selection-start-line="84" selection-start-column="4" selection-end-line="84" selection-end-column="4" />
+            <state relative-caret-position="643">
+              <caret line="156" column="4" selection-start-line="156" selection-start-column="4" selection-end-line="156" selection-end-column="4" />
               <folding>
                 <element signature="e#0#37#0" expanded="true" />
               </folding>
@@ -160,10 +139,10 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="951" />
-    <option name="width" value="978" />
-    <option name="height" value="1039" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="950" />
+    <option name="width" value="980" />
+    <option name="height" value="1040" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -173,7 +152,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -190,6 +168,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -198,6 +177,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/db_script_pycharm.ddl" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="SQL Resolution Scopes" />
   </component>
   <component name="RunDashboard">
@@ -270,11 +250,18 @@
       <option name="project" value="LOCAL" />
       <updated>1529518221384</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Updated database model and added methods for &quot;InsertOperations&quot;">
+      <created>1529522603097</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1529522603097</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="761" y="0" width="782" height="831" extended-state="0" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="12" />
@@ -285,7 +272,7 @@
       <window_info anchor="bottom" id="Run" order="8" weight="0.32965517" />
       <window_info anchor="bottom" id="Terminal" order="4" />
       <window_info anchor="right" id="Remote Host" order="2" />
-      <window_info content_ui="combo" id="Project" order="1" weight="0.26302084" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.234375" />
       <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="0" />
       <window_info anchor="right" id="SciView" order="1" />
@@ -300,30 +287,6 @@
       <window_info anchor="bottom" id="Cvs" order="10" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="7" weight="0.32965517" />
     </layout>
-    <layout-to-restore>
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="5" weight="0.25" />
-      <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="1" />
-      <window_info anchor="right" id="Ant Build" order="4" weight="0.25" />
-      <window_info anchor="right" id="Remote Host" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.26302084" />
-      <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
-      <window_info anchor="right" id="Commander" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="12" />
-      <window_info anchor="bottom" id="Database Changes" order="2" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Run" order="8" weight="0.32965517" />
-      <window_info anchor="bottom" id="Find" order="7" weight="0.32965517" />
-      <window_info anchor="bottom" id="Python Console" order="5" />
-      <window_info anchor="bottom" id="Debug" order="9" weight="0.4" />
-      <window_info anchor="right" id="Database" order="0" />
-      <window_info anchor="bottom" id="Terminal" order="4" />
-      <window_info anchor="bottom" id="Event Log" order="3" side_tool="true" />
-      <window_info anchor="bottom" id="Inspection" order="11" weight="0.4" />
-      <window_info anchor="right" id="SciView" order="1" />
-      <window_info anchor="bottom" id="Cvs" order="10" weight="0.25" />
-      <window_info anchor="bottom" id="Message" order="6" />
-      <window_info id="Favorites" order="0" side_tool="true" />
-    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -335,7 +298,8 @@
     <MESSAGE value="First commit of the application - created methods for main and first setup" />
     <MESSAGE value="Packages and cPrint method - pip upgrader also included" />
     <MESSAGE value="Created class for database managing - files for database creation adapted to Cassandra model" />
-    <option name="LAST_COMMIT_MESSAGE" value="Created class for database managing - files for database creation adapted to Cassandra model" />
+    <MESSAGE value="Updated database model and added methods for &quot;InsertOperations&quot;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated database model and added methods for &quot;InsertOperations&quot;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -343,6 +307,57 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/application.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1581">
+          <caret line="94" column="62" selection-start-line="94" selection-start-column="62" selection-end-line="94" selection-end-column="62" />
+          <folding>
+            <element signature="e#0#37#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1581">
+          <caret line="94" column="8" selection-start-line="94" selection-start-column="8" selection-end-line="94" selection-end-column="8" />
+          <folding>
+            <element signature="e#0#37#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1428">
+          <caret line="84" lean-forward="true" selection-start-line="84" selection-end-line="84" />
+          <folding>
+            <element signature="e#0#37#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/application.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
@@ -425,10 +440,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/db_script_pycharm.ddl">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/database/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="554">
-          <caret line="84" column="4" lean-forward="true" selection-start-line="84" selection-start-column="4" selection-end-line="84" selection-end-column="4" />
+        <state relative-caret-position="643">
+          <caret line="156" column="4" selection-start-line="156" selection-start-column="4" selection-end-line="156" selection-end-column="4" />
           <folding>
             <element signature="e#0#37#0" expanded="true" />
           </folding>
