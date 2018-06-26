@@ -5,6 +5,8 @@ except (ImportError, ModuleNotFoundError) as e:
 
 from out import cPrint, Colors
 from upgrader import PiPUpgrader
+from database import DatabaseOperationsBase
+from commands import *
 
 
 def main(arguments: Namespace):
@@ -15,7 +17,8 @@ def main(arguments: Namespace):
         import string
 
         from os import path
-        from telegram.ext import Updater, CommandHandler
+        from telegram import MessageEntity
+        from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
     except (ImportError, ModuleNotFoundError) as import_error:
         print("Modules needed not found: " + str(import_error))
         exit(-1)
@@ -58,13 +61,30 @@ def main(arguments: Namespace):
             upgrader.upgradePackages()
             cPrint("Obtaining values...", Colors.GREEN)
             with open("app_data.dict", "rb") as app_data_file:
-                # unpickler = pickle.Unpickler(app_data_file)
                 app_data = pickle.load(app_data_file)
+            cPrint("Starting database system...", Colors.GREEN)
+            db_manager = DatabaseOperationsBase(username=database_user, password=database_password)
+            cPrint("Defining handlers...", Colors.GREEN)
+            start_handler = CommandHandler("start", )
+            help_handler = CommandHandler("help", )
+            develop_handler = CommandHandler("develop", )
+            video_id_handler = MessageHandler(Filters.command, )
+            url_handler = MessageHandler(Filters.text & (Filters.entity(MessageEntity.URL) |
+                                                         Filters.entity(MessageEntity.TEXT_LINK)), )
+            message_handler = MessageHandler(Filters.text, )
+            unknown_handler = MessageHandler(Filters.all, )
             updater = Updater(token=app_data["TOKEN"], workers=50)
             dispatcher = updater.dispatcher
+
             logging.basicConfig(format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
                                 level=logging.DEBUG)
-            updater.start_polling(poll_interval=5, timeout=60)
+            try:
+                updater.start_polling(poll_interval=5, timeout=60)
+            except KeyboardInterrupt:
+                cPrint("Exiting program... Wait while closing threads and pending petitions...", Colors.FAIL)
+                updater.idle()
+                db_manager.finishConnection()
+                exit(0)
 
 
 if __name__ == '__main__':
