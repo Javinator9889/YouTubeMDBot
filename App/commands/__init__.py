@@ -1,4 +1,4 @@
-from telegram import Bot, Update
+from telegram import Bot, Update, ParseMode
 from telegram.ext import run_async
 
 from utils import Constants
@@ -26,9 +26,7 @@ class StartHandler(Handler):
             with open(user_path + Constants.P_USERS_FILE, "wb") as user_info:
                 pickle.dump(Constants.D_USER_DICT, user_info)
             db_insert.registerNewUser(user_id=user_id, username=username, name=name)
-
-
-        # bot.sendMessage(chat_id, self.__messages["welcome"])
+        bot.sendMessage(chat_id=user_id, text=self.__messages["msg"], parse_mode=ParseMode.MARKDOWN)
 
 
 class HelpHandler(Handler):
