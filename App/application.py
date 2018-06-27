@@ -6,7 +6,33 @@ except (ImportError, ModuleNotFoundError) as e:
 from out import cPrint, Colors
 from upgrader import PiPUpgrader
 from database import DatabaseOperationsBase
-from commands import *
+from handlers.StartHandler import StartHandler
+from handlers.HelpHandler import HelpHandler
+from handlers.DeveloperHandler import DeveloperHandler
+from handlers.VideoIDHandler import VideoIDHandler
+
+
+def handler_definer():
+    # type: () -> list
+    from telegram import MessageEntity
+    from telegram.ext import CommandHandler, MessageHandler, Filters
+
+    handlers = []
+    with open("messages/es_ES.json", 'r') as messages_file:
+        messages: dict = messages_file.read()
+    start = StartHandler(messages["welcome"])
+    help_handler = HelpHandler(messages["help"])
+    dev = DeveloperHandler(messages["dev"])
+    video = VideoIDHandler(messages["video_id"])
+    handlers.append(CommandHandler("start", start.start))
+    handlers.append(CommandHandler("help", help_handler.help))
+    handlers.append(CommandHandler("develop", dev.develop))
+    handlers.append(MessageHandler(Filters.command, video.video_handler))
+    handlers.append(MessageHandler(Filters.text & (Filters.entity(MessageEntity.URL) |
+                                                   Filters.entity(MessageEntity.TEXT_LINK)), ))
+    handlers.append(MessageHandler(Filters.text, ))
+    handlers.append(MessageHandler(Filters.all, ))
+    return handlers
 
 
 def main(arguments: Namespace):
@@ -17,8 +43,7 @@ def main(arguments: Namespace):
         import string
 
         from os import path
-        from telegram import MessageEntity
-        from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
+        from telegram.ext import Updater
     except (ImportError, ModuleNotFoundError) as import_error:
         print("Modules needed not found: " + str(import_error))
         exit(-1)
@@ -65,14 +90,7 @@ def main(arguments: Namespace):
             cPrint("Starting database system...", Colors.GREEN)
             db_manager = DatabaseOperationsBase(username=database_user, password=database_password)
             cPrint("Defining handlers...", Colors.GREEN)
-            start_handler = CommandHandler("start", )
-            help_handler = CommandHandler("help", )
-            develop_handler = CommandHandler("develop", )
-            video_id_handler = MessageHandler(Filters.command, )
-            url_handler = MessageHandler(Filters.text & (Filters.entity(MessageEntity.URL) |
-                                                         Filters.entity(MessageEntity.TEXT_LINK)), )
-            message_handler = MessageHandler(Filters.text, )
-            unknown_handler = MessageHandler(Filters.all, )
+            handler_definer()
             updater = Updater(token=app_data["TOKEN"], workers=50)
             dispatcher = updater.dispatcher
 
