@@ -10,6 +10,9 @@ from handlers.StartHandler import StartHandler
 from handlers.HelpHandler import HelpHandler
 from handlers.DeveloperHandler import DeveloperHandler
 from handlers.VideoIDHandler import VideoIDHandler
+from handlers.URLHandler import URLHandler
+from handlers.TextHandler import TextHandler
+from handlers.UnexpectedHandler import UnexpectedHandler
 
 
 def handler_definer():
@@ -24,14 +27,17 @@ def handler_definer():
     help_handler = HelpHandler(messages["help"])
     dev = DeveloperHandler(messages["dev"])
     video = VideoIDHandler(messages["video_id"])
+    url = URLHandler(messages["url_messages"])
+    text = TextHandler(messages["text"])
+    unexpected = UnexpectedHandler(messages["unexpected"])
     handlers.append(CommandHandler("start", start.start))
     handlers.append(CommandHandler("help", help_handler.help))
     handlers.append(CommandHandler("develop", dev.develop))
     handlers.append(MessageHandler(Filters.command, video.video_handler))
     handlers.append(MessageHandler(Filters.text & (Filters.entity(MessageEntity.URL) |
-                                                   Filters.entity(MessageEntity.TEXT_LINK)), ))
-    handlers.append(MessageHandler(Filters.text, ))
-    handlers.append(MessageHandler(Filters.all, ))
+                                                   Filters.entity(MessageEntity.TEXT_LINK)), url.url_handler))
+    handlers.append(MessageHandler(Filters.text, text.message_handler))
+    handlers.append(MessageHandler(Filters.all, unexpected.unexpected))
     return handlers
 
 
