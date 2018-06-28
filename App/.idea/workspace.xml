@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ecb85847-acff-4336-b3d7-4f5563aac01d" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/handlers/TextHandler.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/handlers/URLHandler.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/handlers/UnexpectedHandler.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/logger.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application.py" beforeDir="false" afterPath="$PROJECT_DIR$/application.py" afterDir="false" />
     </list>
@@ -86,14 +84,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="application.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="application.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="663">
-              <caret line="39" column="71" lean-forward="true" selection-start-line="39" selection-start-column="71" selection-end-line="39" selection-end-column="71" />
+            <state relative-caret-position="-612">
+              <caret line="44" selection-start-line="44" selection-end-line="44" />
               <folding>
                 <element signature="e#154#184#0" expanded="true" />
+                <marker date="1530198744416" expanded="true" signature="1860:1864" ph="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="logger.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/utils/logger.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="578">
+              <caret line="34" column="60" selection-start-line="34" selection-start-column="60" selection-end-line="34" selection-end-column="60" />
             </state>
           </provider>
         </entry>
@@ -101,7 +109,7 @@
       <file leaf-file-name="UnexpectedHandler.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/handlers/UnexpectedHandler.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
+            <state relative-caret-position="119">
               <caret line="10" selection-start-line="10" selection-end-line="10" />
               <folding>
                 <element signature="e#0#43#0" expanded="true" />
@@ -113,7 +121,7 @@
       <file leaf-file-name="TextHandler.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/handlers/TextHandler.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
+            <state relative-caret-position="119">
               <caret line="10" selection-start-line="10" selection-end-line="10" />
               <folding>
                 <element signature="e#0#43#0" expanded="true" />
@@ -125,7 +133,7 @@
       <file leaf-file-name="URLHandler.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/handlers/URLHandler.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
+            <state relative-caret-position="119">
               <caret line="10" selection-start-line="10" selection-end-line="10" />
               <folding>
                 <element signature="e#0#43#0" expanded="true" />
@@ -139,19 +147,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="51">
               <caret line="3" selection-start-line="3" selection-end-line="3" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DeveloperHandler.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/handlers/DeveloperHandler.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="5" selection-start-line="5" selection-end-line="5" />
-              <folding>
-                <element signature="e#0#43#0" expanded="true" />
-                <marker date="1530089149601" expanded="true" signature="207:216" ph="..." />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -183,8 +178,8 @@
       <file leaf-file-name="StartHandler.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/handlers/StartHandler.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="12" column="14" lean-forward="true" selection-start-line="12" selection-start-column="14" selection-end-line="12" selection-end-column="14" />
+            <state relative-caret-position="119">
+              <caret line="12" column="14" selection-start-line="12" selection-start-column="14" selection-end-line="12" selection-end-column="14" />
               <folding>
                 <element signature="e#0#43#0" expanded="true" />
               </folding>
@@ -242,6 +237,7 @@
         <option value="$PROJECT_DIR$/handlers/TextHandler.py" />
         <option value="$PROJECT_DIR$/handlers/UnexpectedHandler.py" />
         <option value="$PROJECT_DIR$/application.py" />
+        <option value="$PROJECT_DIR$/utils/logger.py" />
       </list>
     </option>
   </component>
@@ -267,7 +263,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -285,10 +280,16 @@
               <item name="App" type="462c0819:PsiDirectoryNode" />
               <item name="messages" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="App" type="b2602c69:ProjectViewProjectNode" />
+              <item name="App" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -412,7 +413,14 @@
       <option name="project" value="LOCAL" />
       <updated>1530089505355</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Created files for handlers | defined method for instantiating handlers">
+      <created>1530120152704</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1530120152704</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -473,6 +481,7 @@
           <caret line="29" column="73" lean-forward="true" selection-start-line="29" selection-start-column="73" selection-end-line="29" selection-end-column="73" />
           <folding>
             <element signature="e#154#184#0" expanded="true" />
+            <marker date="1530198744416" expanded="true" signature="1860:1864" ph="..." />
           </folding>
         </state>
       </provider>
@@ -562,6 +571,7 @@
           <caret line="83" column="72" selection-start-line="83" selection-start-column="72" selection-end-line="83" selection-end-column="72" />
           <folding>
             <element signature="e#154#184#0" expanded="true" />
+            <marker date="1530198744416" expanded="true" signature="1860:1864" ph="..." />
           </folding>
         </state>
       </provider>
@@ -610,6 +620,7 @@
           <caret line="63" column="63" selection-start-line="63" selection-start-column="63" selection-end-line="63" selection-end-column="63" />
           <folding>
             <element signature="e#154#184#0" expanded="true" />
+            <marker date="1530198744416" expanded="true" signature="1860:1864" ph="..." />
           </folding>
         </state>
       </provider>
@@ -644,6 +655,7 @@
           <caret line="7" selection-start-line="7" selection-end-line="7" />
           <folding>
             <element signature="e#154#184#0" expanded="true" />
+            <marker date="1530198744416" expanded="true" signature="1860:1864" ph="..." />
           </folding>
         </state>
       </provider>
@@ -831,7 +843,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/handlers/URLHandler.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
+        <state relative-caret-position="119">
           <caret line="10" selection-start-line="10" selection-end-line="10" />
           <folding>
             <element signature="e#0#43#0" expanded="true" />
@@ -841,8 +853,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/handlers/StartHandler.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="14" lean-forward="true" selection-start-line="12" selection-start-column="14" selection-end-line="12" selection-end-column="14" />
+        <state relative-caret-position="119">
+          <caret line="12" column="14" selection-start-line="12" selection-start-column="14" selection-end-line="12" selection-end-column="14" />
           <folding>
             <element signature="e#0#43#0" expanded="true" />
           </folding>
@@ -851,7 +863,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/handlers/TextHandler.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
+        <state relative-caret-position="119">
           <caret line="10" selection-start-line="10" selection-end-line="10" />
           <folding>
             <element signature="e#0#43#0" expanded="true" />
@@ -861,7 +873,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/handlers/UnexpectedHandler.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
+        <state relative-caret-position="119">
           <caret line="10" selection-start-line="10" selection-end-line="10" />
           <folding>
             <element signature="e#0#43#0" expanded="true" />
@@ -871,11 +883,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="663">
-          <caret line="39" column="71" lean-forward="true" selection-start-line="39" selection-start-column="71" selection-end-line="39" selection-end-column="71" />
+        <state relative-caret-position="-612">
+          <caret line="44" selection-start-line="44" selection-end-line="44" />
           <folding>
             <element signature="e#154#184#0" expanded="true" />
+            <marker date="1530198744416" expanded="true" signature="1860:1864" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/logger.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="578">
+          <caret line="34" column="60" selection-start-line="34" selection-start-column="60" selection-end-line="34" selection-end-column="60" />
         </state>
       </provider>
     </entry>

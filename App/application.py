@@ -88,18 +88,25 @@ def main(arguments: Namespace):
         else:
             cPrint("Initializing bot...", Colors.GREEN)
             cPrint("Looking for packages updates...", Colors.GREEN)
+
             upgrader = PiPUpgrader("requirements.txt")
             upgrader.upgradePackages()
+
             cPrint("Obtaining values...", Colors.GREEN)
             with open("app_data.dict", "rb") as app_data_file:
                 app_data = pickle.load(app_data_file)
+
             cPrint("Starting database system...", Colors.GREEN)
             db_manager = DatabaseOperationsBase(username=database_user, password=database_password)
+
             cPrint("Defining handlers...", Colors.GREEN)
-            handler_definer()
+            handlers = handler_definer()
             updater = Updater(token=app_data["TOKEN"], workers=50)
             dispatcher = updater.dispatcher
+            for handler in handlers:
+                dispatcher.add_handler(handler)
 
+            cPrint("Defining log...", Colors.GREEN)
             logging.basicConfig(format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
                                 level=logging.DEBUG)
             try:
