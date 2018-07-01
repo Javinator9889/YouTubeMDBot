@@ -2,11 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ecb85847-acff-4336-b3d7-4f5563aac01d" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/messages/messages.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application.py" beforeDir="false" afterPath="$PROJECT_DIR$/application.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/messages/es_ES.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../youtube_md_bot/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../youtube_md_bot/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../youtube_md_bot/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../youtube_md_bot/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../youtube_md_bot/database/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../youtube_md_bot/database/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../youtube_md_bot/handlers/HelpHandler.py" beforeDir="false" afterPath="$PROJECT_DIR$/../youtube_md_bot/handlers/HelpHandler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../youtube_md_bot/handlers/StartHandler.py" beforeDir="false" afterPath="$PROJECT_DIR$/../youtube_md_bot/handlers/StartHandler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../youtube_md_bot/handlers/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../youtube_md_bot/handlers/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../youtube_md_bot/messages/messages.json" beforeDir="false" afterPath="$PROJECT_DIR$/../youtube_md_bot/messages/messages.json" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -86,35 +88,35 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="application.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/application.py">
+      <file leaf-file-name="__init__.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../youtube_md_bot/__init__.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="35" selection-start-line="8" selection-start-column="35" selection-end-line="8" selection-end-column="35" />
+            <state relative-caret-position="-612">
+              <caret line="9" column="47" lean-forward="true" selection-start-line="9" selection-start-column="47" selection-end-line="9" selection-end-column="47" />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="messages.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/messages/messages.json">
+        <entry file="file://$PROJECT_DIR$/../youtube_md_bot/messages/messages.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="21" selection-start-line="21" selection-end-line="21" />
+            <state relative-caret-position="238">
+              <caret line="14" column="23" lean-forward="true" selection-start-line="14" selection-start-column="10" selection-end-line="14" selection-end-column="23" />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="logger.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/utils/logger.py">
+        <entry file="file://$PROJECT_DIR$/../youtube_md_bot/utils/logger.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="17" column="49" selection-start-line="17" selection-start-column="49" selection-end-line="17" selection-end-column="49" />
+            <state relative-caret-position="85">
+              <caret line="5" column="80" lean-forward="true" selection-start-line="5" selection-start-column="80" selection-end-line="5" selection-end-column="80" />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="UnexpectedHandler.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/handlers/UnexpectedHandler.py">
+        <entry file="file://$PROJECT_DIR$/../youtube_md_bot/handlers/UnexpectedHandler.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="119">
               <caret line="10" selection-start-line="10" selection-end-line="10" />
@@ -126,19 +128,7 @@
         </entry>
       </file>
       <file leaf-file-name="TextHandler.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/handlers/TextHandler.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="10" selection-start-line="10" selection-end-line="10" />
-              <folding>
-                <element signature="e#0#43#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="URLHandler.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/handlers/URLHandler.py">
+        <entry file="file://$PROJECT_DIR$/../youtube_md_bot/handlers/TextHandler.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="119">
               <caret line="10" selection-start-line="10" selection-end-line="10" />
@@ -150,28 +140,52 @@
         </entry>
       </file>
       <file leaf-file-name="__init__.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/handlers/__init__.py">
+        <entry file="file://$PROJECT_DIR$/../youtube_md_bot/handlers/__init__.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" selection-start-line="3" selection-end-line="3" />
+            <state relative-caret-position="136">
+              <caret line="8" column="71" selection-start-line="8" selection-start-column="71" selection-end-line="8" selection-end-column="71" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HelpHandler.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/../youtube_md_bot/handlers/HelpHandler.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+              <caret line="13" column="66" lean-forward="true" selection-start-line="13" selection-start-column="66" selection-end-line="13" selection-end-column="66" />
+              <folding>
+                <element signature="e#0#87#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="__init__.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/utils/__init__.py">
+        <entry file="file://$PROJECT_DIR$/../youtube_md_bot/database/__init__.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="12" column="4" lean-forward="true" selection-start-line="12" selection-start-column="4" selection-end-line="12" selection-end-column="18" />
+            <state relative-caret-position="208">
+              <caret line="56" column="100" selection-start-line="56" selection-start-column="100" selection-end-line="56" selection-end-column="100" />
+              <folding>
+                <element signature="e#0#11#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="__init__.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../youtube_md_bot/utils/__init__.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="340">
+              <caret line="20" column="55" lean-forward="true" selection-start-line="20" selection-start-column="55" selection-end-line="20" selection-end-column="55" />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="StartHandler.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/handlers/StartHandler.py">
+        <entry file="file://$PROJECT_DIR$/../youtube_md_bot/handlers/StartHandler.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="12" column="14" selection-start-line="12" selection-start-column="14" selection-end-line="12" selection-end-column="14" />
+            <state relative-caret-position="527">
+              <caret line="31" column="74" lean-forward="true" selection-start-line="31" selection-start-column="74" selection-end-line="31" selection-end-column="74" />
               <folding>
                 <element signature="e#0#43#0" expanded="true" />
               </folding>
@@ -192,7 +206,16 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>duration</find>
+      <find>&quot;app_data.dict&quot;</find>
+      <find>&quot;requirements.txt&quot;</find>
+      <find>handlers</find>
     </findStrings>
+    <replaceStrings>
+      <replace>Constants.A_</replace>
+      <replace>Constants.A_APP_DATA_FILE</replace>
+      <replace>Constants.A_APP_REQ_FILE</replace>
+      <replace>.handlers</replace>
+    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -223,6 +246,13 @@
         <option value="$PROJECT_DIR$/messages/messages.json" />
         <option value="$PROJECT_DIR$/utils/__init__.py" />
         <option value="$PROJECT_DIR$/application.py" />
+        <option value="$PROJECT_DIR$/../youtube_md_bot/utils/__init__.py" />
+        <option value="$PROJECT_DIR$/../youtube_md_bot/__init__.py" />
+        <option value="$PROJECT_DIR$/../youtube_md_bot/messages/messages.json" />
+        <option value="$PROJECT_DIR$/../youtube_md_bot/handlers/__init__.py" />
+        <option value="$PROJECT_DIR$/../youtube_md_bot/handlers/HelpHandler.py" />
+        <option value="$PROJECT_DIR$/../youtube_md_bot/database/__init__.py" />
+        <option value="$PROJECT_DIR$/../youtube_md_bot/handlers/StartHandler.py" />
       </list>
     </option>
   </component>
@@ -253,22 +283,37 @@
         <subPane>
           <expand>
             <path>
-              <item name="App" type="b2602c69:ProjectViewProjectNode" />
-              <item name="App" type="462c0819:PsiDirectoryNode" />
+              <item name="youtube_md_bot" type="b2602c69:ProjectViewProjectNode" />
+              <item name="youtube_md_bot" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="App" type="b2602c69:ProjectViewProjectNode" />
-              <item name="App" type="462c0819:PsiDirectoryNode" />
+              <item name="youtube_md_bot" type="b2602c69:ProjectViewProjectNode" />
+              <item name="youtube_md_bot" type="462c0819:PsiDirectoryNode" />
+              <item name="database" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="youtube_md_bot" type="b2602c69:ProjectViewProjectNode" />
+              <item name="youtube_md_bot" type="462c0819:PsiDirectoryNode" />
               <item name="handlers" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="App" type="b2602c69:ProjectViewProjectNode" />
-              <item name="App" type="462c0819:PsiDirectoryNode" />
+              <item name="youtube_md_bot" type="b2602c69:ProjectViewProjectNode" />
+              <item name="youtube_md_bot" type="462c0819:PsiDirectoryNode" />
               <item name="messages" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="App" type="b2602c69:ProjectViewProjectNode" />
-              <item name="App" type="462c0819:PsiDirectoryNode" />
+              <item name="youtube_md_bot" type="b2602c69:ProjectViewProjectNode" />
+              <item name="youtube_md_bot" type="462c0819:PsiDirectoryNode" />
+              <item name="out" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="youtube_md_bot" type="b2602c69:ProjectViewProjectNode" />
+              <item name="youtube_md_bot" type="462c0819:PsiDirectoryNode" />
+              <item name="upgrader" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="youtube_md_bot" type="b2602c69:ProjectViewProjectNode" />
+              <item name="youtube_md_bot" type="462c0819:PsiDirectoryNode" />
               <item name="utils" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -412,7 +457,21 @@
       <option name="project" value="LOCAL" />
       <updated>1530200290328</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Renamed project - changed directory name">
+      <created>1530470820132</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1530470820132</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Updated &quot;main&quot;">
+      <created>1530471396812</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1530471396812</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -460,7 +519,9 @@
     <MESSAGE value="First messages included" />
     <MESSAGE value="Created files for handlers | defined method for instantiating handlers" />
     <MESSAGE value="Created logging manager" />
-    <option name="LAST_COMMIT_MESSAGE" value="Created logging manager" />
+    <MESSAGE value="Renamed project - changed directory name" />
+    <MESSAGE value="Updated &quot;main&quot;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated &quot;main&quot;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -468,7 +529,7 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/handlers/DeveloperHandler.py">
+    <entry file="file://$PROJECT_DIR$/../youtube_md_bot/handlers/DeveloperHandler.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
@@ -479,7 +540,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/handlers/VideoIDHandler.py">
+    <entry file="file://$PROJECT_DIR$/../youtube_md_bot/handlers/VideoIDHandler.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="10" selection-start-line="10" selection-end-line="10" />
@@ -489,7 +550,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/handlers/HelpHandler.py">
+    <entry file="file://$PROJECT_DIR$/../youtube_md_bot/handlers/HelpHandler.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="14" selection-start-line="14" selection-end-line="14" />
@@ -499,7 +560,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/handlers/StartHandler.py">
+    <entry file="file://$PROJECT_DIR$/../youtube_md_bot/handlers/StartHandler.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
           <caret line="8" column="28" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
@@ -516,14 +577,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utils/__init__.py">
+    <entry file="file://$PROJECT_DIR$/../youtube_md_bot/utils/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="7" selection-start-line="7" selection-end-line="7" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/__init__.py">
+    <entry file="file://$PROJECT_DIR$/../youtube_md_bot/database/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="629">
           <caret line="44" column="70" selection-start-line="44" selection-start-column="70" selection-end-line="44" selection-end-column="70" />
@@ -533,14 +594,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/db_script_pycharm.ddl">
+    <entry file="file://$PROJECT_DIR$/../youtube_md_bot/db_script_pycharm.ddl">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="6" column="70" selection-start-line="6" selection-start-column="70" selection-end-line="6" selection-end-column="70" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application.py">
+    <entry file="file://$PROJECT_DIR$/../youtube_md_bot/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1360">
           <caret line="83" column="72" selection-start-line="83" selection-start-column="72" selection-end-line="83" selection-end-column="72" />
@@ -554,14 +615,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utils/__init__.py">
+    <entry file="file://$PROJECT_DIR$/../youtube_md_bot/utils/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="7" selection-start-line="7" selection-end-line="7" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/__init__.py">
+    <entry file="file://$PROJECT_DIR$/../youtube_md_bot/database/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="629">
           <caret line="44" column="70" selection-start-line="44" selection-start-column="70" selection-end-line="44" selection-end-column="70" />
@@ -571,28 +632,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/db_script_pycharm.ddl">
+    <entry file="file://$PROJECT_DIR$/../youtube_md_bot/db_script_pycharm.ddl">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="6" column="70" selection-start-line="6" selection-start-column="70" selection-end-line="6" selection-end-column="70" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/handlers/__init__.py">
+    <entry file="file://$PROJECT_DIR$/../youtube_md_bot/handlers/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="408">
           <caret line="28" column="100" selection-start-line="28" selection-start-column="100" selection-end-line="28" selection-end-column="100" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application.py">
+    <entry file="file://$PROJECT_DIR$/../youtube_md_bot/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1020">
           <caret line="63" column="63" selection-start-line="63" selection-start-column="63" selection-end-line="63" selection-end-column="63" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/__init__.py">
+    <entry file="file://$PROJECT_DIR$/../youtube_md_bot/database/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5644">
           <caret line="339" column="44" lean-forward="true" selection-start-line="339" selection-start-column="44" selection-end-line="339" selection-end-column="44" />
@@ -602,28 +663,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/db_script_pycharm.ddl">
+    <entry file="file://$PROJECT_DIR$/../youtube_md_bot/db_script_pycharm.ddl">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="6" column="70" selection-start-line="6" selection-start-column="70" selection-end-line="6" selection-end-column="70" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/handlers/__init__.py">
+    <entry file="file://$PROJECT_DIR$/../youtube_md_bot/handlers/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="578">
           <caret line="35" column="8" selection-start-line="35" selection-start-column="8" selection-end-line="35" selection-end-column="8" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application.py">
+    <entry file="file://$PROJECT_DIR$/../youtube_md_bot/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="7" selection-start-line="7" selection-end-line="7" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/__init__.py">
+    <entry file="file://$PROJECT_DIR$/../youtube_md_bot/database/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1581">
           <caret line="94" column="62" selection-start-line="94" selection-start-column="62" selection-end-line="94" selection-end-column="62" />
@@ -633,14 +694,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application.py">
+    <entry file="file://$PROJECT_DIR$/../youtube_md_bot/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="7" selection-start-line="7" selection-end-line="7" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/__init__.py">
+    <entry file="file://$PROJECT_DIR$/../youtube_md_bot/database/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1581">
           <caret line="94" column="8" selection-start-line="94" selection-start-column="8" selection-end-line="94" selection-end-column="8" />
@@ -650,14 +711,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application.py">
+    <entry file="file://$PROJECT_DIR$/../youtube_md_bot/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="7" selection-start-line="7" selection-end-line="7" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/__init__.py">
+    <entry file="file://$PROJECT_DIR$/../youtube_md_bot/database/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1428">
           <caret line="84" lean-forward="true" selection-start-line="84" selection-end-line="84" />
@@ -667,14 +728,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application.py">
+    <entry file="file://$PROJECT_DIR$/../youtube_md_bot/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/__init__.py">
+    <entry file="file://$PROJECT_DIR$/../youtube_md_bot/database/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1054">
           <caret line="62" column="41" selection-start-line="62" selection-start-column="41" selection-end-line="62" selection-end-column="41" />
@@ -684,21 +745,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application.py">
+    <entry file="file://$PROJECT_DIR$/../youtube_md_bot/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="18" column="9" selection-start-line="18" selection-start-column="9" selection-end-line="18" selection-end-column="9" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/upgrader/__init__.py">
+    <entry file="file://$PROJECT_DIR$/../youtube_md_bot/upgrader/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="10" selection-start-line="10" selection-end-line="10" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/out/__init__.py">
+    <entry file="file://$PROJECT_DIR$/../youtube_md_bot/out/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
           <caret line="22" selection-start-line="22" selection-end-line="22" />
@@ -706,21 +767,21 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/setup.py" />
-    <entry file="file://$PROJECT_DIR$/requirements.txt">
+    <entry file="file://$PROJECT_DIR$/../youtube_md_bot/requirements.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="1" column="19" selection-start-line="1" selection-start-column="19" selection-end-line="1" selection-end-column="19" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/out/__init__.py">
+    <entry file="file://$PROJECT_DIR$/../youtube_md_bot/out/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
           <caret line="22" selection-start-line="22" selection-end-line="22" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/upgrader/__init__.py">
+    <entry file="file://$PROJECT_DIR$/../youtube_md_bot/upgrader/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="10" selection-start-line="10" selection-end-line="10" />
@@ -735,24 +796,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/db_script_pycharm.ddl">
+    <entry file="file://$PROJECT_DIR$/../youtube_md_bot/db_script_pycharm.ddl">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="6" column="70" selection-start-line="6" selection-start-column="70" selection-end-line="6" selection-end-column="70" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="629">
-          <caret line="44" column="70" selection-start-line="44" selection-start-column="70" selection-end-line="44" selection-end-column="70" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/handlers/DeveloperHandler.py">
+    <entry file="file://$PROJECT_DIR$/../youtube_md_bot/handlers/DeveloperHandler.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="5" selection-start-line="5" selection-end-line="5" />
@@ -763,17 +814,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/handlers/HelpHandler.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="14" selection-start-line="14" selection-end-line="14" />
-          <folding>
-            <element signature="e#0#43#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/handlers/VideoIDHandler.py">
+    <entry file="file://$PROJECT_DIR$/../youtube_md_bot/handlers/VideoIDHandler.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="10" selection-start-line="10" selection-end-line="10" />
@@ -783,7 +824,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/handlers/URLHandler.py">
+    <entry file="file://$PROJECT_DIR$/../youtube_md_bot/handlers/URLHandler.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="10" selection-start-line="10" selection-end-line="10" />
@@ -793,17 +834,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/handlers/StartHandler.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="12" column="14" selection-start-line="12" selection-start-column="14" selection-end-line="12" selection-end-column="14" />
-          <folding>
-            <element signature="e#0#43#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/handlers/TextHandler.py">
+    <entry file="file://$PROJECT_DIR$/../youtube_md_bot/handlers/TextHandler.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="10" selection-start-line="10" selection-end-line="10" />
@@ -813,32 +844,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/handlers/UnexpectedHandler.py">
+    <entry file="file://$PROJECT_DIR$/../youtube_md_bot/handlers/UnexpectedHandler.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="10" selection-start-line="10" selection-end-line="10" />
           <folding>
             <element signature="e#0#43#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utils/logger.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="49" selection-start-line="17" selection-start-column="49" selection-end-line="17" selection-end-column="49" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/utils/Constants.py">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/handlers/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/messages/es_ES.json">
       <provider selected="true" editor-type-id="text-editor">
@@ -847,24 +864,68 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/messages/messages.json">
+    <entry file="file://$PROJECT_DIR$/../youtube_md_bot/utils/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" selection-start-line="21" selection-end-line="21" />
+        <state relative-caret-position="340">
+          <caret line="20" column="55" lean-forward="true" selection-start-line="20" selection-start-column="55" selection-end-line="20" selection-end-column="55" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utils/__init__.py">
+    <entry file="file://$PROJECT_DIR$/../youtube_md_bot/utils/logger.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="4" lean-forward="true" selection-start-line="12" selection-start-column="4" selection-end-line="12" selection-end-column="18" />
+        <state relative-caret-position="85">
+          <caret line="5" column="80" lean-forward="true" selection-start-line="5" selection-start-column="80" selection-end-line="5" selection-end-column="80" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application.py">
+    <entry file="file://$PROJECT_DIR$/../youtube_md_bot/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-612">
+          <caret line="9" column="47" lean-forward="true" selection-start-line="9" selection-start-column="47" selection-end-line="9" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../youtube_md_bot/messages/messages.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="23" lean-forward="true" selection-start-line="14" selection-start-column="10" selection-end-line="14" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../youtube_md_bot/handlers/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
-          <caret line="8" column="35" selection-start-line="8" selection-start-column="35" selection-end-line="8" selection-end-column="35" />
+          <caret line="8" column="71" selection-start-line="8" selection-start-column="71" selection-end-line="8" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../youtube_md_bot/database/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="56" column="100" selection-start-line="56" selection-start-column="100" selection-end-line="56" selection-end-column="100" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../youtube_md_bot/handlers/StartHandler.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="31" column="74" lean-forward="true" selection-start-line="31" selection-start-column="74" selection-end-line="31" selection-end-column="74" />
+          <folding>
+            <element signature="e#0#43#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../youtube_md_bot/handlers/HelpHandler.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="66" lean-forward="true" selection-start-line="13" selection-start-column="66" selection-end-line="13" selection-end-column="66" />
+          <folding>
+            <element signature="e#0#87#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

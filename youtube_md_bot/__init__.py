@@ -24,13 +24,13 @@ def handler_definer():
     handlers = []
     with open(Constants.A_APP_MESSAGES, 'r') as messages_file:
         messages: dict = messages_file.read()
-    start = StartHandler(messages["welcome"])
-    help_handler = HelpHandler(messages["help"])
-    dev = DeveloperHandler(messages["dev"])
-    video = VideoIDHandler(messages["video_id"])
-    url = URLHandler(messages["url_messages"])
-    text = TextHandler(messages["text"])
-    unexpected = UnexpectedHandler(messages["unexpected"])
+    start = StartHandler(messages)
+    help_handler = HelpHandler(messages)
+    dev = DeveloperHandler(messages)
+    video = VideoIDHandler(messages)
+    url = URLHandler(messages)
+    text = TextHandler(messages)
+    unexpected = UnexpectedHandler(messages)
     
     handlers.append(CommandHandler("start", start.start))
     handlers.append(CommandHandler("help", help_handler.help))
@@ -40,6 +40,7 @@ def handler_definer():
                                                    Filters.entity(MessageEntity.TEXT_LINK)), url.url_handler))
     handlers.append(MessageHandler(Filters.text, text.message_handler))
     handlers.append(MessageHandler(Filters.all, unexpected.unexpected))
+
     return handlers
 
 
@@ -116,7 +117,7 @@ def main(arguments: Namespace):
                                      Constants.L_PRIMARY_LOGGER_MODE)
                 logger.setup_logging(Constants.L_SECONDARY_LOGGER_NAME, Constants.L_SECONDARY_LOGGER_MODE)
             try:
-                updater.start_polling(poll_interval=5, timeout=60)
+                updater.start_polling(poll_interval=1, timeout=90)
             except KeyboardInterrupt:
                 cPrint("Exiting program... Wait while closing threads and pending petitions...", Colors.FAIL)
                 updater.idle()

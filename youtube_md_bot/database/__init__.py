@@ -54,11 +54,11 @@ class InsertOperations(DatabaseOperationsBase):
         """
         self.__session.execute(query, (audio_quality, audio_format, os, should_ask_metadata, user_id))
 
-    def registerStatistics(self, user_id: int, lang: str, downloads: int, last_time_active):
+    def registerStatistics(self, user_id: int, lang: str, downloads: int, last_time_active: datetime):
         query = """
         INSERT INTO YouTubeMDApp.Statistics(lang, downloads, last_time_active, user_id) VALUES (%s, %s, %s, %s);
         """
-        self.__session.execute(query, (lang, downloads, last_time_active, user_id))
+        self.__session.execute_async(query, (lang, downloads, last_time_active, user_id))
 
     def registerNewSong(self, file_id: str, video_id: str, audio_quality: int, audio_format: int, times_requested: int,
                         is_metadata_by_user: bool):
@@ -66,14 +66,14 @@ class InsertOperations(DatabaseOperationsBase):
         INSERT INTO YouTubeMDApp.music (file_id, video_id, audio_quality, audio_format, times_requested, 
         is_metadata_by_user) VALUES (%s, %s, %s, %s, %s, %s)
         """
-        self.__session.execute(query, (file_id, video_id, audio_quality, audio_format, times_requested,
+        self.__session.execute_async(query, (file_id, video_id, audio_quality, audio_format, times_requested,
                                        is_metadata_by_user))
 
     def registerNewPlaylist(self, playlist_id: str, number_elements: int, times_requested: int):
         query = """
         INSERT INTO YouTubeMDApp.playlist(playlist_id, number_elements, times_requested) VALUES (%s, %s, %s)
         """
-        self.__session.execute(query, (playlist_id, number_elements, times_requested))
+        self.__session.execute_async(query, (playlist_id, number_elements, times_requested))
 
     def registerNewSongForPlaylist(self, playlist_id: str, file_id: str, playlist_quality: str, playlist_format: str):
         query = """
@@ -87,13 +87,13 @@ class InsertOperations(DatabaseOperationsBase):
         INSERT INTO YouTubeMDApp.metadata(title, artist, cover, song_duration, music_file_id) 
         VALUES (%s, %s, %s, %s, %s)
         """
-        self.__session.execute(query, (title, artist, cover, duration, file_id))
+        self.__session.execute_async(query, (title, artist, cover, duration, file_id))
 
     def registerNewSongInHistory(self, user_id: int, file_id: str):
         query = """
         INSERT INTO YouTubeMDApp.history(user_id, file_id) VALUES (%s, %s)
         """
-        self.__session.execute(query, (user_id, file_id))
+        self.__session.execute_async(query, (user_id, file_id))
 
 
 class UpdateOperations(DatabaseOperationsBase):
@@ -104,7 +104,7 @@ class UpdateOperations(DatabaseOperationsBase):
         query = """
         UPDATE YouTubeMDApp.user SET username = %s WHERE user_id = %s
         """
-        self.__session.execute(query, (new_username, user_id))
+        self.__session.execute_async(query, (new_username, user_id))
 
     def updateUserAudioQuality(self, user_id: int, audio_quality: str):
         query = """
@@ -134,31 +134,31 @@ class UpdateOperations(DatabaseOperationsBase):
         query = """
         UPDATE YouTubeMDApp.statistics SET lang = %s WHERE user_id = %s
         """
-        self.__session.execute(query, (lang, user_id))
+        self.__session.execute_async(query, (lang, user_id))
 
     def updateUserDownloads(self, user_id: int):
         query = """
         UPDATE YouTubeMDApp.statistics SET downloads = downloads + 1 WHERE user_id = %s
         """
-        self.__session.execute(query, (user_id, ))
+        self.__session.execute_async(query, (user_id, ))
 
     def updateUserLastTimeActive(self, user_id: int):
         query = """
         UPDATE YouTubeMDApp.statistics SET last_time_active = %s WHERE user_id = %s
         """
-        self.__session.execute(query, (datetime.now(), user_id))
+        self.__session.execute_async(query, (datetime.now(), user_id))
 
     def updatePlaylistNumberOfElements(self, playlist_id: str, number_of_elements: int):
         query = """
         UPDATE YouTubeMDApp.playlist SET number_elements = %s WHERE playlist_id = %s
         """
-        self.__session.execute(query, (number_of_elements, playlist_id))
+        self.__session.execute_async(query, (number_of_elements, playlist_id))
 
     def updatePlaylistTimesRequested(self, playlist_id: str):
         query = """
         UPDATE YouTubeMDApp.playlist SET times_requested = times_requested + 1 WHERE playlist_id = %s
         """
-        self.__session.execute(query, (playlist_id, ))
+        self.__session.execute_async(query, (playlist_id, ))
 
 
 class SelectOperations(DatabaseOperationsBase):
