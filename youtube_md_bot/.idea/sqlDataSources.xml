@@ -8,7 +8,7 @@
           <option name="name" value="DDL data source" />
           <option name="urls">
             <array>
-              <option value="file://$PROJECT_DIR$/../youtube_md_bot/db_script_pycharm.ddl" />
+              <option value="file://$PROJECT_DIR$/db_script_pycharm.ddl" />
             </array>
           </option>
         </State>

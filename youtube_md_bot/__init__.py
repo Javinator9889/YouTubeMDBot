@@ -6,6 +6,7 @@ except (ImportError, ModuleNotFoundError) as e:
 from out import cPrint, Colors
 from upgrader import PiPUpgrader
 from database import DatabaseOperationsBase
+from utils import Constants, logger
 from handlers.StartHandler import StartHandler
 from handlers.HelpHandler import HelpHandler
 from handlers.DeveloperHandler import DeveloperHandler
@@ -21,7 +22,7 @@ def handler_definer():
     from telegram.ext import CommandHandler, MessageHandler, Filters
 
     handlers = []
-    with open("messages/es_ES.json", 'r') as messages_file:
+    with open(Constants.A_APP_MESSAGES, 'r') as messages_file:
         messages: dict = messages_file.read()
     start = StartHandler(messages["welcome"])
     help_handler = HelpHandler(messages["help"])
@@ -30,6 +31,7 @@ def handler_definer():
     url = URLHandler(messages["url_messages"])
     text = TextHandler(messages["text"])
     unexpected = UnexpectedHandler(messages["unexpected"])
+    
     handlers.append(CommandHandler("start", start.start))
     handlers.append(CommandHandler("help", help_handler.help))
     handlers.append(CommandHandler("develop", dev.develop))
@@ -61,9 +63,10 @@ def main(arguments: Namespace):
         database_password = arguments.db_password
         must_show_version = arguments.version
         if must_show_version:
-            print("Version")
+            cPrint("Version: " + Constants.A_APP_VERSION + "-" + Constants.A_APP_TAG_R +
+                   " (" + Constants.A_APP_TAG + ")", Colors.BOLD)
             exit(0)
-        if not path.exists("app_data.dict"):
+        if not path.exists(Constants.A_APP_DATA_FILE):
             if not token:
                 raise ValueError("You must add token at least the first time you execute this app")
             elif not youtube_api_key:
@@ -77,7 +80,7 @@ def main(arguments: Namespace):
                 if not database_password:
                     alphabet = string.ascii_letters + string.digits
                     database_password = ''.join(secrets.choice(alphabet) for i in range(32))
-                with open("app_data.dict", "wb") as app_data_file:
+                with open(Constants.A_APP_DATA_FILE, "wb") as app_data_file:
                     app_data = {"TOKEN": token,
                                 "YT_API": youtube_api_key,
                                 "CREATOR_ID": creator_id,
@@ -89,11 +92,11 @@ def main(arguments: Namespace):
             cPrint("Initializing bot...", Colors.GREEN)
             cPrint("Looking for packages updates...", Colors.GREEN)
 
-            upgrader = PiPUpgrader("requirements.txt")
+            upgrader = PiPUpgrader(Constants.A_APP_REQ_FILE)
             upgrader.upgradePackages()
 
             cPrint("Obtaining values...", Colors.GREEN)
-            with open("app_data.dict", "rb") as app_data_file:
+            with open(Constants.A_APP_DATA_FILE, "rb") as app_data_file:
                 app_data = pickle.load(app_data_file)
 
             cPrint("Starting database system...", Colors.GREEN)
