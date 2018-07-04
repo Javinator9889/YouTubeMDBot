@@ -9,13 +9,17 @@
       "help": [
         {
           "msg": "Para descargar una canción puedes:\n  ■  *Buscar* 🔎 la canción por _título y artista_, enviándoselo directamente al bot\n  ■  *Enviar* directamente la _URL_ 🔗 del vídeo\n  ■  Seleccionar una *canción ya descargada* desde el historial 🕒\n\nPara más ayuda, navega con los botones que aparecen debajo",
-          "d_via_tt-at-but": "Título y artista",
-          "d_via_url-but": "URL",
-          "d_via_history-but": "Historial",
-          "support_but": "Soporte",
-          "d_via_tt-at": "*Descarga*[ ]({})canciones enviando directamente el _título_ 🎤 y _artista_ 🗣 de la canción al bot",
-          "d_via_url": "Comienza[ ]({})directamente *con la descarga* enviando la URL del vídeo de YouTube\n\nPuedes usar un bot _inline_ como @vid para agilizar este proceso",
-          "d_via_history": "Accede[ ]({})a tu *historial* mediante el comando /history, desde donde podrás _seleccionar directamente_ la canción que quieras descargar"
+          "d_via_tt-at-but": "Título y artista 🗣🎤",
+          "d_via_url-but": "URL 🔗",
+          "d_via_history-but": "Historial 🕒",
+          "m_set_metadata-but": "Metadatos 🏷",
+          "support_but": "Soporte 🛠",
+          "back_button": "◀ Atrás",
+          "d_via_tt-at": "*Descarga*[ ]({})canciones enviando directamente el _título_ 🎤 y _artista_ 🗣 de la canción al bot.\n\n_Puedes obtener esta información escribiendo:_ `/help ta` (*t*itle, *a*rtist)",
+          "d_via_url": "Comienza[ ]({})directamente *con la descarga* enviando la URL del vídeo de YouTube\n\nPuedes usar un bot _inline_ como @vid para agilizar este proceso.\n\n_Puedes obtener esta información escribiendo:_ `/help url`",
+          "d_via_history": "Accede[ ]({})a tu *historial* mediante el comando /history, desde donde podrás _seleccionar directamente_ la canción que quieras descargar.\n\n_Puedes obtener esta información escribiendo:_ `/help h` (*h*istory)",
+          "m_set_metadata": "Cambia los metadatos de una canción al descargarla:\n\n  ■  Cambia *las preferencias* ⚙ usando /config\n  ■  Cuando _descargues un vídeo_, se te preguntará por las preferencias. Indica el título usando /t:\n         `/t titulo`\n     Indica el artista usando /a:\n         `/a artista`\n  ■  Se te *preguntará* si quieres usar la _miniatura de YouTube_ como carátula de tu canción.\n\n_Puedes obtener esta información escribiendo:_ `/help meta` (*meta*data)",
+          "h_unrecognized": "No se reconoce el atributo. La lista de opciones disponibles es:\n\n  ■  `/help ta`, para título y artista 🗣🎤\n  ■  `/help url`, para URL 🔗\n  ■  `/help h`, para historial 🕒\n  ■  `/help meta`, para metadatos 🏷"
         }
       ]
     }
