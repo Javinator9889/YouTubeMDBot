@@ -1,4 +1,0 @@
-cassandra-driver
-telegram
-pip
-python-telegram-bot
