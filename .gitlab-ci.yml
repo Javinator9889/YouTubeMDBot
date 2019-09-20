@@ -1,0 +1,30 @@
+# https://hub.docker.com/r/library/python/tags/
+image: python:latest
+
+# Change pip's cache directory to be inside the project directory since we can
+# only cache local items.
+variables:
+  PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
+
+# Pip's cache doesn't store the python packages
+# https://pip.pypa.io/en/stable/reference/pip_install/#caching
+#
+# If you want to also cache the installed packages, you have to install
+# them in a virtualenv and cache it as well.
+cache:
+  paths:
+    - .cache/pip
+    - venv/
+
+before_script:
+  - python -V  # Print out python version for debugging
+
+test:pylint:
+  script:
+  - pip install pylint
+  - pylint -j 0 --exit-zero --ignored-classes=_socketobject *.py YouTubeMDBot
+
+test:
+  script:
+    - pip install -r YouTubeMDBot/requirements.txt
+    - python -m unittest $(pwd)/YouTubeMDBot/tests/*.py
