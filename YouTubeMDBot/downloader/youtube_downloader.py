@@ -13,27 +13,31 @@
 #
 #     You should have received a copy of the GNU General Public License
 #    along with this program. If not, see <http://www.gnu.org/licenses/>.
-import logging
-import youtube_dl
-
-from contextlib import redirect_stdout as save_to
 from io import BytesIO
+from typing import Tuple
 
-from ..constants.app_constants import ydl_options
-from ..constants.app_constants import STREAM_OFFSET
+from ..constants.app_constants import ydl_cli_options
 
 
 class YouTubeDownloader(object):
-    def __init__(self, url: str,
-                 logger: logging = logging.getLogger("empty-logger")):
+    def __init__(self, url: str):
         self.__url: str = url
-        self.__options: dict = ydl_options
-        self.__options["logger"] = logger
+        self.__options: list = ydl_cli_options.copy()
+        self.__options.append(self.__url)
 
-    def download(self, io: BytesIO = BytesIO()) -> BytesIO:
-        with save_to(io):
-            with youtube_dl.YoutubeDL(self.__options) as yt_downloader:
-                yt_downloader.download([self.__url])
+    def download(self) -> Tuple[BytesIO, bytes]:
+        import subprocess
 
-        io.seek(STREAM_OFFSET)
-        return io
+        proc = subprocess.Popen(self.__options,
+                                stdout=subprocess.PIPE,
+                                stderr=subprocess.PIPE)
+        stdout, stderr = proc.communicate()
+        retcode = proc.returncode
+        if retcode == 0:
+            return BytesIO(stdout), stdout
+        else:
+            raise RuntimeError("youtube-dl downloader exception - more info: " +
+                               str(stderr))
+
+    def get_url(self) -> str:
+        return self.__url

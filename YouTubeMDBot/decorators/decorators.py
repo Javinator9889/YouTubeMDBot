@@ -16,10 +16,9 @@
 from functools import wraps
 
 from .. import PROGRAM_ARGS
-from .. import LoggingHandler
 
 
-logging = LoggingHandler()
+# logging = LoggingHandler()
 
 
 def send_action(action):

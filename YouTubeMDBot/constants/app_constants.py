@@ -13,9 +13,5 @@
 #
 #     You should have received a copy of the GNU General Public License
 #    along with this program. If not, see <http://www.gnu.org/licenses/>.
-ydl_options: dict = {
-    "format": "bestaudio[ext=m4a]",
-    "outtmpl": "-",
-    "logger": ""
-}
-STREAM_OFFSET: int = 0
+ydl_cli_options = ["youtube-dl", "--format", "bestaudio[ext=m4a]", "--quiet", "--output",
+                   "-"]
