@@ -19,8 +19,8 @@ cache:
 before_script:
   - python -V  # Print out python version for debugging
   - pip install pylint
-  - pip install -r requirements.txt
   - cd YouTubeMDBot
+  - pip install -r requirements.txt
 
 test:pylint:
   script:
