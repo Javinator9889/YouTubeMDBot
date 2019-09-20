@@ -18,14 +18,14 @@ cache:
 
 before_script:
   - python -V  # Print out python version for debugging
-  - pip install pylint
+  - pip install pylint_runner
   - cd YouTubeMDBot
   - pip install -r requirements.txt
 
 test:pylint:
   script:
-  - pylint --ignored-classes=_socketobject *.py
+  - pylint_runner -j 0 --exit-zero --ignored-classes=_socketobject *.py
 
 test:
   script:
-    - python -m unittest $(pwd)/YouTubeMDBot/tests/*.py
+    - python -m unittest $(pwd)/tests/*.py
