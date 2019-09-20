@@ -26,5 +26,5 @@ test:pylint:
 
 test:
   script:
-    - pip install -r requirements.txt
+    - pip install -r YouTubeMDBot/requirements.txt
     - python -m unittest $(pwd)/YouTubeMDBot/tests/*.py
