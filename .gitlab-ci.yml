@@ -18,7 +18,7 @@ cache:
 
 before_script:
   - python -V  # Print out python version for debugging
-  - pip install pylint_runner
+  - pip install pylint
 
 test:pylint:
   script:
