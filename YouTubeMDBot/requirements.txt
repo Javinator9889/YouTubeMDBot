@@ -1,3 +1,4 @@
+SoundFile
 youtube_dl
 pyacoustid
 python-telegram-bot

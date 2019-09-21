@@ -15,22 +15,24 @@
 #    along with this program. If not, see <http://www.gnu.org/licenses/>.
 from io import BytesIO
 
-import acoustid
-
-from .. import AudioUtils
+import soundfile
 
 
-class MetadataIdentifier(object):
-    def __init__(self, audio: BytesIO, raw: bytes):
-        self.__audio = raw
-        self.__audio_info = AudioUtils(audio)
+class AudioUtils(object):
+    def __init__(self, audio: BytesIO):
+        self.__audio = soundfile.SoundFile(audio)
 
-    def _calculate_fingerprint(self) -> bytes:
-        return acoustid.fingerprint(self.__audio_info.get_audio_samplerate(),
-                                    self.__audio_info.get_audio_channels(),
-                                    iter(self.__audio))
+    def get_audio_samplerate(self) -> int:
+        return self.__audio.samplerate
 
-    def identify_audio(self) -> list:
-        fingerprint = self._calculate_fingerprint()
-        return acoustid.lookup(None, fingerprint,
-                               self.__audio_info.get_audio_duration())
+    def get_audio_channels(self) -> int:
+        return self.__audio.channels
+
+    def get_audio_duration(self) -> float:
+        return self.__audio.frames / self.get_audio_samplerate()
+
+    def get_audio_name(self) -> str:
+        return self.__audio.name
+
+    def get_audio_format(self) -> str:
+        return self.__audio.format

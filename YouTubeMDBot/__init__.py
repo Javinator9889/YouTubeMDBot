@@ -13,11 +13,4 @@
 #
 #     You should have received a copy of the GNU General Public License
 #    along with this program. If not, see <http://www.gnu.org/licenses/>.
-from .bot import PROGRAM_ARGS
-from .bot import main
 
-from .logging_utils import LoggingHandler
-from .logging_utils import setup_logging
-
-from .decorators import send_action
-from .decorators import restricted

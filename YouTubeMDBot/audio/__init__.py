@@ -13,24 +13,4 @@
 #
 #     You should have received a copy of the GNU General Public License
 #    along with this program. If not, see <http://www.gnu.org/licenses/>.
-from io import BytesIO
-
-import acoustid
-
-from .. import AudioUtils
-
-
-class MetadataIdentifier(object):
-    def __init__(self, audio: BytesIO, raw: bytes):
-        self.__audio = raw
-        self.__audio_info = AudioUtils(audio)
-
-    def _calculate_fingerprint(self) -> bytes:
-        return acoustid.fingerprint(self.__audio_info.get_audio_samplerate(),
-                                    self.__audio_info.get_audio_channels(),
-                                    iter(self.__audio))
-
-    def identify_audio(self) -> list:
-        fingerprint = self._calculate_fingerprint()
-        return acoustid.lookup(None, fingerprint,
-                               self.__audio_info.get_audio_duration())
+from ..audio.audio_utils import AudioUtils
