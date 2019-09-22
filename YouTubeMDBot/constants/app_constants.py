@@ -13,5 +13,9 @@
 #
 #     You should have received a copy of the GNU General Public License
 #    along with this program. If not, see <http://www.gnu.org/licenses/>.
-ydl_cli_options = ["youtube-dl", "--format", "bestaudio[ext=m4a]", "--quiet", "--output",
+import os
+
+YDL_CLI_OPTIONS = ["youtube-dl", "--format", "bestaudio[ext=m4a]", "--quiet", "--output",
                    "-"]
+FPCALC = ["fpcalc", "-"]
+ACOUSTID_KEY = os.environ["ACOUSTID_KEY"]

@@ -16,13 +16,13 @@
 from io import BytesIO
 from typing import Tuple
 
-from ..constants.app_constants import ydl_cli_options
+from ..constants.app_constants import YDL_CLI_OPTIONS
 
 
 class YouTubeDownloader(object):
     def __init__(self, url: str):
         self.__url: str = url
-        self.__options: list = ydl_cli_options.copy()
+        self.__options: list = YDL_CLI_OPTIONS.copy()
         self.__options.append(self.__url)
 
     def download(self) -> Tuple[BytesIO, bytes]:
@@ -37,7 +37,7 @@ class YouTubeDownloader(object):
             return BytesIO(stdout), stdout
         else:
             raise RuntimeError("youtube-dl downloader exception - more info: " +
-                               str(stderr))
+                               str(stderr.decode("utf-8")))
 
     def get_url(self) -> str:
         return self.__url

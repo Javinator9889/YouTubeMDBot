@@ -1,4 +1,5 @@
-SoundFile
+musicbrainzngs
+ujson
 youtube_dl
 pyacoustid
 python-telegram-bot

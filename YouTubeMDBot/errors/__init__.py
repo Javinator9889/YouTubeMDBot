@@ -13,26 +13,3 @@
 #
 #     You should have received a copy of the GNU General Public License
 #    along with this program. If not, see <http://www.gnu.org/licenses/>.
-from io import BytesIO
-
-import soundfile
-
-
-class AudioUtils(object):
-    def __init__(self, audio: BytesIO):
-        self.__audio = soundfile.SoundFile(audio)
-
-    def get_audio_samplerate(self) -> int:
-        return self.__audio.samplerate
-
-    def get_audio_channels(self) -> int:
-        return self.__audio.channels
-
-    def get_audio_duration(self) -> float:
-        return self.__audio.frames / self.get_audio_samplerate()
-
-    def get_audio_name(self) -> str:
-        return self.__audio.name
-
-    def get_audio_format(self) -> str:
-        return self.__audio.format
