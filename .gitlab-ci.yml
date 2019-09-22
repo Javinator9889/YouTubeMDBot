@@ -18,7 +18,7 @@ cache:
 
 before_script:
   - python -V  # Print out python version for debugging
-  - apt update && apt upgrade -y
+  - apt update
   - apt install -y libchromaprint-tools --install-recommends
 
 test:pylint:
