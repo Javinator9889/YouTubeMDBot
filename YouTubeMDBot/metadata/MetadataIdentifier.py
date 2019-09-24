@@ -22,64 +22,48 @@ except ImportError:
     import json
 
 from ..audio import FPCalc
+from ..utils import youtube_utils
 from ..constants import ACOUSTID_KEY
+from ..downloader import YouTubeDownloader
 
 
 class MetadataIdentifier(object):
-    def __init__(self, audio: bytes):
-        self.__fingerprint = FPCalc(audio)
-        self.__result: json = None
-        self.__artist: str = ""
-        self.__title: str = ""
-        self.__release_id: str = ""
-        self.__recording_id: str = ""
-        self.__score: float = 0.0
-        self.__cover: bytes = bytes(0)
+    def __init__(self, audio: bytes, downloader: YouTubeDownloader = None):
+        self.audio = audio
+        self.result: json = None
+        self.artist: str = ""
+        self.title: str = ""
+        self.release_id: str = ""
+        self.recording_id: str = ""
+        self.score: float = 0.0
+        self.cover: bytes = bytes(0)
+        self._downloader = downloader
 
     def identify_audio(self) -> json:
+        fingerprint = FPCalc(self.audio)
         data: json = acoustid.lookup(apikey=ACOUSTID_KEY,
-                                     fingerprint=self.__fingerprint.fingerprint(),
-                                     duration=self.__fingerprint.duration(),
+                                     fingerprint=fingerprint.fingerprint(),
+                                     duration=fingerprint.duration(),
                                      meta="recordings releaseids")
-        self.__result = data
-        if data["status"] == "ok" and "results" in data:
-            result = data["results"][0]
-            score = result["score"]
-            recording = result["recordings"][0]
-            if recording.get("artists"):
-                names = [artist["name"] for artist in recording["artists"]]
-                artist_name = "; ".join(names)
-            else:
-                artist_name = None
-            title = recording.get("title")
-            release_id = recording["releases"][0]["id"]
-            recording_id = recording.get("id")
-
-            self.__score = score
-            self.__title = title
-            self.__recording_id = recording_id
-            self.__release_id = release_id
-            self.__artist = artist_name
-            self.__cover = musicbrainzngs.get_image_front(release_id)
+        self.result = data
+        if "results" in data and data["status"] == "ok":
+            for result in data["results"]:
+                if "recordings" not in result:
+                    break
+                self.score = result["score"]
+                for recording in result["recordings"]:
+                    if recording.get("artists"):
+                        names = [artist["name"] for artist in recording["artists"]]
+                        self.artist = "; ".join(names)
+                    else:
+                        self.artist = "Unknown"
+                    self.title = recording["title"]
+                    self.release_id = recording["releases"][0]["id"]
+                    self.recording_id = recording["id"]
+                    self.cover = musicbrainzngs.get_image_front(self.release_id)
+                    break
+                break
+        elif self._downloader:
+            id = youtube_utils.get_yt_video_id(self._downloader.get_url())
+            
         return data
-
-    def get_title(self) -> str:
-        return self.__title
-
-    def get_score(self) -> float:
-        return self.__score
-
-    def get_artist(self) -> str:
-        return self.__artist
-
-    def get_recording_id(self) -> str:
-        return self.__recording_id
-
-    def get_release_id(self) -> str:
-        return self.__release_id
-
-    def get_cover(self) -> bytes:
-        return self.__cover
-
-    def get_results(self) -> json:
-        return self.__result
