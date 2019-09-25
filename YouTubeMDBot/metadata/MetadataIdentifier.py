@@ -22,6 +22,7 @@ except ImportError:
     import json
 
 from ..audio import FPCalc
+from ..api import YouTubeAPI
 from ..utils import youtube_utils
 from ..constants import ACOUSTID_KEY
 from ..downloader import YouTubeDownloader
@@ -37,7 +38,22 @@ class MetadataIdentifier(object):
         self.recording_id: str = ""
         self.score: float = 0.0
         self.cover: bytes = bytes(0)
+        self.duration: int = 0
         self._downloader = downloader
+
+    @staticmethod
+    def _is_valid_result(data: json) -> bool:
+        if "results" not in data:
+            return False
+        elif data["status"] != "ok":
+            return False
+        elif len(data["results"]) == 0:
+            return False
+        else:
+            if "recordings" not in data["results"][0]:
+                return False
+            else:
+                return True
 
     def identify_audio(self) -> json:
         fingerprint = FPCalc(self.audio)
@@ -46,7 +62,9 @@ class MetadataIdentifier(object):
                                      duration=fingerprint.duration(),
                                      meta="recordings releaseids")
         self.result = data
-        if "results" in data and data["status"] == "ok":
+        print(len(data["results"]))
+        print(data["results"])
+        if self._is_valid_result(data):
             for result in data["results"]:
                 if "recordings" not in result:
                     break
@@ -60,10 +78,17 @@ class MetadataIdentifier(object):
                     self.title = recording["title"]
                     self.release_id = recording["releases"][0]["id"]
                     self.recording_id = recording["id"]
+                    self.duration = recording["duration"]
                     self.cover = musicbrainzngs.get_image_front(self.release_id)
                     break
                 break
         elif self._downloader:
-            id = youtube_utils.get_yt_video_id(self._downloader.get_url())
-            
+            from urllib.request import urlopen
+
+            video_id = youtube_utils.get_yt_video_id(self._downloader.get_url())
+            video_data = YouTubeAPI.video_details(video_id)
+            self.title = video_data.title
+            self.artist = video_data.artist
+            self.duration = video_data.duration
+            self.cover = urlopen(video_data.thumbnail).read()
         return data

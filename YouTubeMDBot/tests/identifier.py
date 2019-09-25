@@ -71,7 +71,7 @@ class IdentifierTest(unittest.TestCase):
         f_dl_t = time()
         print("Downloaded {} - elapsed time: {:.1f}s".format(downloader.get_url(),
                                                              f_dl_t - st_dl_t))
-        identifier = MetadataIdentifier(audio=data)
+        identifier = MetadataIdentifier(audio=data, downloader=downloader)
         identifier.identify_audio()
         self.song_info[downloader.get_url()] = {
             "title": identifier.title,
@@ -80,8 +80,7 @@ class IdentifierTest(unittest.TestCase):
             "record_id": "https://musicbrainz.org/recording/{0}"
                 .format(identifier.recording_id),
             "release_id": "https://musicbrainz.org/release/{0}"
-                .format(identifier.release_id),
-            "cover": identifier.cover
+                .format(identifier.release_id)
         }
         self.barrier()
 

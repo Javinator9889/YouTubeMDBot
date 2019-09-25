@@ -15,7 +15,22 @@
 #    along with this program. If not, see <http://www.gnu.org/licenses/>.
 import os
 
+# YouTube DL options
 YDL_CLI_OPTIONS = ["youtube-dl", "--format", "bestaudio[ext=m4a]", "--quiet", "--output",
                    "-"]
+
+# FPCalc command
 FPCALC = ["fpcalc", "-"]
+
+# API keys
 ACOUSTID_KEY = os.environ["ACOUSTID_KEY"]
+YOUTUBE = {
+    "key": os.environ["YOUTUBE_KEY"],
+    "api": {
+        "name": "youtube",
+        "version": "v3"
+    },
+    "endpoint":
+        "https://www.googleapis.com/youtube/v3/videos?"
+        "part=id,snippet,contentDetails,statistics&id={0}&key={1}"
+}
