@@ -40,6 +40,7 @@ class MetadataIdentifier(object):
         self.cover: bytes = bytes(0)
         self.duration: int = 0
         self.youtube_data: bool = False
+        self.youtube_id: str = ""
         self._downloader = downloader
 
     @staticmethod
@@ -90,5 +91,6 @@ class MetadataIdentifier(object):
             self.artist = video_data.artist
             self.duration = video_data.duration
             self.cover = urlopen(video_data.thumbnail).read()
+            self.youtube_id = video_data.id
             self.youtube_data = True
         return data

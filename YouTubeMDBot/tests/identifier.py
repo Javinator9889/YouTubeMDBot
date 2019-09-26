@@ -85,6 +85,7 @@ class IdentifierTest(unittest.TestCase):
                 "https://musicbrainz.org/release/{0}".format(identifier.release_id)
         else:
             self.song_info[downloader.get_url()]["duration"] = identifier.duration
+            self.song_info[downloader.get_url()]["id"] = identifier.youtube_id
             self.song_info[downloader.get_url()]["youtube_data"] = True
         self.barrier()
 

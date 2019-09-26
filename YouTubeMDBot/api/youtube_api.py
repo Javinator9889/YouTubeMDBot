@@ -13,13 +13,6 @@
 #
 #     You should have received a copy of the GNU General Public License
 #    along with this program. If not, see <http://www.gnu.org/licenses/>.
-try:
-    import ujson as json
-except ImportError:
-    import json
-from urllib.request import urlopen
-
-from googleapiclient.discovery import build
 from isodate import parse_duration
 
 from ..constants import YOUTUBE
@@ -30,14 +23,14 @@ class YouTubeVideoData(object):
     def __init__(self, data: dict, ignore_errors: bool = False):
         if not data.get("items"):
             raise EmptyBodyError("The data object has no items")
-        self.id = None
-        self.title = None
-        self.thumbnail = None
-        self.artist = None
-        self.duration = None
-        self.views = None
-        self.likes = None
-        self.dislikes = None
+        self.id: str = ""
+        self.title: str = ""
+        self.thumbnail: str = ""
+        self.artist: str = ""
+        self.duration: float = 0.0
+        self.views: int = 0
+        self.likes: int = 0
+        self.dislikes: int = 0
         if len(data.get("items")) >= 1:
             content = data.get("items")[0]
             snippet = content.get("snippet")
@@ -61,9 +54,8 @@ class YouTubeVideoData(object):
                 statistics_available = False
             else:
                 statistics_available = True
-            self.id = content["id"]
-            if isinstance(self.id, dict):
-                self.id = self.id.get("videoId")
+            c_id = content.get("id", "")
+            self.id = c_id.get("videoId", "") if isinstance(c_id, dict) else c_id
             if snippet_available:
                 self.title = snippet["title"]
                 try:
@@ -87,6 +79,8 @@ class YouTubeVideoData(object):
 
 class YouTubeAPI(object):
     def __init__(self):
+        from googleapiclient.discovery import build
+
         self.__youtube = build(serviceName=YOUTUBE["api"]["name"],
                                version=YOUTUBE["api"]["version"],
                                developerKey=YOUTUBE["key"])
@@ -101,6 +95,12 @@ class YouTubeAPI(object):
 
     @staticmethod
     def video_details(video_id: str) -> YouTubeVideoData:
+        try:
+            import ujson as json
+        except ImportError:
+            import json
+        from urllib.request import urlopen
+
         api_url = YOUTUBE["endpoint"].format(video_id, YOUTUBE["key"])
         data = urlopen(url=api_url)
         return YouTubeVideoData(data=json.loads(data.read()))
