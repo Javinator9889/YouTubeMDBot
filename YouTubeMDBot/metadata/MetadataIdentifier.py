@@ -39,6 +39,7 @@ class MetadataIdentifier(object):
         self.score: float = 0.0
         self.cover: bytes = bytes(0)
         self.duration: int = 0
+        self.youtube_data: bool = False
         self._downloader = downloader
 
     @staticmethod
@@ -62,8 +63,6 @@ class MetadataIdentifier(object):
                                      duration=fingerprint.duration(),
                                      meta="recordings releaseids")
         self.result = data
-        print(len(data["results"]))
-        print(data["results"])
         if self._is_valid_result(data):
             for result in data["results"]:
                 if "recordings" not in result:
@@ -91,4 +90,5 @@ class MetadataIdentifier(object):
             self.artist = video_data.artist
             self.duration = video_data.duration
             self.cover = urlopen(video_data.thumbnail).read()
+            self.youtube_data = True
         return data

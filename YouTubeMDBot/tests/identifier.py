@@ -75,13 +75,17 @@ class IdentifierTest(unittest.TestCase):
         identifier.identify_audio()
         self.song_info[downloader.get_url()] = {
             "title": identifier.title,
-            "artist": identifier.artist,
-            "score": identifier.score,
-            "record_id": "https://musicbrainz.org/recording/{0}"
-                .format(identifier.recording_id),
-            "release_id": "https://musicbrainz.org/release/{0}"
-                .format(identifier.release_id)
+            "artist": identifier.artist
         }
+        if not identifier.youtube_data:
+            self.song_info[downloader.get_url()]["score"] = identifier.score
+            self.song_info[downloader.get_url()]["record_id"] = \
+                "https://musicbrainz.org/recording/{0}".format(identifier.recording_id)
+            self.song_info[downloader.get_url()]["release_id"] = \
+                "https://musicbrainz.org/release/{0}".format(identifier.release_id)
+        else:
+            self.song_info[downloader.get_url()]["duration"] = identifier.duration
+            self.song_info[downloader.get_url()]["youtube_data"] = True
         self.barrier()
 
 

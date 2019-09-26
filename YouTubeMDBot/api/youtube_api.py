@@ -19,35 +19,70 @@ except ImportError:
     import json
 from urllib.request import urlopen
 
-import isodate
 from googleapiclient.discovery import build
+from isodate import parse_duration
 
 from ..constants import YOUTUBE
 from ..errors import EmptyBodyError
 
 
 class YouTubeVideoData(object):
-    def __init__(self, data: dict):
+    def __init__(self, data: dict, ignore_errors: bool = False):
         if not data.get("items"):
             raise EmptyBodyError("The data object has no items")
+        self.id = None
+        self.title = None
+        self.thumbnail = None
+        self.artist = None
+        self.duration = None
+        self.views = None
+        self.likes = None
+        self.dislikes = None
         if len(data.get("items")) >= 1:
             content = data.get("items")[0]
             snippet = content.get("snippet")
             details = content.get("contentDetails")
             statistics = content.get("statistics")
-            if not snippet:
+            if not snippet and not ignore_errors:
                 raise EmptyBodyError("No information available to requested video")
-            if not details:
+            elif not snippet and ignore_errors:
+                snippet_available = False
+            else:
+                snippet_available = True
+            if not details and not ignore_errors:
                 raise EmptyBodyError("No video details available")
-            if not statistics:
+            elif not details and ignore_errors:
+                details_available = False
+            else:
+                details_available = True
+            if not statistics and not ignore_errors:
                 raise EmptyBodyError("No statistics available")
-            self.title = snippet["title"]
-            self.thumbnail = snippet["thumbnails"]["maxres"]["url"]
-            self.artist = snippet["channelTitle"]
-            self.duration = isodate.parse_duration(details["duration"]).total_seconds()
-            self.view = int(statistics["viewCount"])
-            self.like = int(statistics["likeCount"])
-            self.dislike = int(statistics["dislikeCount"])
+            elif not statistics and ignore_errors:
+                statistics_available = False
+            else:
+                statistics_available = True
+            self.id = content["id"]
+            if isinstance(self.id, dict):
+                self.id = self.id.get("videoId")
+            if snippet_available:
+                self.title = snippet["title"]
+                try:
+                    self.thumbnail = snippet["thumbnails"]["maxres"]["url"]
+                except KeyError:
+                    try:
+                        self.thumbnail = snippet["thumbnails"]["high"]["url"]
+                    except KeyError:
+                        try:
+                            self.thumbnail = snippet["thumbnails"]["medium"]["url"]
+                        except KeyError:
+                            self.thumbnail = snippet["thumbnails"]["default"]["url"]
+                self.artist = snippet["channelTitle"]
+            if details_available:
+                self.duration = parse_duration(details["duration"]).total_seconds()
+            if statistics_available:
+                self.views = int(statistics["viewCount"])
+                self.likes = int(statistics["likeCount"])
+                self.dislikes = int(statistics["dislikeCount"])
 
 
 class YouTubeAPI(object):
@@ -67,6 +102,5 @@ class YouTubeAPI(object):
     @staticmethod
     def video_details(video_id: str) -> YouTubeVideoData:
         api_url = YOUTUBE["endpoint"].format(video_id, YOUTUBE["key"])
-        print(api_url)
         data = urlopen(url=api_url)
         return YouTubeVideoData(data=json.loads(data.read()))
