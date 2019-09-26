@@ -48,7 +48,6 @@ def restricted(func):
     def wrapped(update, context, *args, **kwargs):
         user_id = update.effective_user.id
         if user_id not in PROGRAM_ARGS["admin"]:
-            logging.warning("Unauthorized access denied for {}.".format(user_id))
             return
         return func(update, context, *args, **kwargs)
     return wrapped

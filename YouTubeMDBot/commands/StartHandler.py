@@ -13,7 +13,6 @@
 #
 #     You should have received a copy of the GNU General Public License
 #    along with this program. If not, see <http://www.gnu.org/licenses/>.
-from .. import LoggingHandler
 
 
 class StartHandler(object):
@@ -21,4 +20,5 @@ class StartHandler(object):
         self._user_data = {}
 
     def start(self, bot, update):
-        self._user_data[]
+        pass
+        # TODO

@@ -18,6 +18,9 @@ cache:
 
 before_script:
   - python -V  # Print out python version for debugging
+  - apt update
+  - apt install -y libchromaprint-tools --install-recommends
+  - pip install -r YouTubeMDBot/requirements.txt
 
 test:pylint:
   script:
@@ -26,5 +29,4 @@ test:pylint:
 
 test:
   script:
-    - pip install -r YouTubeMDBot/requirements.txt
     - python -m unittest $(pwd)/YouTubeMDBot/tests/*.py
