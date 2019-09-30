@@ -29,7 +29,7 @@ from ..downloader import YouTubeDownloader
 
 
 class MetadataIdentifier(object):
-    def __init__(self, audio: bytes, downloader: YouTubeDownloader = None):
+    def __init__(self, audio: bytes):
         self.audio = audio
         self.result: json = None
         self.artist: str = ""
@@ -41,7 +41,7 @@ class MetadataIdentifier(object):
         self.duration: int = 0
         self.youtube_data: bool = False
         self.youtube_id: str = ""
-        self._downloader = downloader
+        # self._downloader = downloader
 
     @staticmethod
     def _is_valid_result(data: json) -> bool:
@@ -57,14 +57,15 @@ class MetadataIdentifier(object):
             else:
                 return True
 
-    def identify_audio(self) -> json:
+    def identify_audio(self) -> bool:
         fingerprint = FPCalc(self.audio)
         data: json = acoustid.lookup(apikey=ACOUSTID_KEY,
                                      fingerprint=fingerprint.fingerprint(),
                                      duration=fingerprint.duration(),
                                      meta="recordings releaseids")
         self.result = data
-        if self._is_valid_result(data):
+        is_valid = self._is_valid_result(data)
+        if is_valid:
             for result in data["results"]:
                 if "recordings" not in result:
                     break
@@ -80,17 +81,43 @@ class MetadataIdentifier(object):
                     self.recording_id = recording["id"]
                     self.duration = recording["duration"]
                     self.cover = musicbrainzngs.get_image_front(self.release_id)
+                    is_valid = True
                     break
                 break
-        elif self._downloader:
-            from urllib.request import urlopen
+        # elif self._downloader:
+        #     from urllib.request import urlopen
+        #
+        #     video_id = youtube_utils.get_yt_video_id(self._downloader.get_url())
+        #     video_data = YouTubeAPI.video_details(video_id)
+        #     self.title = video_data.title
+        #     self.artist = video_data.artist
+        #     self.duration = video_data.duration
+        #     self.cover = urlopen(video_data.thumbnail).read()
+        #     self.youtube_id = video_data.id
+        #     self.youtube_data = True
+        return is_valid
 
-            video_id = youtube_utils.get_yt_video_id(self._downloader.get_url())
-            video_data = YouTubeAPI.video_details(video_id)
-            self.title = video_data.title
-            self.artist = video_data.artist
-            self.duration = video_data.duration
-            self.cover = urlopen(video_data.thumbnail).read()
-            self.youtube_id = video_data.id
-            self.youtube_data = True
-        return data
+
+class YouTubeMetadataIdentifier(MetadataIdentifier):
+    def __init__(self, audio: bytes, downloader: YouTubeDownloader = None):
+        super().__init__(audio)
+        self._downloader = downloader
+
+    def identify_audio(self) -> bool:
+        valid = super().identify_audio()
+        if not valid:
+            if self._downloader:
+                from urllib.request import urlopen
+
+                video_id = youtube_utils.get_yt_video_id(self._downloader.get_url())
+                video_data = YouTubeAPI.video_details(video_id)
+                self.title = video_data.title
+                self.artist = video_data.artist
+                self.duration = video_data.duration
+                self.cover = urlopen(video_data.thumbnail).read()
+                self.youtube_id = video_data.id
+                self.youtube_data = True
+
+                valid = True
+
+        return valid

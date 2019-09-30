@@ -5,7 +5,7 @@ from time import sleep
 from time import time
 
 from YouTubeMDBot.downloader import YouTubeDownloader
-from YouTubeMDBot.metadata import MetadataIdentifier
+from YouTubeMDBot.metadata import YouTubeMetadataIdentifier
 
 
 class IdentifierTest(unittest.TestCase):
@@ -20,9 +20,10 @@ class IdentifierTest(unittest.TestCase):
         audio, data = downloader.download()
         with open("hello.m4a", "wb") as song:
             song.write(data)
-        identifier = MetadataIdentifier(audio=data)
+        identifier = YouTubeMetadataIdentifier(audio=data)
 
-        results = identifier.identify_audio()
+        valid = identifier.identify_audio()
+        assert valid
         print("{0} by {1} - score: {2} / 1\n"
               "\thttps://musicbrainz.org/recording/{3}\n"
               "\thttps://musicbrainz.org/release/{4}\n\n"
@@ -31,8 +32,6 @@ class IdentifierTest(unittest.TestCase):
                       identifier.recording_id, identifier.release_id))
         with open("cover.jpg", "wb") as cover:
             cover.write(identifier.cover)
-
-        pprint(results)
 
     def test_multiple_download_identification(self):
         yt1 = YouTubeDownloader(url="https://www.youtube.com/watch?v=Inm-N5rLUSI")
@@ -71,8 +70,9 @@ class IdentifierTest(unittest.TestCase):
         f_dl_t = time()
         print("Downloaded {} - elapsed time: {:.1f}s".format(downloader.get_url(),
                                                              f_dl_t - st_dl_t))
-        identifier = MetadataIdentifier(audio=data, downloader=downloader)
-        identifier.identify_audio()
+        identifier = YouTubeMetadataIdentifier(audio=data, downloader=downloader)
+        valid = identifier.identify_audio()
+        assert valid
         self.song_info[downloader.get_url()] = {
             "title": identifier.title,
             "artist": identifier.artist
