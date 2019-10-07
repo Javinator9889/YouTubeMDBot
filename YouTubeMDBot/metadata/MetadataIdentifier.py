@@ -38,10 +38,10 @@ class MetadataIdentifier(object):
         self.recording_id: str = ""
         self.score: float = 0.0
         self.cover: bytes = bytes(0)
+        self.album: str = ""
         self.duration: int = 0
         self.youtube_data: bool = False
         self.youtube_id: str = ""
-        # self._downloader = downloader
 
     @staticmethod
     def _is_valid_result(data: json) -> bool:
@@ -62,7 +62,7 @@ class MetadataIdentifier(object):
         data: json = acoustid.lookup(apikey=ACOUSTID_KEY,
                                      fingerprint=fingerprint.fingerprint(),
                                      duration=fingerprint.duration(),
-                                     meta="recordings releaseids")
+                                     meta="recordings releaseids releasegroups")
         self.result = data
         is_valid = self._is_valid_result(data)
         if is_valid:
@@ -77,24 +77,16 @@ class MetadataIdentifier(object):
                     else:
                         self.artist = "Unknown"
                     self.title = recording["title"]
-                    self.release_id = recording["releases"][0]["id"]
+                    if recording.get("releasegroups"):
+                        self.release_id = \
+                            recording["releasegroups"][0]["releases"][0]["id"]
+                        self.album = recording["releasegroups"][0]["title"]
+                        self.cover = musicbrainzngs.get_image_front(self.release_id)
                     self.recording_id = recording["id"]
                     self.duration = recording["duration"]
-                    self.cover = musicbrainzngs.get_image_front(self.release_id)
                     is_valid = True
                     break
                 break
-        # elif self._downloader:
-        #     from urllib.request import urlopen
-        #
-        #     video_id = youtube_utils.get_yt_video_id(self._downloader.get_url())
-        #     video_data = YouTubeAPI.video_details(video_id)
-        #     self.title = video_data.title
-        #     self.artist = video_data.artist
-        #     self.duration = video_data.duration
-        #     self.cover = urlopen(video_data.thumbnail).read()
-        #     self.youtube_id = video_data.id
-        #     self.youtube_data = True
         return is_valid
 
 

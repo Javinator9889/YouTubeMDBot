@@ -32,14 +32,14 @@ def ffmpeg_available() -> bool:
 
 class FFmpegOpener(object):
     def __init__(self, data: bytes):
-        io = BytesIO(data)
+        self._data = data
         self.__ffmpeg_proc = Popen(["ffmpeg", "-i", "-", "-f", "s16le", "-"],
-                                   stdout=PIPE, stderr=PIPE, stdin=io)
+                                   stdout=PIPE, stderr=PIPE, stdin=PIPE)
         self.__out = None
         self.__err = None
 
     def open(self) -> int:
-        self.__out, self.__err = self.__ffmpeg_proc.communicate()
+        self.__out, self.__err = self.__ffmpeg_proc.communicate(self._data)
         return self.__ffmpeg_proc.returncode
 
     def get_output(self) -> bytes:

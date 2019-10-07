@@ -15,3 +15,5 @@
 #    along with this program. If not, see <http://www.gnu.org/licenses/>.
 from ..metadata.MetadataIdentifier import MetadataIdentifier
 from ..metadata.MetadataIdentifier import YouTubeMetadataIdentifier
+
+from ..metadata.AudioMetadata import AudioMetadata
