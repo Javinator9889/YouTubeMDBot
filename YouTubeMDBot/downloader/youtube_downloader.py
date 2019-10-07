@@ -17,6 +17,7 @@ from io import BytesIO
 from typing import Tuple
 
 from ..constants.app_constants import YDL_CLI_OPTIONS
+from ..audio.ffmpeg import FFmpegOpener
 
 
 class YouTubeDownloader(object):
@@ -25,7 +26,7 @@ class YouTubeDownloader(object):
         self.__options: list = YDL_CLI_OPTIONS.copy()
         self.__options.append(self.__url)
 
-    def download(self) -> Tuple[BytesIO, bytes]:
+    def download(self, ffmpeg: bool = False) -> Tuple[BytesIO, bytes]:
         import subprocess
 
         proc = subprocess.Popen(self.__options,
@@ -34,6 +35,13 @@ class YouTubeDownloader(object):
         stdout, stderr = proc.communicate()
         retcode = proc.returncode
         if retcode == 0:
+            # if ffmpeg:
+            #    opener = FFmpegOpener(stdout)
+            #     opener.open()
+            #     stdout = opener.get_output()
+            #     err = opener.get_extra()
+            #     if err:
+            #         print(err.decode("utf-8"))
             return BytesIO(stdout), stdout
         else:
             raise RuntimeError("youtube-dl downloader exception - more info: " +

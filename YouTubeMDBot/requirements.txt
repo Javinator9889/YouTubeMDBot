@@ -1,3 +1,4 @@
+mutagen
 isodate
 google-api-python-client
 musicbrainzngs
