@@ -47,3 +47,51 @@ class FFmpegOpener(object):
 
     def get_extra(self) -> bytes:
         return self.__err
+
+
+class FFmpegExporter:
+    def __init__(self, data: BytesIO):
+        self._data = data
+        self.__command = ["ffmpeg", "-i", "-", "-vn", "-map_metadata", "0",
+                          "-movflags", "use_metadata_tags"]
+        self.__out = None
+        self.__err = None
+
+    def _call_ffmpeg(self):
+        self._data.seek(0)
+        proc = Popen(self.__command, stdout=PIPE, stderr=PIPE, stdin=PIPE)
+        self.__out, self.__err = proc.communicate(self._data.read())
+
+    def _get_command(self) -> list:
+        return self.__command
+
+    def convert(self):
+        raise NotImplementedError
+
+    def get_output(self) -> bytes:
+        return self.__out
+
+    def get_err(self) -> bytes:
+        return self.__err
+
+
+class FFmpegMP3(FFmpegExporter):
+    def convert(self):
+        command = super()._get_command()
+        command.append("-acodec")
+        command.append("libmp3lame")
+        command.append("-f")
+        command.append("mp3")
+        command.append("-")
+        self._call_ffmpeg()
+
+
+class FFmpegOGG(FFmpegExporter):
+    def convert(self):
+        command = super()._get_command()
+        command.append("-c:a")
+        command.append("libvorbis")
+        command.append("-f")
+        command.append("ogg")
+        command.append("-")
+        self._call_ffmpeg()
