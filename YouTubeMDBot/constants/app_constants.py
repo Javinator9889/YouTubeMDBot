@@ -37,6 +37,5 @@ YOUTUBE = {
 
 # FFmpeg commands
 FFMPEG_OPENER = "ffmpeg -i - -f s16le -".split(" ")
-FFMPEG_PROCESSOR = "ffmpeg -i - -filter:a loudnorm -vn -b:a 128k -f m4a -".split(" ")
 FFMPEG_CONVERTER = ["ffmpeg", "-i", "-", "-vn", "-map_metadata", "0",
                     "-movflags", "use_metadata_tags"]

@@ -16,8 +16,6 @@
 from io import BytesIO
 from typing import Tuple
 
-from ..errors import ProcessorError
-from ..audio import FFmpegProcessor
 from ..constants.app_constants import YDL_CLI_OPTIONS
 
 
@@ -36,13 +34,7 @@ class YouTubeDownloader(object):
         stdout, stderr = proc.communicate()
         retcode = proc.returncode
         if retcode == 0:
-            processor = FFmpegProcessor(data=stdout)
-            if processor.process() == 0:
-                return BytesIO(processor.get_output()), processor.get_output()
-            else:
-                raise ProcessorError(
-                    "ffmpeg failed: " + str(processor.get_extra().decode("utf-8"))
-                )
+            return BytesIO(stdout), stdout
         else:
             raise RuntimeError("youtube-dl downloader exception - more info: " +
                                str(stderr.decode("utf-8")))

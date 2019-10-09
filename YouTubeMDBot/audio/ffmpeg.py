@@ -15,14 +15,12 @@
 #    along with this program. If not, see <http://www.gnu.org/licenses/>.
 from abc import ABC
 from abc import abstractmethod
-from io import BytesIO
 from typing import List
 from subprocess import PIPE
 from subprocess import Popen
 
 from ..constants import FFMPEG_OPENER
 from ..constants import FFMPEG_CONVERTER
-from ..constants import FFMPEG_PROCESSOR
 
 
 def ffmpeg_available() -> bool:
@@ -60,11 +58,6 @@ class FFmpeg(ABC):
 
     def get_extra(self) -> bytes:
         return self.__err
-
-
-class FFmpegProcessor(FFmpeg):
-    def __init__(self, data: bytes):
-        super().__init__(data=data, command=FFMPEG_PROCESSOR.copy())
 
 
 class FFmpegOpener(FFmpeg):
