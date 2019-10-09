@@ -22,7 +22,7 @@ class IdentifierTest(unittest.TestCase):
         audio, data = downloader.download()
         with open("hello.m4a", "wb") as song:
             song.write(data)
-        identifier = YouTubeMetadataIdentifier(audio=data)
+        identifier = YouTubeMetadataIdentifier(audio=data, downloader=downloader)
 
         valid = identifier.identify_audio()
         assert valid
