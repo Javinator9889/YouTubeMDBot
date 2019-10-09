@@ -23,8 +23,8 @@ class MyTestCase(TaggerTest):
         mp3_container = BytesIO(mp3.get_output())
         ogg_container = BytesIO(ogg.get_output())
 
-        print(mp3.get_err().decode("utf-8"))
-        print(ogg.get_err().decode("utf-8"))
+        print(mp3.get_extra().decode("utf-8"))
+        print(ogg.get_extra().decode("utf-8"))
 
         print(mutagen.File(mp3_container).pprint())
         print(mutagen.File(ogg_container).pprint())
