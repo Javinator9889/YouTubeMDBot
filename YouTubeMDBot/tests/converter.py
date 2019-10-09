@@ -14,11 +14,10 @@ class MyTestCase(TaggerTest):
     def find_metadata(self, downloader: YouTubeDownloader) -> Tuple[BytesIO, bytes]:
         io, data = super().find_metadata(downloader)
         io.seek(0)
-        mp3 = FFmpegMP3(data=io)
-        ogg = FFmpegOGG(data=io)
+        mp3 = FFmpegMP3(data=data, bitrate="96k")  # downrate
+        ogg = FFmpegOGG(data=data, bitrate="256k")  # uprate
 
         mp3.convert()
-        io.seek(0)
         ogg.convert()
 
         mp3_container = BytesIO(mp3.get_output())

@@ -13,9 +13,16 @@
 #
 #     You should have received a copy of the GNU General Public License
 #    along with this program. If not, see <http://www.gnu.org/licenses/>.
+from abc import ABC
+from abc import abstractmethod
 from io import BytesIO
+from typing import List
 from subprocess import PIPE
 from subprocess import Popen
+
+from ..constants import FFMPEG_OPENER
+from ..constants import FFMPEG_CONVERTER
+from ..constants import FFMPEG_PROCESSOR
 
 
 def ffmpeg_available() -> bool:
@@ -30,17 +37,23 @@ def ffmpeg_available() -> bool:
         return proc.returncode == 0
 
 
-class FFmpegOpener(object):
-    def __init__(self, data: bytes):
+class FFmpeg(ABC):
+    def __init__(self, data: bytes, command: List[str] = None):
         self._data = data
-        self.__ffmpeg_proc = Popen(["ffmpeg", "-i", "-", "-f", "s16le", "-"],
-                                   stdout=PIPE, stderr=PIPE, stdin=PIPE)
+        self.__command = command
         self.__out = None
         self.__err = None
 
-    def open(self) -> int:
-        self.__out, self.__err = self.__ffmpeg_proc.communicate(self._data)
-        return self.__ffmpeg_proc.returncode
+    def process(self) -> int:
+        proc = Popen(self.__command, stdout=PIPE, stderr=PIPE, stdin=PIPE)
+        self.__out, self.__err = proc.communicate(self._data)
+        return proc.returncode
+
+    def get_command(self) -> List[str]:
+        return self.__command
+
+    def set_command(self, command: List[str]):
+        self.__command = command
 
     def get_output(self) -> bytes:
         return self.__out
@@ -49,49 +62,49 @@ class FFmpegOpener(object):
         return self.__err
 
 
-class FFmpegExporter:
-    def __init__(self, data: BytesIO):
-        self._data = data
-        self.__command = ["ffmpeg", "-i", "-", "-vn", "-map_metadata", "0",
-                          "-movflags", "use_metadata_tags"]
-        self.__out = None
-        self.__err = None
+class FFmpegProcessor(FFmpeg):
+    def __init__(self, data: bytes):
+        super().__init__(data=data, command=FFMPEG_PROCESSOR.copy())
 
-    def _call_ffmpeg(self):
-        self._data.seek(0)
-        proc = Popen(self.__command, stdout=PIPE, stderr=PIPE, stdin=PIPE)
-        self.__out, self.__err = proc.communicate(self._data.read())
 
-    def _get_command(self) -> list:
-        return self.__command
+class FFmpegOpener(FFmpeg):
+    def __init__(self, data: bytes):
+        super().__init__(data=data, command=FFMPEG_OPENER.copy())
 
-    def convert(self):
+
+class FFmpegExporter(FFmpeg):
+    def __init__(self, data: bytes, bitrate: str = None):
+        super().__init__(data=data, command=FFMPEG_CONVERTER.copy())
+        self._bitrate = bitrate
+
+    @abstractmethod
+    def convert(self) -> int:
         raise NotImplementedError
-
-    def get_output(self) -> bytes:
-        return self.__out
-
-    def get_err(self) -> bytes:
-        return self.__err
 
 
 class FFmpegMP3(FFmpegExporter):
-    def convert(self):
-        command = super()._get_command()
+    def convert(self) -> int:
+        command = super().get_command()
+        if self._bitrate:
+            command.append("-b:a")
+            command.append(self._bitrate)
         command.append("-acodec")
         command.append("libmp3lame")
         command.append("-f")
         command.append("mp3")
         command.append("-")
-        self._call_ffmpeg()
+        return self.process()
 
 
 class FFmpegOGG(FFmpegExporter):
-    def convert(self):
-        command = super()._get_command()
+    def convert(self) -> int:
+        command = super().get_command()
+        if self._bitrate:
+            command.append("-b:a")
+            command.append(self._bitrate)
         command.append("-c:a")
         command.append("libvorbis")
         command.append("-f")
         command.append("ogg")
         command.append("-")
-        self._call_ffmpeg()
+        return self.process()
