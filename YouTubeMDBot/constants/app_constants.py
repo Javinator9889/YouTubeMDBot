@@ -14,7 +14,9 @@
 #     You should have received a copy of the GNU General Public License
 #    along with this program. If not, see <http://www.gnu.org/licenses/>.
 import os
+import sys
 
+PROGRAM_ARGS = sys.argv
 # YouTube DL options
 YDL_CLI_OPTIONS = ["youtube-dl", "--format", "bestaudio[ext=m4a]", "--quiet", "--output",
                    "-"]
