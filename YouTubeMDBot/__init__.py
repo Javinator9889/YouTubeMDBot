@@ -31,9 +31,7 @@ from .decorators import send_action
 
 from .downloader import YouTubeDownloader
 
-from .errors import ProcessorError
 from .errors import EmptyBodyError
-from .errors import NoMatchError
 
 from .logging_utils import LoggingHandler
 from .logging_utils import setup_logging
@@ -43,4 +41,3 @@ from .metadata import MetadataIdentifier
 from .metadata import YouTubeMetadataIdentifier
 
 from .utils import get_yt_video_id
-from .utils import timeout
