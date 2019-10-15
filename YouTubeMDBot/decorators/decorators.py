@@ -18,9 +18,6 @@ from functools import wraps
 from ..constants import PROGRAM_ARGS
 
 
-# logging = LoggingHandler()
-
-
 def send_action(action):
     """
     Sends an action while processing a command.
