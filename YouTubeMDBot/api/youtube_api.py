@@ -19,8 +19,29 @@ from ..constants import YOUTUBE
 from ..errors import EmptyBodyError
 
 
-class YouTubeVideoData(object):
+class YouTubeVideoData:
+    """
+    Obtains YouTube video data and wraps it inside this class. All fields are direct
+    access available, so it is possible to access them directly:
+     - title
+     - id
+     - thumbnail
+     - artist
+     - duration
+     - views
+     - likes
+     - dislikes
+    """
+
     def __init__(self, data: dict, ignore_errors: bool = False):
+        """
+        By passing a dict with the YouTube data (YouTube API v3), generate and obtain
+        the information available from the result.
+        :param data: a dictionary with the information obtained from YouTube API.
+        :param ignore_errors: whether to ignore or not errors (do not raise exceptions).
+        :raises EmptyBodyError when there is no information available and ignored
+        errors is False.
+        """
         if not data.get("items"):
             raise EmptyBodyError("The data object has no items")
         self.id: str = ""
@@ -77,7 +98,12 @@ class YouTubeVideoData(object):
                 self.dislikes = int(statistics["dislikeCount"])
 
 
-class YouTubeAPI(object):
+class YouTubeAPI:
+    """
+    Wrapper for the YouTube API data. Allows the developer searching for videos and,
+    with a given video ID, obtain its data.
+    """
+
     def __init__(self):
         from googleapiclient.discovery import build
 
@@ -85,7 +111,12 @@ class YouTubeAPI(object):
                                version=YOUTUBE["api"]["version"],
                                developerKey=YOUTUBE["key"])
 
-    def search(self, term: str):
+    def search(self, term: str) -> dict:
+        """
+        Searchs for a video with the specified term.
+        :param term: the search term.
+        :return: dict with YouTube data - can be wrapped inside "YouTubeVideoData" class.
+        """
         return self.__youtube.search().list(
             q=term,
             type="video",
@@ -95,12 +126,18 @@ class YouTubeAPI(object):
 
     @staticmethod
     def video_details(video_id: str) -> YouTubeVideoData:
+        """
+        Generates a "YouTubeVideoData" object wrapper with the video ID information.
+        :param video_id: YouTube video ID.
+        :return: YouTubeVideoData object with the available metadata.
+        """
         try:
             import ujson as json
         except ImportError:
             import json
         from urllib.request import urlopen
 
-        api_url = YOUTUBE["endpoint"].format(video_id, YOUTUBE["key"])
+        youtube_information = YOUTUBE.copy()
+        api_url = youtube_information["endpoint"].format(video_id, YOUTUBE["key"])
         data = urlopen(url=api_url)
-        return YouTubeVideoData(data=json.loads(data.read()))
+        return YouTubeVideoData(data=json.loads(data.read()), ignore_errors=True)

@@ -15,10 +15,7 @@
 #    along with this program. If not, see <http://www.gnu.org/licenses/>.
 from functools import wraps
 
-from .. import PROGRAM_ARGS
-
-
-# logging = LoggingHandler()
+from ..constants import PROGRAM_ARGS
 
 
 def send_action(action):

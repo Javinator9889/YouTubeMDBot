@@ -21,6 +21,10 @@ from ..constants import FPCALC
 
 
 def is_fpcalc_available() -> bool:
+    """
+    Checks if ffmpeg is installed in the system.
+    :return: True if available, else False.
+    """
     try:
         proc = Popen(["fpcalc", "-v"], stdout=PIPE, stderr=PIPE)
     except OSError:
@@ -29,8 +33,16 @@ def is_fpcalc_available() -> bool:
         proc.wait()
 
 
-class FPCalc(object):
+class FPCalc:
+    """
+    Calculates audio fingerprint by passing the audio bytes.
+    It operates with pipes so no file is created.
+    """
     def __init__(self, audio: bytes):
+        """
+        Creates the FPCalc object.
+        :param audio: the audio bytes.
+        """
         fpcalc = Popen(FPCALC, stdout=PIPE, stdin=PIPE)
         out, _ = fpcalc.communicate(audio)
         res = out.decode("utf-8")
@@ -44,7 +56,15 @@ class FPCalc(object):
         self.__fp: str = str(fingerprint.group(0))
 
     def duration(self) -> int:
+        """
+        Obtains the audio duration in seconds.
+        :return: duration in seconds.
+        """
         return self.__duration
 
     def fingerprint(self) -> str:
+        """
+        Obtains the audio fingerprint.
+        :return: fingerprint in seconds.
+        """
         return self.__fp

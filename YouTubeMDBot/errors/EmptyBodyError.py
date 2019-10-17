@@ -16,4 +16,8 @@
 
 
 class EmptyBodyError(Exception):
+    """
+    Raises an exception when the body of the json data is empty (e.g.: there is no
+    video information)
+    """
     pass

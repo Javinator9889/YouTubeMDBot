@@ -17,6 +17,10 @@ import logging
 
 
 def cleanup_old_logs(log_file: str):
+    """
+    Cleans-up the old log files.
+    :param log_file: log filename that must be cleaned.
+    """
     import tarfile
     import os
 
@@ -33,6 +37,14 @@ def cleanup_old_logs(log_file: str):
 
 def setup_logging(logger_name: str, log_file: str, level=logging.DEBUG,
                   formatter: str = "%(process)d - %(asctime)s | [%(levelname)s]: %(message)s"):
+    """
+    Creates a new logging which can log to stdout or file.
+    :param logger_name: the logger name.
+    :param log_file: log filename.
+    :param level: logging level.
+    :param formatter: the logging formatter.
+    :return: the logging file handler.
+    """
     from os import path
     from os import makedirs
 
@@ -53,8 +65,12 @@ def setup_logging(logger_name: str, log_file: str, level=logging.DEBUG,
     return logging_file_handler
 
 
-class LoggingHandler(object):
-    class __LoggingHandler(object):
+class LoggingHandler:
+    """
+    LoggingHandler singleton class that outputs to multiple logging instances.
+    """
+
+    class __LoggingHandler:
         def __init__(self, logs: list):
             self.__logs = logs
 
@@ -84,10 +100,18 @@ class LoggingHandler(object):
     __instance = None
 
     def __new__(cls, *args, **kwargs):
+        """
+        Generates a new instance.
+        :param args: not used.
+        :param kwargs: "logs" is a list instance that must be provided the first time
+        this class is created.
+        :return: the LoggingHandler instance.
+        """
         if not LoggingHandler.__instance:
             logs = kwargs.get("logs")
             if not logs or len(logs) == 0:
-                raise AttributeError("At least kwarg \"log\" (a list of the loggers) must be provided")
+                raise AttributeError(
+                    "At least kwarg \"log\" (a list of the loggers) must be provided")
             LoggingHandler.__instance = LoggingHandler.__LoggingHandler(logs)
         return LoggingHandler.__instance
 
@@ -98,19 +122,43 @@ class LoggingHandler(object):
         return setattr(self.__instance, key, value)
 
     def debug(self, msg):
+        """
+        Debugs to loggers
+        :param msg: message to debug
+        """
         self.__instance.debug(msg)
 
     def info(self, msg):
+        """
+        Info to loggers
+        :param msg: message to info
+        """
         self.__instance.info(msg)
 
     def error(self, msg):
+        """
+        Error to loggers
+        :param msg: message to error
+        """
         self.__instance.error(msg)
 
     def warning(self, msg):
+        """
+        Warns to loggers
+        :param msg: message to warn
+        """
         self.__instance.warning(msg)
 
     def critical(self, msg):
+        """
+        Critical to loggers
+        :param msg: message to critical
+        """
         self.__instance.critical(msg)
 
     def get_loggers(self) -> list:
+        """
+        Obtains the list of loggers.
+        :return: the list of loggers.
+        """
         return self.__instance.get_loggers()

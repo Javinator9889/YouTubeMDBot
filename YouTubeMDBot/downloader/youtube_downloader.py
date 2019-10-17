@@ -19,13 +19,24 @@ from typing import Tuple
 from ..constants.app_constants import YDL_CLI_OPTIONS
 
 
-class YouTubeDownloader(object):
+class YouTubeDownloader:
+    """
+    Download a YouTube video directly into memory.
+    """
     def __init__(self, url: str):
+        """
+        Creates the YouTubeDownloader object. Call "download" for obtaining the video.
+        :param url: the video URL.
+        """
         self.__url: str = url
         self.__options: list = YDL_CLI_OPTIONS.copy()
         self.__options.append(self.__url)
 
     def download(self) -> Tuple[BytesIO, bytes]:
+        """
+        Downloads the YouTube video directly into memory by using pipes.
+        :return: a tuple with "BytesIO" and "bytes".
+        """
         import subprocess
 
         proc = subprocess.Popen(self.__options,
@@ -40,4 +51,8 @@ class YouTubeDownloader(object):
                                str(stderr.decode("utf-8")))
 
     def get_url(self) -> str:
+        """
+        Obtains the video URL.
+        :return: str with the URL.
+        """
         return self.__url

@@ -13,13 +13,12 @@
 #
 #     You should have received a copy of the GNU General Public License
 #    along with this program. If not, see <http://www.gnu.org/licenses/>.
-import acoustid
-import musicbrainzngs
-
 try:
     import ujson as json
 except ImportError:
     import json
+import acoustid
+import musicbrainzngs
 
 from ..audio import FPCalc
 from ..api import YouTubeAPI
@@ -28,8 +27,30 @@ from ..constants import ACOUSTID_KEY
 from ..downloader import YouTubeDownloader
 
 
-class MetadataIdentifier(object):
+class MetadataIdentifier:
+    """
+    Base identifier class. By using the audio data, calculates and generates a
+    fingerprint for searching across the MusicBrainz database.
+
+    Once the audio has been identified, the available params and information are:
+     - audio (bytes)
+     - result (json)
+     - artist (str)
+     - title (str)
+     - release_id (str)
+     - recording_id (str)
+     - score (float)
+     - cover (bytes)
+     - album (str)
+     - duration (int)
+     - youtube_data (bool)
+     - youtube_id (str)
+    """
     def __init__(self, audio: bytes):
+        """
+        Generates a new instance of the MetadataIdentifier class.
+        :param audio: the audio data, in bytes.
+        """
         self.audio = audio
         self.result: json = None
         self.artist: str = ""
@@ -45,6 +66,12 @@ class MetadataIdentifier(object):
 
     @staticmethod
     def _is_valid_result(data: json) -> bool:
+        """
+        Checks whether the obtained result, in json, is valid or not, by checking for
+        certain keys that must exist.
+        :param data: the result in json.
+        :return: 'True' if the result is valid, else 'False'.
+        """
         if "results" not in data:
             return False
         elif data["status"] != "ok":
@@ -58,6 +85,12 @@ class MetadataIdentifier(object):
                 return True
 
     def identify_audio(self) -> bool:
+        """
+        Tries to identify the audio by using the audio fingerprint. If the audio has
+        been successfully identified, then obtains all the data related to it.
+        :return: 'True' if the result is valid (the audio was correctly identified),
+        else 'False'.
+        """
         fingerprint = FPCalc(self.audio)
         data: json = acoustid.lookup(apikey=ACOUSTID_KEY,
                                      fingerprint=fingerprint.fingerprint(),
@@ -91,7 +124,35 @@ class MetadataIdentifier(object):
 
 
 class YouTubeMetadataIdentifier(MetadataIdentifier):
+    """
+    Identifies YouTube metadata by using MusicBrainz database and YouTube metadata. If
+    the first identification (MusicBrainz) fails, then fallback to YouTube
+    identification if the "downloader" was provided.
+
+    Once the audio has been identified, the available params and information are:
+     - audio (bytes)
+     - result (json)
+     - artist (str)
+     - title (str)
+     - release_id (str)
+     - recording_id (str)
+     - score (float)
+     - cover (bytes)
+     - album (str)
+     - duration (int)
+     - youtube_data (bool)
+     - youtube_id (str)
+
+    If "youtube_data" is True, then only audio, title, artist, duration, cover and
+    youtube_id are available.
+    """
     def __init__(self, audio: bytes, downloader: YouTubeDownloader = None):
+        """
+        Generates a new instance of the MetadataIdentifier class.
+        :param audio: the audio data, in bytes.
+        :param downloader: a downloader object, for obtaining the video information if
+        MusicBrainz fails.
+        """
         super().__init__(audio)
         self._downloader = downloader
 
@@ -111,5 +172,4 @@ class YouTubeMetadataIdentifier(MetadataIdentifier):
                 self.youtube_data = True
 
                 valid = True
-
         return valid

@@ -24,6 +24,10 @@ from ..constants import FFMPEG_CONVERTER
 
 
 def ffmpeg_available() -> bool:
+    """
+    Checks if "ffmpeg" is installed or not.
+    :return: True if installed, else False
+    """
     try:
         proc = Popen(["ffmpeg", "-version"],
                      stdout=PIPE,
@@ -36,46 +40,107 @@ def ffmpeg_available() -> bool:
 
 
 class FFmpeg(ABC):
+    """
+    Base abstract class for the FFmpeg operators. All classes that works with FFmpeg
+    must inherit from this class in order to maintain readability and code optimization.
+
+    Allows execution of the ffmpeg command by using the subprocess module. Everything
+    is working with PIPEs, so there is no directly discs operations (everything is
+    loaded and working with RAM).
+    """
+
     def __init__(self, data: bytes, command: List[str] = None):
+        """
+        Creates the class by passing the data which will be processed and the command (
+        by default, None).
+        :param data: audio data that will be processed.
+        :param command: the ffmpeg command.
+        """
         self._data = data
         self.__command = command
         self.__out = None
         self.__err = None
 
     def process(self) -> int:
+        """
+        Runs the ffmpeg command in a separate process and pipes both stdout and stderr.
+        :return: the return code of the operation ('0' if everything is OK, > 0 if not).
+        """
         proc = Popen(self.__command, stdout=PIPE, stderr=PIPE, stdin=PIPE)
         self.__out, self.__err = proc.communicate(self._data)
         return proc.returncode
 
     def get_command(self) -> List[str]:
+        """
+        Get the command for editing.
+        :return: List[str] with the command - as this is a pointer, all editions done
+        to the list are directly changing the self object.
+        """
         return self.__command
 
     def set_command(self, command: List[str]):
+        """
+        Sets the new list, overriding every old implementation.
+        :param command: the new command.
+        """
         self.__command = command
 
     def get_output(self) -> bytes:
+        """
+        Gets the stdout of the process.
+        :return: bytes with the command output.
+        """
         return self.__out
 
     def get_extra(self) -> bytes:
+        """
+        Gets the stderr of the process.
+        :return: bytes with extra information.
+        """
         return self.__err
 
 
 class FFmpegOpener(FFmpeg):
+    """
+    Opens and produces and audio in PWM mode.
+    """
+
     def __init__(self, data: bytes):
         super().__init__(data=data, command=FFMPEG_OPENER.copy())
 
 
 class FFmpegExporter(FFmpeg):
+    """
+    Base class for the exporter options available in ffmpeg.
+    All classes that are developed for converting audio files must inherit from this
+    class and implement the "convert" method.
+    """
+
     def __init__(self, data: bytes, bitrate: str = None):
+        """
+        Generates a new instance of the class.
+        :param data: the audio data.
+        :param bitrate: the new bitrate of the audio data, or None for keeping its
+        default.
+        """
         super().__init__(data=data, command=FFMPEG_CONVERTER.copy())
         self._bitrate = bitrate
 
     @abstractmethod
     def convert(self) -> int:
+        """
+        Converts the audio to the desired format.
+        :return: the operation result code.
+        :raises NotImplementedError when trying to access this method directly on super
+        class.
+        """
         raise NotImplementedError
 
 
 class FFmpegMP3(FFmpegExporter):
+    """
+    Exports audio data to MP3 format.
+    """
     def convert(self) -> int:
         command = super().get_command()
         if self._bitrate:
@@ -90,6 +155,9 @@ class FFmpegMP3(FFmpegExporter):
 
 
 class FFmpegOGG(FFmpegExporter):
+    """
+    Exports audio data to OGG format.
+    """
     def convert(self) -> int:
         command = super().get_command()
         if self._bitrate:
