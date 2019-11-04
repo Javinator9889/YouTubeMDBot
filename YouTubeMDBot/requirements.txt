@@ -1,0 +1,8 @@
+mutagen
+isodate
+google-api-python-client
+musicbrainzngs
+ujson
+youtube_dl
+pyacoustid
+python-telegram-bot
