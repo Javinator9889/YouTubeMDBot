@@ -6,3 +6,4 @@ ujson
 youtube_dl
 pyacoustid
 python-telegram-bot
+psycopg2

@@ -13,16 +13,5 @@
 #
 #     You should have received a copy of the GNU General Public License
 #    along with this program. If not, see <http://www.gnu.org/licenses/>.
-from ..constants.app_constants import ACOUSTID_KEY
-from ..constants.app_constants import FPCALC
-from ..constants.app_constants import YDL_CLI_OPTIONS
-from ..constants.app_constants import YOUTUBE
-from ..constants.app_constants import PROGRAM_ARGS
-from ..constants.app_constants import FFMPEG_OPENER
-from ..constants.app_constants import FFMPEG_CONVERTER
-from ..constants.app_constants import DB_HOST
-from ..constants.app_constants import DB_NAME
-from ..constants.app_constants import DB_PASSWORD
-from ..constants.app_constants import DB_PORT
-from ..constants.app_constants import DB_USER
-from ..constants.app_constants import MAX_PROCESS
+from ..database.psql import PostgresSQL
+from ..database.query import Query

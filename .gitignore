@@ -105,3 +105,8 @@ venv.bak/
 
 # keys folder
 keys/
+
+# audio files, if exists
+*.m4a
+*.mp3
+*.ogg

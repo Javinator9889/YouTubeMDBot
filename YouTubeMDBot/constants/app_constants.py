@@ -16,6 +16,8 @@
 import os
 import sys
 
+from multiprocessing import cpu_count
+
 PROGRAM_ARGS = sys.argv
 # YouTube DL options
 YDL_CLI_OPTIONS = ["youtube-dl", "--format", "bestaudio[ext=m4a]", "--quiet", "--output",
@@ -41,3 +43,12 @@ YOUTUBE = {
 FFMPEG_OPENER = "ffmpeg -i - -f s16le -".split(" ")
 FFMPEG_CONVERTER = ["ffmpeg", "-i", "-", "-vn", "-map_metadata", "0",
                     "-movflags", "use_metadata_tags"]
+
+MAX_PROCESS = cpu_count()
+
+# Database constants
+DB_NAME = os.environ["DATABASE_NAME"]
+DB_USER = os.environ["DATABASE_USER"]
+DB_PASSWORD = os.environ["DATABASE_PASSWORD"]
+DB_HOST = "127.0.0.1"
+DB_PORT = 5432

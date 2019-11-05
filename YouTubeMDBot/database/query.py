@@ -13,16 +13,17 @@
 #
 #     You should have received a copy of the GNU General Public License
 #    along with this program. If not, see <http://www.gnu.org/licenses/>.
-from ..constants.app_constants import ACOUSTID_KEY
-from ..constants.app_constants import FPCALC
-from ..constants.app_constants import YDL_CLI_OPTIONS
-from ..constants.app_constants import YOUTUBE
-from ..constants.app_constants import PROGRAM_ARGS
-from ..constants.app_constants import FFMPEG_OPENER
-from ..constants.app_constants import FFMPEG_CONVERTER
-from ..constants.app_constants import DB_HOST
-from ..constants.app_constants import DB_NAME
-from ..constants.app_constants import DB_PASSWORD
-from ..constants.app_constants import DB_PORT
-from ..constants.app_constants import DB_USER
-from ..constants.app_constants import MAX_PROCESS
+import threading
+
+
+class Query:
+    def __init__(self, query: str):
+        self.query = query
+        self.is_completed = False
+        self._result = None
+        self._condition = threading.Condition()
+
+    def result(self):
+        with self._condition:
+            self._condition.wait_for(lambda: self.is_completed)
+            return self._result
