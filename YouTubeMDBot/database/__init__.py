@@ -13,5 +13,5 @@
 #
 #     You should have received a copy of the GNU General Public License
 #    along with this program. If not, see <http://www.gnu.org/licenses/>.
-from ..database.psql import PostgresSQL
+from ..database.psql import PostgreSQL
 from ..database.query import Query
