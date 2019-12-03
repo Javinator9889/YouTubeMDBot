@@ -37,17 +37,17 @@ class MultiprocessBase(ABC):
 
     def __new__(cls, maxsize: int = 0, **kwargs):
         if MultiprocessBase.__instance is None:
-            MultiprocessBase.__instance = object.__new__(cls)
-            MultiprocessBase.__instance.waiting_processes = Queue(maxsize)
-            MultiprocessBase.__instance.running_processes = 0
-            MultiprocessBase.__instance.lock = Lock()
-            MultiprocessBase.__instance.finished = False
-            MultiprocessBase.__instance.queue_consumer = \
+            cls.__instance = object.__new__(cls)
+            cls.__instance.waiting_processes = Queue(maxsize)
+            cls.__instance.running_processes = 0
+            cls.__instance.lock = Lock()
+            cls.__instance.finished = False
+            cls.__instance.queue_consumer = \
                 Process(target=cls.__consumer)
-            MultiprocessBase.__instance.queue_consumer.start()
+            cls.__instance.queue_consumer.start()
         for key, value in kwargs.items():
-            setattr(MultiprocessBase.__instance, key, value)
-        return MultiprocessBase.__instance
+            setattr(cls.__instance, key, value)
+        return cls.__instance
 
     def __consumer(self):
         condition = Condition()
