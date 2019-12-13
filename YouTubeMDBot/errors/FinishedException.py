@@ -13,5 +13,10 @@
 #
 #     You should have received a copy of the GNU General Public License
 #    along with this program. If not, see <http://www.gnu.org/licenses/>.
-from ..errors.EmptyBodyError import EmptyBodyError
-from ..errors.FinishedException import FinishedException
+
+
+class FinishedException(Exception):
+    """
+    Raises an exception when the process has finished working.
+    """
+    pass

@@ -32,6 +32,7 @@ from .decorators import send_action
 from .downloader import YouTubeDownloader
 
 from .errors import EmptyBodyError
+from .errors import FinishedException
 
 from .logging_utils import LoggingHandler
 from .logging_utils import setup_logging
