@@ -15,32 +15,23 @@
 #    along with this program. If not, see <http://www.gnu.org/licenses/>.
 from .api import YouTubeAPI
 from .api import YouTubeVideoData
-
-from .audio import FPCalc
-from .audio import FFmpegOGG
 from .audio import FFmpegMP3
+from .audio import FFmpegOGG
 from .audio import FFmpegOpener
+from .audio import FPCalc
 from .audio import ffmpeg_available
-
 from .commands import StartHandler
-
 from .constants import *
-
 from .decorators import restricted
 from .decorators import send_action
-
+from .downloader import MultipleYouTubeDownloader
 from .downloader import YouTubeDownloader
-
 from .errors import EmptyBodyError
 from .errors import FinishedException
-
 from .logging_utils import LoggingHandler
 from .logging_utils import setup_logging
-
 from .metadata import AudioMetadata
 from .metadata import MetadataIdentifier
 from .metadata import YouTubeMetadataIdentifier
-
+from .multiprocess import ThreadPoolBase
 from .utils import get_yt_video_id
-
-from .multiprocess import MultiprocessBase

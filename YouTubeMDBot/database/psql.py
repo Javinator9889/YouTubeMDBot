@@ -20,13 +20,12 @@ from psycopg2 import pool
 from psycopg2.pool import PoolError
 
 from . import Query
-from .. import MAX_PROCESS
-from .. import DB_USER
-from .. import DB_PORT
-from .. import DB_PASSWORD
-from .. import DB_NAME
 from .. import DB_HOST
-from .. import MultiprocessBase
+from .. import DB_NAME
+from .. import DB_PASSWORD
+from .. import DB_PORT
+from .. import DB_USER
+from .. import MAX_PROCESS
 
 
 class PostgreSQL(MultiprocessBase):

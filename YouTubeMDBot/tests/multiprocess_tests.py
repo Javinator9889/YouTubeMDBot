@@ -14,19 +14,12 @@
 #     You should have received a copy of the GNU General Public License
 #    along with this program. If not, see <http://www.gnu.org/licenses/>.
 import os
-import threading
 
-from typing import Optional, Any, Callable
-
-from .. import MultiprocessBase
+from .. import ThreadPoolBase
 
 
-class MPTest(MultiprocessBase):
-    def get_connection(self) -> Optional[Any]:
-        return super().get_connection()
-
-    def free_connection(self, connection):
-        super().free_connection(connection)
+class MPTest(ThreadPoolBase):
+    pass
 
 
 def main():
@@ -53,13 +46,17 @@ def main():
     for i in range(20):
         # print(f"Giving new function {i}")
         f = pinfo
-        test.new(f, i)
+        test.execute(f, i)
 
-    while not test.waiting_processes.empty():
-        print("                                              ", end="\r")
-        print(f"Threads: {threading.active_count() - 2}", end="\r")
-        sleep(0.1)
+    # while not test.waiting_processes.empty():
+    #     print("                                              ", end="\r")
+    #     print(f"Threads: {threading.active_count() - 2}", end="\r")
+    #     sleep(0.1)
     # del test
-    test.finished = True
+    # test.finished = True
+    del test
     print(f"Main finished: {os.getpid()}")
     return
+
+
+main()

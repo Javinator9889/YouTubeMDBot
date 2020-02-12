@@ -1,11 +1,12 @@
 import threading
 import unittest
+from io import BytesIO
 from pprint import pprint
 from time import sleep
 from time import time
 from typing import Tuple
-from io import BytesIO
 
+from YouTubeMDBot.downloader import MultipleYouTubeDownloader
 from YouTubeMDBot.downloader import YouTubeDownloader
 from YouTubeMDBot.metadata import YouTubeMetadataIdentifier
 
@@ -22,7 +23,8 @@ class IdentifierTest(unittest.TestCase):
         audio, data = downloader.download()
         with open("hello.m4a", "wb") as song:
             song.write(data)
-        identifier = YouTubeMetadataIdentifier(audio=data, downloader=downloader)
+        identifier = YouTubeMetadataIdentifier(audio=data,
+                                               downloader=downloader)
 
         valid = identifier.identify_audio()
         assert valid
@@ -36,19 +38,34 @@ class IdentifierTest(unittest.TestCase):
             cover.write(identifier.cover)
 
     def test_multiple_download_identification(self):
-        yt1 = YouTubeDownloader(url="https://www.youtube.com/watch?v=Inm-N5rLUSI")
-        yt2 = YouTubeDownloader(url="https://www.youtube.com/watch?v=-_ZwpOdXXcA")
-        yt3 = YouTubeDownloader(url="https://www.youtube.com/watch?v=WOGWZD5iT10")
-        yt4 = YouTubeDownloader(url="https://www.youtube.com/watch?v=GfKV9KaNJXc")
-        yt5 = YouTubeDownloader(url="https://www.youtube.com/watch?v=DiItGE3eAyQ")
-        yt6 = YouTubeDownloader(url="https://www.youtube.com/watch?v=GuZzuQvv7uc")
+        yt1 = YouTubeDownloader(
+            url="https://www.youtube.com/watch?v=Inm-N5rLUSI")
+        yt2 = YouTubeDownloader(
+            url="https://www.youtube.com/watch?v=-_ZwpOdXXcA")
+        yt3 = YouTubeDownloader(
+            url="https://www.youtube.com/watch?v=WOGWZD5iT10")
+        yt4 = YouTubeDownloader(
+            url="https://www.youtube.com/watch?v=GfKV9KaNJXc")
+        yt5 = YouTubeDownloader(
+            url="https://www.youtube.com/watch?v=DiItGE3eAyQ")
+        yt6 = YouTubeDownloader(
+            url="https://www.youtube.com/watch?v=GuZzuQvv7uc")
 
-        t1 = threading.Thread(target=self.find_metadata, args=(yt1,))
-        t2 = threading.Thread(target=self.find_metadata, args=(yt2,))
-        t3 = threading.Thread(target=self.find_metadata, args=(yt3,))
-        t4 = threading.Thread(target=self.find_metadata, args=(yt4,))
-        t5 = threading.Thread(target=self.find_metadata, args=(yt5,))
-        t6 = threading.Thread(target=self.find_metadata, args=(yt6,))
+        ytdl = MultipleYouTubeDownloader()
+
+        f1 = ytdl.download_async(yt1)
+        f2 = ytdl.download_async(yt2)
+        f3 = ytdl.download_async(yt3)
+        f4 = ytdl.download_async(yt4)
+        f5 = ytdl.download_async(yt5)
+        f6 = ytdl.download_async(yt6)
+
+        t1 = threading.Thread(target=self.find_metadata, args=(f1, yt1,))
+        t2 = threading.Thread(target=self.find_metadata, args=(f2, yt2,))
+        t3 = threading.Thread(target=self.find_metadata, args=(f3, yt3,))
+        t4 = threading.Thread(target=self.find_metadata, args=(f4, yt4,))
+        t5 = threading.Thread(target=self.find_metadata, args=(f5, yt5,))
+        t6 = threading.Thread(target=self.find_metadata, args=(f6, yt6,))
 
         self.max = 6
 
@@ -62,8 +79,9 @@ class IdentifierTest(unittest.TestCase):
         while self.threads < self.max:
             sleep(1)
 
-        # pprint(self.song_info)
         pprint("Finished")
+
+        del ytdl
 
     def barrier(self):
         with self.lock:
@@ -73,33 +91,37 @@ class IdentifierTest(unittest.TestCase):
         with self.lock:
             return self.threads
 
-    def find_metadata(self, downloader: YouTubeDownloader) -> Tuple[BytesIO, bytes]:
+    def find_metadata(self, future, downloader) -> Tuple[BytesIO, bytes, dict]:
         st_dl_t = time()
-        io, data = downloader.download()
+        io, data = future.get()
         f_dl_t = time()
-        print("Downloaded {} - elapsed time: {:.1f}s".format(downloader.get_url(),
-                                                             f_dl_t - st_dl_t))
-        identifier = YouTubeMetadataIdentifier(audio=data, downloader=downloader)
+        print("Downloaded {} - elapsed time: {:.1f}s"
+              .format(downloader.get_url(), f_dl_t - st_dl_t))
+        identifier = \
+            YouTubeMetadataIdentifier(audio=data, downloader=downloader)
         valid = identifier.identify_audio()
         assert valid
-        self.song_info[downloader.get_url()] = {
+        song_info = {downloader.get_url(): {
             "title": identifier.title,
             "artist": identifier.artist,
             "cover": identifier.cover
-        }
+        }}
         if not identifier.youtube_data:
-            self.song_info[downloader.get_url()]["score"] = identifier.score
-            self.song_info[downloader.get_url()]["record_id"] = \
-                "https://musicbrainz.org/recording/{0}".format(identifier.recording_id)
-            self.song_info[downloader.get_url()]["release_id"] = \
-                "https://musicbrainz.org/release/{0}".format(identifier.release_id)
-            self.song_info[downloader.get_url()]["album"] = identifier.album
+            song_info[downloader.get_url()]["score"] = identifier.score
+            song_info[downloader.get_url()]["record_id"] = \
+                "https://musicbrainz.org/recording/{0}".format(
+                    identifier.recording_id)
+            song_info[downloader.get_url()]["release_id"] = \
+                "https://musicbrainz.org/release/{0}".format(
+                    identifier.release_id)
+            song_info[downloader.get_url()]["album"] = identifier.album
         else:
-            self.song_info[downloader.get_url()]["duration"] = identifier.duration
-            self.song_info[downloader.get_url()]["id"] = identifier.youtube_id
-            self.song_info[downloader.get_url()]["youtube_data"] = True
+            song_info[downloader.get_url()][
+                "duration"] = identifier.duration
+            song_info[downloader.get_url()]["id"] = identifier.youtube_id
+            song_info[downloader.get_url()]["youtube_data"] = True
         self.barrier()
-        return io, data
+        return io, data, song_info
 
 
 if __name__ == '__main__':

@@ -14,8 +14,11 @@
 #     You should have received a copy of the GNU General Public License
 #    along with this program. If not, see <http://www.gnu.org/licenses/>.
 from io import BytesIO
+from typing import Any
+from typing import Callable
 from typing import Tuple
 
+from .. import ThreadPoolBase
 from ..constants.app_constants import YDL_CLI_OPTIONS
 
 
@@ -23,9 +26,11 @@ class YouTubeDownloader:
     """
     Download a YouTube video directly into memory.
     """
+
     def __init__(self, url: str):
         """
-        Creates the YouTubeDownloader object. Call "download" for obtaining the video.
+        Creates the YouTubeDownloader object. Call "download" for obtaining
+        the video.
         :param url: the video URL.
         """
         self.__url: str = url
@@ -56,3 +61,22 @@ class YouTubeDownloader:
         :return: str with the URL.
         """
         return self.__url
+
+
+class MultipleYouTubeDownloader(ThreadPoolBase):
+    def __new__(cls,
+                max_processes: int = 4,
+                name: str = "YouTubeDownloader",
+                **kwargs):
+        return super().__new__(cls, max_processes, name, **kwargs)
+
+    def download(self, yt_obj: YouTubeDownloader) -> Tuple[BytesIO, bytes]:
+        return super().wait_execute(yt_obj.download)
+
+    def download_async(self,
+                       yt_obj: YouTubeDownloader,
+                       callback: Callable[[Any], Any] = None,
+                       error_callback: Callable[[Any], Any] = None):
+        return super().execute(yt_obj.download,
+                               callback=callback,
+                               err_callback=error_callback)
