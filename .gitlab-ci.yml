@@ -19,7 +19,7 @@ cache:
 before_script:
   - python -V  # Print out python version for debugging
   - apt update
-  - apt install -y libchromaprint-tools ffmpeg --install-recommends
+  - apt install -y libchromaprint-tools ffmpeg
   - git clone https://github.com/beetbox/pyacoustid.git && cd pyacoustid
   - python setup.py install
   - cd .. && rm -rf pyacoustid/

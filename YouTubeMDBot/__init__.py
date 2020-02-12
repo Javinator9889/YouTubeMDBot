@@ -13,6 +13,9 @@
 #
 #     You should have received a copy of the GNU General Public License
 #    along with this program. If not, see <http://www.gnu.org/licenses/>.
+from .errors import EmptyBodyError
+from .errors import FinishedException
+
 from .api import YouTubeAPI
 from .api import YouTubeVideoData
 
@@ -30,9 +33,6 @@ from .constants import *
 
 from .decorators import restricted
 from .decorators import send_action
-
-from .errors import EmptyBodyError
-from .errors import FinishedException
 
 from .downloader import MultipleYouTubeDownloader
 from .downloader import YouTubeDownloader
