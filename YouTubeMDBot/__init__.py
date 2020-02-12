@@ -13,6 +13,14 @@
 #
 #     You should have received a copy of the GNU General Public License
 #    along with this program. If not, see <http://www.gnu.org/licenses/>.
+from .logging_utils import LoggingHandler
+from .logging_utils import setup_logging
+
+from .constants import *
+
+from .errors import EmptyBodyError
+from .errors import FinishedException
+
 from .api import YouTubeAPI
 from .api import YouTubeVideoData
 
@@ -24,24 +32,16 @@ from .audio import ffmpeg_available
 
 from .multiprocess import ThreadPoolBase
 
-from .commands import StartHandler
-
-from .constants import *
-
 from .decorators import restricted
 from .decorators import send_action
 
-from .errors import EmptyBodyError
-from .errors import FinishedException
+from .commands import StartHandler
 
-from .downloader import MultipleYouTubeDownloader
+from .utils import get_yt_video_id
+
 from .downloader import YouTubeDownloader
-
-from .logging_utils import LoggingHandler
-from .logging_utils import setup_logging
+from .downloader import MultipleYouTubeDownloader
 
 from .metadata import AudioMetadata
 from .metadata import MetadataIdentifier
 from .metadata import YouTubeMetadataIdentifier
-
-from .utils import get_yt_video_id
