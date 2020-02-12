@@ -53,12 +53,12 @@ class IdentifierTest(unittest.TestCase):
 
         ytdl = MultipleYouTubeDownloader()
 
-        f1 = ytdl.download_async(yt1)
-        f2 = ytdl.download_async(yt2)
-        f3 = ytdl.download_async(yt3)
-        f4 = ytdl.download_async(yt4)
-        f5 = ytdl.download_async(yt5)
-        f6 = ytdl.download_async(yt6)
+        f1 = ytdl.download_async(yt1, error_callback=handle_error)
+        f2 = ytdl.download_async(yt2, error_callback=handle_error)
+        f3 = ytdl.download_async(yt3, error_callback=handle_error)
+        f4 = ytdl.download_async(yt4, error_callback=handle_error)
+        f5 = ytdl.download_async(yt5, error_callback=handle_error)
+        f6 = ytdl.download_async(yt6, error_callback=handle_error)
 
         t1 = threading.Thread(target=self.find_metadata, args=(f1, yt1,))
         t2 = threading.Thread(target=self.find_metadata, args=(f2, yt2,))
@@ -122,6 +122,10 @@ class IdentifierTest(unittest.TestCase):
             song_info[downloader.get_url()]["youtube_data"] = True
         self.barrier()
         return io, data, song_info
+
+
+def handle_error(exception):
+    raise exception()
 
 
 if __name__ == '__main__':
