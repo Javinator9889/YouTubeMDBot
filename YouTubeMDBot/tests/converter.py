@@ -5,14 +5,13 @@ from typing import Tuple
 from io import BytesIO
 
 from YouTubeMDBot.tests.tagger import TaggerTest
-from YouTubeMDBot.downloader import YouTubeDownloader
 from YouTubeMDBot.audio import FFmpegMP3
 from YouTubeMDBot.audio import FFmpegOGG
 
 
 class MyTestCase(TaggerTest):
-    def find_metadata(self, downloader: YouTubeDownloader) -> Tuple[BytesIO, bytes]:
-        io, data = super().find_metadata(downloader)
+    def find_metadata(self, future, downloader) -> Tuple[BytesIO, bytes, dict]:
+        io, data, song_info = super().find_metadata(future, downloader)
         io.seek(0)
         mp3 = FFmpegMP3(data=data, bitrate="96k")  # downrate
         ogg = FFmpegOGG(data=data, bitrate="256k")  # uprate
@@ -29,7 +28,7 @@ class MyTestCase(TaggerTest):
         print(mutagen.File(mp3_container).pprint())
         print(mutagen.File(ogg_container).pprint())
 
-        return io, data
+        return io, data, song_info
 
 
 if __name__ == '__main__':
