@@ -15,3 +15,4 @@
 #    along with this program. If not, see <http://www.gnu.org/licenses/>.
 from ..downloader.youtube_downloader import MultipleYouTubeDownloader
 from ..downloader.youtube_downloader import YouTubeDownloader
+from ..downloader.youtube_downloader import M4AYouTubeDownloader

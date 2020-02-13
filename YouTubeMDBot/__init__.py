@@ -27,6 +27,7 @@ from .api import YouTubeVideoData
 from .audio import FFmpegMP3
 from .audio import FFmpegOGG
 from .audio import FFmpegOpener
+from .audio import FFmpegM4A
 from .audio import FPCalc
 from .audio import ffmpeg_available
 
@@ -41,6 +42,7 @@ from .utils import get_yt_video_id
 
 from .downloader import YouTubeDownloader
 from .downloader import MultipleYouTubeDownloader
+from .downloader import M4AYouTubeDownloader
 
 from .metadata import AudioMetadata
 from .metadata import MetadataIdentifier

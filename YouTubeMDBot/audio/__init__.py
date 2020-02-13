@@ -16,5 +16,6 @@
 from ..audio.ffmpeg import FFmpegOpener
 from ..audio.ffmpeg import FFmpegOGG
 from ..audio.ffmpeg import FFmpegMP3
+from ..audio.ffmpeg import FFmpegM4A
 from ..audio.ffmpeg import ffmpeg_available
 from ..audio.fpcalc import FPCalc

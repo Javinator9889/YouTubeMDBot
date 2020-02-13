@@ -21,6 +21,7 @@ from subprocess import Popen
 
 from ..constants import FFMPEG_OPENER
 from ..constants import FFMPEG_CONVERTER
+from ..constants import FFMPEG_VOLUME
 
 
 def ffmpeg_available() -> bool:
@@ -99,6 +100,16 @@ class FFmpeg(ABC):
         """
         return self.__err
 
+    def get_volume(self) -> float:
+        """
+        Gets the maximum volume of the data input.
+        :return: the volume.
+        """
+        command = FFMPEG_VOLUME
+        proc = Popen(command, stdout=PIPE, stderr=PIPE, stdin=PIPE, shell=True)
+        out, err = proc.communicate(self._data)
+        return float(out.decode("utf-8")) if out.decode("utf-8") != '' else 0.0
+
 
 class FFmpegOpener(FFmpeg):
     """
@@ -168,4 +179,27 @@ class FFmpegOGG(FFmpegExporter):
         command.append("-f")
         command.append("ogg")
         command.append("-")
+        return self.process()
+
+
+class FFmpegM4A(FFmpegExporter):
+    def __init__(self, data: bytes, filename: str, bitrate: str = None):
+        super().__init__(data, bitrate)
+        self.filename = filename
+
+    def convert(self) -> int:
+        command = super().get_command()
+        vol = self.get_volume() * -1
+        command.append("-af")
+        command.append(f"volume={vol}dB")
+        if self._bitrate:
+            command.append("-b:a")
+            command.append(self._bitrate)
+        command.append("-c:a")
+        command.append("aac")
+        command.append("-movflags")
+        command.append("faststart")
+        command.append("-f")
+        command.append("ipod")
+        command.append(self.filename)
         return self.process()

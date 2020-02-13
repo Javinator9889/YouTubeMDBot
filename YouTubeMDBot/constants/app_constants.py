@@ -20,7 +20,8 @@ from multiprocessing import cpu_count
 
 PROGRAM_ARGS = sys.argv
 # YouTube DL options
-YDL_CLI_OPTIONS = ["youtube-dl", "--format", "bestaudio[ext=m4a]", "--quiet", "--output",
+YDL_CLI_OPTIONS = ["youtube-dl", "--format", "bestaudio[ext=m4a]", "--quiet",
+                   "--output",
                    "-"]
 
 # FPCalc command
@@ -41,8 +42,10 @@ YOUTUBE = {
 
 # FFmpeg commands
 FFMPEG_OPENER = "ffmpeg -i - -f s16le -".split(" ")
-FFMPEG_CONVERTER = ["ffmpeg", "-i", "-", "-vn", "-map_metadata", "0",
-                    "-movflags", "use_metadata_tags"]
+FFMPEG_CONVERTER = ["ffmpeg", "-y", "-i", "-", "-vn", "-map_metadata", "0",
+                    "-map", "a:a", "-movflags", "use_metadata_tags"]
+FFMPEG_VOLUME = "ffmpeg -i - -af \"volumedetect\" -f null /dev/null 2>&1 | " \
+                "grep \"max_volume\" | awk -F': ' '{print $2}' | cut -d ' ' -f1"
 
 MAX_PROCESS = cpu_count()
 

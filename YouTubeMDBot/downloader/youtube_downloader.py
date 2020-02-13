@@ -17,8 +17,10 @@ from io import BytesIO
 from typing import Any
 from typing import Callable
 from typing import Tuple
+from tempfile import NamedTemporaryFile
 
 from .. import ThreadPoolBase
+from .. import FFmpegM4A
 from ..constants.app_constants import YDL_CLI_OPTIONS
 
 
@@ -61,6 +63,27 @@ class YouTubeDownloader:
         :return: str with the URL.
         """
         return self.__url
+
+
+class M4AYouTubeDownloader(YouTubeDownloader):
+    def __init__(self, url: str, bitrate: str = None):
+        super().__init__(url)
+        self.user_bitrate = bitrate
+
+    def download(self) -> Tuple[BytesIO, bytes]:
+        io, data = super().download()
+        m4a_file = NamedTemporaryFile(suffix=".m4a")
+        m4a_converter = FFmpegM4A(data=data,
+                                  filename=m4a_file.name,
+                                  bitrate=self.user_bitrate)
+        ret = m4a_converter.convert()
+        if ret != 0:
+            raise RuntimeError("ffmpeg is unable to convert file - output: "
+                               + m4a_converter.get_extra().decode("utf-8"))
+        with open(m4a_file.name, "rb") as out_m4a:
+            m4a_data = out_m4a.read()
+        m4a_file.close()
+        return BytesIO(m4a_data), m4a_data
 
 
 class MultipleYouTubeDownloader(ThreadPoolBase):
