@@ -20,7 +20,7 @@ from threading import Lock
 from typing import Any
 from typing import Optional
 
-from multiprocessing import Queue
+from multiprocessing.queues import Queue
 
 
 class CQueue(Queue):

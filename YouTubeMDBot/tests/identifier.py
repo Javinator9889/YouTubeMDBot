@@ -125,7 +125,8 @@ class IdentifierTest(unittest.TestCase):
 
 
 def handle_error(exception):
-    raise exception()
+    raise RuntimeError("Catch exception while running a thread: "
+                       + str(exception))
 
 
 if __name__ == '__main__':
