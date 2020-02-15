@@ -158,7 +158,7 @@ CREATE INDEX youtubemd.user_preferences_ix ON youtubemd.Preferences ("user_id");
 CREATE INDEX youtubemd.video_metadata_ix ON youtubemd.Video_Has_Metadata ("id", "metadata_id");
 CREATE INDEX youtubemd.history_ix ON youtubemd.History ("id", "file_id", "user_id", "metadata_id");
 
--- Trigger that updated the different stats
+-- Trigger that updates different stats
 CREATE FUNCTION youtubemd.process_stats() RETURNS trigger AS
 $$
 DECLARE

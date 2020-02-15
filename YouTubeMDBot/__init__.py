@@ -38,6 +38,7 @@ from .decorators import send_action
 
 from .commands import StartHandler
 
+from .utils import CQueue
 from .utils import get_yt_video_id
 
 from .downloader import YouTubeDownloader

@@ -13,4 +13,5 @@
 #
 #     You should have received a copy of the GNU General Public License
 #    along with this program. If not, see <http://www.gnu.org/licenses/>.
+from ..utils.queue import CQueue
 from ..utils.youtube_utils import get_yt_video_id
