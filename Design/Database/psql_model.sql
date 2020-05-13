@@ -1,13 +1,13 @@
 -- PostgreSQL model for YouTubeMDBot application
 -- Created by Javinator9889 - thu, 24 October, 2019
--- Last modification: mon, 4 November, 2019
--- Version 1.1
+-- Last modification: Sat, 29 February, 2020
+-- Version 1.2
 
 -- DROP schema - only for testing
--- DROP SCHEMA IF EXISTS youtubemd CASCADE;
--- DROP TYPE IF EXISTS AFORMAT;
--- DROP TYPE IF EXISTS aquality;
--- DROP TYPE IF EXISTS behaviour;
+DROP SCHEMA IF EXISTS youtubemd CASCADE;
+DROP TYPE IF EXISTS AFORMAT;
+DROP TYPE IF EXISTS aquality;
+DROP TYPE IF EXISTS behaviour;
 
 -- Custom "enum" types
 CREATE TYPE AFORMAT AS ENUM ('mp3', 'm4a', 'ogg');
@@ -154,9 +154,9 @@ CREATE TABLE IF NOT EXISTS youtubemd.YouTubeStats
 );
 
 -- Additional indexes
-CREATE INDEX youtubemd.user_preferences_ix ON youtubemd.Preferences ("user_id");
-CREATE INDEX youtubemd.video_metadata_ix ON youtubemd.Video_Has_Metadata ("id", "metadata_id");
-CREATE INDEX youtubemd.history_ix ON youtubemd.History ("id", "file_id", "user_id", "metadata_id");
+CREATE INDEX user_preferences_idx ON youtubemd.Preferences ("user_id");
+CREATE INDEX video_metadata_idx ON youtubemd.Video_Has_Metadata ("id", "metadata_id");
+CREATE INDEX history_idx ON youtubemd.History ("id", "file_id", "user_id", "metadata_id");
 
 -- Trigger that updates different stats
 CREATE FUNCTION youtubemd.process_stats() RETURNS trigger AS
@@ -237,21 +237,21 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE FUNCTION youtubemd.clear_daily_stats() AS
+CREATE FUNCTION youtubemd.clear_daily_stats() RETURNS VOID AS
 $$
 BEGIN
     UPDATE youtubemd.YouTubeStats SET daily_requests = 0;
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE FUNCTION youtubemd.clear_weekly_stats() AS
+CREATE FUNCTION youtubemd.clear_weekly_stats() RETURNS VOID AS
 $$
 BEGIN
     UPDATE youtubemd.YouTubeStats SET weekly_requests = 0;
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE FUNCTION youtubemd.clear_monthly_stats() AS
+CREATE FUNCTION youtubemd.clear_monthly_stats() RETURNS VOID AS
 $$
 BEGIN
     UPDATE youtubemd.YouTubeStats SET monthly_requests = 0;
