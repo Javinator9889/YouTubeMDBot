@@ -22,6 +22,8 @@ from threading import Thread
 from typing import List
 from typing import Optional
 
+import os
+import re
 import psycopg2
 
 from .. import CQueue
@@ -178,6 +180,20 @@ class PostgreSQLBase(ABC):
 
         del self.waiting_ops
         del self.pending_ops
+
+
+class Initializer(PostgreSQLBase):
+    def init(self):
+        self.updating_database = True
+        dirname = os.path.dirname(os.path.realpath(__file__))
+        filename = f"{dirname}/psql_model.sql"
+        with open(filename, 'r') as file:
+            file_content = file.read()
+        with self.connection.cursor() as cursor:
+            cursor.execute(file_content)
+            cursor.commit()
+        self.updating_database = False
+        self.qcond.notify_all()
 
 
 class UserDB(PostgreSQLBase):

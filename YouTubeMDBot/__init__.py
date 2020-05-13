@@ -40,6 +40,7 @@ from .commands import StartHandler
 
 from .utils import CQueue
 from .utils import get_yt_video_id
+from .utils import TemporaryDir
 
 from .downloader import YouTubeDownloader
 from .downloader import MultipleYouTubeDownloader
