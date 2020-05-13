@@ -15,12 +15,12 @@
 #    along with this program. If not, see <http://www.gnu.org/licenses/>.
 from abc import ABC
 from abc import abstractmethod
-from typing import List
 from subprocess import PIPE
 from subprocess import Popen
+from typing import List
 
-from ..constants import FFMPEG_OPENER
 from ..constants import FFMPEG_CONVERTER
+from ..constants import FFMPEG_OPENER
 from ..constants import FFMPEG_VOLUME
 
 
@@ -145,7 +145,7 @@ class FFmpegExporter(FFmpeg):
         :raises NotImplementedError when trying to access this method directly on super
         class.
         """
-        raise NotImplementedError
+        return self.process()
 
 
 class FFmpegMP3(FFmpegExporter):
@@ -162,7 +162,7 @@ class FFmpegMP3(FFmpegExporter):
         command.append("-f")
         command.append("mp3")
         command.append("-")
-        return self.process()
+        return super().convert()
 
 
 class FFmpegOGG(FFmpegExporter):
@@ -179,7 +179,7 @@ class FFmpegOGG(FFmpegExporter):
         command.append("-f")
         command.append("ogg")
         command.append("-")
-        return self.process()
+        return super().convert()
 
 
 class FFmpegM4A(FFmpegExporter):
@@ -202,4 +202,4 @@ class FFmpegM4A(FFmpegExporter):
         command.append("-f")
         command.append("ipod")
         command.append(self.filename)
-        return self.process()
+        return super().convert()
