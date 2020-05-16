@@ -33,7 +33,7 @@ class TemporaryDir:
 
     def create_new_file(self,
                         mode: str = "w+b",
-                        buffering=None,
+                        buffering=-1,
                         encoding=None,
                         newline=None,
                         suffix=None,
