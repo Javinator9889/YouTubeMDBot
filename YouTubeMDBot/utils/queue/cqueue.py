@@ -13,19 +13,18 @@
 #
 #     You should have received a copy of the GNU General Public License
 #    along with this program. If not, see <http://www.gnu.org/licenses/>.
-import multiprocessing
+from queue import Queue
 
 from threading import Lock
 
 from typing import Any
 from typing import Optional
 
-from multiprocessing.queues import Queue
-
 
 class CQueue(Queue):
     def __init__(self, maxsize=0):
-        super().__init__(maxsize=maxsize, ctx=multiprocessing.get_context())
+        print(f"New queue created - {hex(id(self))}")
+        super().__init__(maxsize=maxsize)
         self._lock = Lock()
         self.size = 0
 
@@ -41,12 +40,13 @@ class CQueue(Queue):
 
     def put(self,
             obj: Any,
-            block: bool = ...,
-            timeout: Optional[float] = ...) -> None:
+            block: bool = True,
+            timeout: Optional[float] = None):
         self.size += 1
+        print(f"Item inserted in {hex(id(self))}: {obj}")
         super().put(obj, block, timeout)
 
-    def get(self, block: bool = ..., timeout: Optional[float] = ...) -> Any:
+    def get(self, block: bool = True, timeout: Optional[float] = None) -> Any:
         self.size -= 1
         super().get(block, timeout)
 

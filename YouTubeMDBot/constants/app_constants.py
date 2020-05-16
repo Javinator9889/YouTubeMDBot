@@ -50,8 +50,8 @@ FFMPEG_VOLUME = "ffmpeg -i - -af \"volumedetect\" -f null /dev/null 2>&1 | " \
 MAX_PROCESS = cpu_count()
 
 # Database constants
-DB_NAME = True  # os.environ["DATABASE_NAME"]
-DB_USER = True  # os.environ["DATABASE_USER"]
-DB_PASSWORD = True  # os.environ["DATABASE_PASSWORD"]
+DB_NAME = os.environ["DATABASE_NAME"]
+DB_USER = os.environ["DATABASE_USER"]
+DB_PASSWORD = os.environ["DATABASE_PASSWORD"]
 DB_HOST = "127.0.0.1"
 DB_PORT = 5432

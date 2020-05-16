@@ -42,6 +42,17 @@ from .utils import CQueue
 from .utils import get_yt_video_id
 from .utils import TemporaryDir
 
+from .database import PostgreSQLItem
+from .database import Initializer
+from .database import YouTubeDB
+from .database import MetadataDB
+from .database import HistoryDB
+from .database import PreferencesDB
+from .database import YouTubeStatsDB
+from .database import Query
+from .database import FileDB
+from .database import UserDB
+
 from .downloader import YouTubeDownloader
 from .downloader import MultipleYouTubeDownloader
 from .downloader import M4AYouTubeDownloader

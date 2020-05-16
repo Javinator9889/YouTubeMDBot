@@ -21,9 +21,9 @@ from threading import Lock
 from threading import Thread
 from typing import List
 from typing import Optional
+from collections import deque
 
 import os
-import re
 import psycopg2
 
 from .. import CQueue
@@ -47,35 +47,46 @@ class Query:
         self.return_value: Future = Future()
 
 
-class PostgreSQLBase(ABC):
+class PostgreSQLItem:
     __instance = None
 
     def __new__(cls,
-                min_ops: int = 100,
                 **kwargs):
         with instance_lock:
-            if PostgreSQLBase.__instance is None:
+            if PostgreSQLItem.__instance is None:
                 cls.__instance = object.__new__(cls)
-                cls.__instance.connection = psycopg2.connect(user=DB_USER,
-                                                             password=DB_PASSWORD,
-                                                             host=DB_HOST,
-                                                             port=DB_PORT,
-                                                             dbname=DB_NAME)
-                cls.__instance.min_ops = min_ops
-                cls.__instance._iuthread = Thread(target=cls.__iuhandler,
-                                                  name="iuthread")
-                cls.__instance._qthread = Thread(name="qthread")
-                cls.__instance.lock = Lock()
-                cls.__instance.__close = False
-                cls.__instance.pending_ops = CQueue()
-                cls.__instance.waiting_ops = CQueue()
-                cls.__instance.updating_database = False
-                cls.__instance.iucond = Condition()
-                cls.__instance.qcond = Condition()
-                cls.__instance._iuthread.start()
-            for key, value in kwargs.items():
-                setattr(cls.__instance, key, value)
+                cls.__instance.must_initialize = True
             return cls.__instance
+
+    def __init__(self, min_ops: int = 100, **kwargs):
+        print("init called")
+        print(f"Must init?: {self.must_initialize}")
+        if self.must_initialize:
+            self.connection = psycopg2.connect(user=DB_USER,
+                                               password=DB_PASSWORD,
+                                               host=DB_HOST,
+                                               port=DB_PORT,
+                                               dbname=DB_NAME)
+            self.min_ops = min_ops
+            self.lock = Lock()
+            self.__close = False
+            self.pending_ops = deque()
+            self.waiting_ops = deque()
+            self.updating_database = False
+            self.iucond = Condition()
+            self.qcond = Condition()
+            self._iuthread = Thread(target=self.__iuhandler,
+                                    name="iuthread")
+            self._qthread = Thread(target=self.__qhandler,
+                                   name="qthread")
+            if not self._iuthread.is_alive():
+                self._iuthread.start()
+            if not self._qthread.is_alive():
+                self._qthread.start()
+            self.must_initialize = False
+
+        for key, value in kwargs.items():
+            setattr(self, key, value)
 
     @property
     def close(self) -> bool:
@@ -101,42 +112,58 @@ class PostgreSQLBase(ABC):
         while not self.close:
             with self.iucond:
                 self.iucond.wait_for(
-                    lambda: self.pending_ops.qsize() >= self.min_ops or
-                            self.close
+                    lambda: len(self.pending_ops) >= self.min_ops or self.close
                 )
+            print(
+                f"pending_ops {len(self.pending_ops)} >= min_ops {self.min_ops}")
+            print(hex(id(self.pending_ops)))
             self.updating_database = True
             with self.connection.cursor() as cursor:
-                for query in self.pending_ops:
+                while len(self.pending_ops) > 0:
+                    query = self.pending_ops.pop()
+                    if query is None:
+                        continue
                     cursor.execute(query.statement, query.values)
                     if query.returning_id:
                         query.return_value.set_result(cursor.fetchone()[0])
             self.connection.commit()
             self.updating_database = False
-            self.qcond.notify_all()
+            with self.qcond:
+                self.qcond.notify_all()
 
     def __qhandler(self):
         while not self.close:
             with self.qcond:
                 self.qcond.wait_for(
-                    lambda: not self.waiting_ops.empty() and
+                    lambda: len(self.waiting_ops) > 0 and
                             not self.updating_database or self.close
                 )
-            for query in self.waiting_ops:
-                self.pending_ops.put(query)
-            self.iucond.notify_all()
+            print("qhandler - new item inserted")
+            print(hex(id(self.waiting_ops)))
+            print(hex(id(self.pending_ops)))
+            while len(self.waiting_ops) > 0:
+                query = self.waiting_ops.pop()
+                if query is None:
+                    continue
+                print(f"inserting item: {query}")
+                self.pending_ops.append(query)
+            with self.iucond:
+                self.iucond.notify_all()
 
     def insert(self, query: str, args=(), returning_id: bool = False) -> Query:
         if not self.close:
             insert_query = Query(query, args, returning_id)
-            self.waiting_ops.put(insert_query)
-            self.qcond.notify_all()
+            self.waiting_ops.append(insert_query)
+            with self.qcond:
+                self.qcond.notify_all()
             return insert_query
 
     def update(self, query: str, args=()):
         if not self.close:
             update_query = Query(query, args)
-            self.waiting_ops.put(update_query)
-            self.qcond.notify_all()
+            self.waiting_ops.append(update_query)
+            with self.qcond:
+                self.qcond.notify_all()
 
     def fetchone(self, query: str, args=()) -> list:
         if not self.close:
@@ -160,7 +187,7 @@ class PostgreSQLBase(ABC):
         if not self.close:
             with self.connection.cursor() as cursor:
                 cursor.execute(query, args)
-                cursor.commit()
+            self.connection.commit()
 
     def callproc(self, proc: str, args=()) -> list:
         if not self.close:
@@ -169,31 +196,88 @@ class PostgreSQLBase(ABC):
                 return cursor.fetchall()
 
     def __del__(self):
+        print("deleting class")
         self.close = True
-        if not self.waiting_ops.empty():
+        print(f"is there any waiting operation? {len(self.waiting_ops) > 0}")
+        # if len(self.waiting_ops) > 0:
+        with self.qcond:
             self.qcond.notify_all()
-            self._qthread.join()
-        if not self.pending_ops.empty():
+        self._qthread.join()
+        print(f"is there any pending operation? {len(self.pending_ops) > 0}")
+        # if len(self.pending_ops) > 0:
+        with self.iucond:
             self.iucond.notify_all()
-            self._iuthread.join()
+        self._iuthread.join()
+        print("closing db connection")
         self.connection.close()
 
+        print("removing queues")
         del self.waiting_ops
         del self.pending_ops
 
 
+class PostgreSQLBase(ABC):
+    def __init__(self, item: PostgreSQLItem):
+        self.postgres_item = item
+
+    @property
+    def connection(self):
+        return self.postgres_item.connection
+
+    def insert(self, query: str, args=(), returning_id: bool = False) -> Query:
+        return self.postgres_item.insert(query, args, returning_id)
+
+    def update(self, query: str, args=()):
+        self.postgres_item.update(query, args)
+
+    def fetchone(self, query: str, args=()) -> list:
+        return self.postgres_item.fetchone(query, args)
+
+    def fetchmany(self, query: str, rows: int, args=()) -> list:
+        return self.postgres_item.fetchmany(query, rows, args)
+
+    def fetchall(self, query: str, args=()) -> list:
+        return self.postgres_item.fetchall(query, args)
+
+    def delete(self, query: str, args=()):
+        self.postgres_item.delete(query, args)
+
+    def callproc(self, proc: str, args=()) -> list:
+        return self.callproc(proc, args)
+
+
 class Initializer(PostgreSQLBase):
     def init(self):
-        self.updating_database = True
+        import re
+
+        self.postgres_item.updating_database = True
         dirname = os.path.dirname(os.path.realpath(__file__))
         filename = f"{dirname}/psql_model.sql"
+        re_combine_whitespace = re.compile(r"\s+")
+        print(f"Found file: {filename}")
+        instructions = list()
+        current_instruction = ''
         with open(filename, 'r') as file:
-            file_content = file.read()
+            while (line := file.readline()) != '':
+                if line.startswith("--") and line[2] != '#':
+                    continue
+                elif line.startswith("--#"):
+                    current_instruction = re_combine_whitespace \
+                        .sub(' ', current_instruction).strip()
+                    instructions.append(current_instruction)
+                    current_instruction = ''
+                else:
+                    line = re_combine_whitespace.sub(' ', line)
+                    current_instruction += line
+        print("Executing instructions")
         with self.connection.cursor() as cursor:
-            cursor.execute(file_content)
-            cursor.commit()
-        self.updating_database = False
-        self.qcond.notify_all()
+            for instruction in instructions:
+                print(f"Running instruction {instruction}")
+                cursor.execute(instruction)
+        self.connection.commit()
+        self.postgres_item.updating_database = False
+        with self.postgres_item.qcond:
+            self.postgres_item.qcond.notify_all()
 
 
 class UserDB(PostgreSQLBase):
@@ -371,11 +455,14 @@ class MetadataDB(PostgreSQLBase):
         }
 
     def get_metadata_for_youtube_id(self, youtube_id: str) -> dict:
-        data = self.fetchone(
+        data = self.get_metadata_id_for_youtube_id(youtube_id)
+        return self.get_metadata_for_id(data)
+
+    def get_metadata_id_for_youtube_id(self, youtube_id: str) -> int:
+        return self.fetchone(
             """SELECT metadata_id FROM youtubemd.Video_Has_Metadata 
             WHERE id = %s""", (youtube_id,)
-        )
-        return self.get_metadata_for_id(data[0])
+        )[0]
 
     def update_metadata(self,
                         metadata_id: int,
@@ -434,10 +521,10 @@ class FileDB(PostgreSQLBase):
         }
 
     def get_file_for_youtube_id(self, youtube_id: str) -> Optional[str]:
-        youtube_database = YouTubeDB()
+        youtube_database = YouTubeDB(self.postgres_item)
         if youtube_database.is_id_registered(youtube_id):
-            metadata = MetadataDB()
-            metadata_id = metadata.get_metadata_for_youtube_id(youtube_id)
+            metadata = MetadataDB(self.postgres_item)
+            metadata_id = metadata.get_metadata_id_for_youtube_id(youtube_id)
             return self.get_file_for_metadata_id(metadata_id)
         else:
             return None
