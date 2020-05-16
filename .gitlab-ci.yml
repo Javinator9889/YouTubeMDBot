@@ -19,11 +19,12 @@ cache:
 before_script:
   - python -V  # Print out python version for debugging
   - apt update
-  - apt install -y libchromaprint-tools ffmpeg libpq-dev
+  - apt install -y --no-install-recommeds libchromaprint-tools ffmpeg libpq-dev git
   - git clone https://github.com/beetbox/pyacoustid.git && cd pyacoustid
   - python setup.py install
   - cd .. && rm -rf pyacoustid/
   - pip install -r YouTubeMDBot/requirements.txt
+  - mkdir -p /run/user/$(id -u $(whoami))
 
 test:pylint:
   script:
