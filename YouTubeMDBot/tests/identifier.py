@@ -5,6 +5,7 @@ from pprint import pprint
 from time import sleep
 from time import time
 from typing import Tuple
+from threading import Barrier
 
 from YouTubeMDBot.downloader import MultipleYouTubeDownloader
 from YouTubeMDBot.downloader import YouTubeDownloader
@@ -13,11 +14,11 @@ from YouTubeMDBot.metadata import YouTubeMetadataIdentifier
 
 class IdentifierTest(unittest.TestCase):
     lock = threading.Lock()
-    threads = 0
-    max = 0
     song_info = {}
+    barrier = Barrier(parties=7)
 
     def test_identification(self):
+        print(f"Running test: test_identification in {__file__}")
         url = "https://www.youtube.com/watch?v=YQHsXMglC9A"
         downloader = YouTubeDownloader(url=url)
         audio, data = downloader.download()
@@ -38,6 +39,8 @@ class IdentifierTest(unittest.TestCase):
             cover.write(identifier.cover)
 
     def test_multiple_download_identification(self):
+        print(f"Running test: test_multiple_download_identification in"
+              f" {__file__}")
         yt1 = YouTubeDownloader(
             url="https://www.youtube.com/watch?v=Inm-N5rLUSI")
         yt2 = YouTubeDownloader(
@@ -76,20 +79,11 @@ class IdentifierTest(unittest.TestCase):
         t5.start()
         t6.start()
 
-        while self.threads < self.max:
-            sleep(1)
+        self.barrier.wait()
 
         pprint("Finished")
 
         del ytdl
-
-    def barrier(self):
-        with self.lock:
-            self.threads += 1
-
-    def getThreads(self):
-        with self.lock:
-            return self.threads
 
     def find_metadata(self, future, downloader) -> Tuple[BytesIO, bytes, dict]:
         st_dl_t = time()
@@ -120,7 +114,7 @@ class IdentifierTest(unittest.TestCase):
                 "duration"] = identifier.duration
             song_info[downloader.get_url()]["id"] = identifier.youtube_id
             song_info[downloader.get_url()]["youtube_data"] = True
-        self.barrier()
+        self.barrier.wait()
         return io, data, song_info
 
 

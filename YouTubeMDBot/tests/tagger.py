@@ -11,6 +11,7 @@ from YouTubeMDBot.utils import youtube_utils
 
 class TaggerTest(IdentifierTest):
     def find_metadata(self, future, downloader) -> Tuple[BytesIO, bytes, dict]:
+        print(f"Running test: find_metadata in {__file__}")
         io, data, song_info = super().find_metadata(future, downloader)
         tagger = AudioMetadata(io)
         url = downloader.get_url()

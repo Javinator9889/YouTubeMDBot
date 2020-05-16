@@ -7,6 +7,7 @@ from YouTubeMDBot.audio import FFmpegM4A
 
 class MyTestCase(unittest.TestCase):
     def test_download(self):
+        print(f"Running test: test_download in {__file__}")
         dl = M4AYouTubeDownloader(
             url="https://www.youtube.com/watch?v=s6VaeFCxta8",
             bitrate="128k")
@@ -18,6 +19,7 @@ class MyTestCase(unittest.TestCase):
         return io, data
 
     def test_normalization(self):
+        print(f"Running test: test_normalization in {__file__}")
         io, data = self.test_download()
         ctr = FFmpegM4A(data, "filename")
         assert ctr.get_volume() == 0.0

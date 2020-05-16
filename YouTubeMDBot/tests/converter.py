@@ -1,8 +1,8 @@
 import unittest
 import mutagen
 
-from typing import Tuple
 from io import BytesIO
+from typing import Tuple
 
 from YouTubeMDBot.tests.tagger import TaggerTest
 from YouTubeMDBot.audio import FFmpegMP3
@@ -11,6 +11,7 @@ from YouTubeMDBot.audio import FFmpegOGG
 
 class MyTestCase(TaggerTest):
     def find_metadata(self, future, downloader) -> Tuple[BytesIO, bytes, dict]:
+        print(f"Running test: find_metadata in {__file__}")
         io, data, song_info = super().find_metadata(future, downloader)
         io.seek(0)
         mp3 = FFmpegMP3(data=data, bitrate="96k")  # downrate

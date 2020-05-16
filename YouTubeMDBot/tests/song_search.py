@@ -6,6 +6,7 @@ from YouTubeMDBot.api import YouTubeVideoData
 
 class TestSearch(unittest.TestCase):
     def test_search(self):
+        print(f"Running test: test_search in {__file__}")
         s = YouTubeAPI()
         search: dict = s.search(term="test")
         data = YouTubeVideoData(data=search, ignore_errors=True)
