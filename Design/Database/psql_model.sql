@@ -1,21 +1,29 @@
 -- PostgreSQL model for YouTubeMDBot application
 -- Created by Javinator9889 - thu, 24 October, 2019
--- Last modification: Sat, 29 February, 2020
--- Version 1.2
+-- Last modification: Sun, 17 May, 2020
+-- Version 1.3
 
 -- DROP schema - only for testing
 DROP SCHEMA IF EXISTS youtubemd CASCADE;
+--#
 DROP TYPE IF EXISTS AFORMAT;
+--#
 DROP TYPE IF EXISTS aquality;
+--#
 DROP TYPE IF EXISTS behaviour;
+--#
 
 -- Custom "enum" types
 CREATE TYPE AFORMAT AS ENUM ('mp3', 'm4a', 'ogg');
+--#
 CREATE TYPE AQUALITY AS ENUM ('128k', '96k');
+--#
 CREATE TYPE BEHAVIOUR AS ENUM ('always', 'not_found', 'ask', 'never');
+--#
 
 -- Create DB schema
 CREATE SCHEMA IF NOT EXISTS youtubemd;
+--#
 
 -- ---------------------------------------
 --             Table User               --
@@ -28,6 +36,7 @@ CREATE TABLE IF NOT EXISTS youtubemd.User
     "lang"         VARCHAR(2),
     "first_access" date
 );
+--#
 
 -- ---------------------------------------------
 --             Table Preferences              --
@@ -46,6 +55,7 @@ CREATE TABLE IF NOT EXISTS youtubemd.Preferences
             ON DELETE CASCADE
             ON UPDATE CASCADE
 );
+--#
 
 -- ------------------------------------------
 --               Table YouTube             --
@@ -56,6 +66,7 @@ CREATE TABLE IF NOT EXISTS youtubemd.YouTube
     "times_requested" INT                NOT NULL DEFAULT 0,
     PRIMARY KEY ("id")
 );
+--#
 
 -- ------------------------------------------
 --               Table Metadata            --
@@ -73,6 +84,7 @@ CREATE TABLE IF NOT EXISTS youtubemd.Metadata
     "custom_metadata" BOOLEAN,
     PRIMARY KEY ("id")
 );
+--#
 
 -- ----------------------------------------------------
 --       Relation between YouTube and Metadata       --
@@ -89,6 +101,7 @@ CREATE TABLE IF NOT EXISTS youtubemd.Video_Has_Metadata
         FOREIGN KEY ("metadata_id")
             REFERENCES youtubemd.Metadata ("id")
 );
+--#
 
 -- --------------------------------------
 --             Table File              --
@@ -104,6 +117,7 @@ CREATE TABLE IF NOT EXISTS youtubemd.File
         FOREIGN KEY ("metadata_id")
             REFERENCES youtubemd.Metadata ("id")
 );
+--#
 
 -- -----------------------------------------
 --               Table History            --
@@ -128,6 +142,7 @@ CREATE TABLE IF NOT EXISTS youtubemd.History
         FOREIGN KEY ("metadata_id")
             REFERENCES youtubemd.Metadata ("id")
 );
+--#
 
 -- ------------------------------------------
 --               Table Playlist            --
@@ -137,6 +152,7 @@ CREATE TABLE IF NOT EXISTS youtubemd.Playlist
     "id" VARCHAR(22) NOT NULL UNIQUE,
     PRIMARY KEY ("id")
 );
+--#
 
 -- ----------------------------------------------
 --             Table YouTube stats             --
@@ -152,11 +168,15 @@ CREATE TABLE IF NOT EXISTS youtubemd.YouTubeStats
         FOREIGN KEY ("id")
             REFERENCES youtubemd.YouTube ("id")
 );
+--#
 
 -- Additional indexes
 CREATE INDEX user_preferences_idx ON youtubemd.Preferences ("user_id");
+--#
 CREATE INDEX video_metadata_idx ON youtubemd.Video_Has_Metadata ("id", "metadata_id");
+--#
 CREATE INDEX history_idx ON youtubemd.History ("id", "file_id", "user_id", "metadata_id");
+--#
 
 -- Trigger that updates different stats
 CREATE FUNCTION youtubemd.process_stats() RETURNS trigger AS
@@ -187,6 +207,7 @@ BEGIN
     RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
+--#
 
 -- Complementary functions with useful operations
 CREATE FUNCTION youtubemd.top_10_daily()
@@ -204,6 +225,7 @@ BEGIN
                  FETCH FIRST 10 ROWS ONLY;
 END;
 $$ LANGUAGE plpgsql;
+--#
 
 CREATE FUNCTION youtubemd.top_10_weekly()
     RETURNS TABLE
@@ -220,6 +242,7 @@ BEGIN
                  FETCH FIRST 10 ROWS ONLY;
 END;
 $$ LANGUAGE plpgsql;
+--#
 
 CREATE FUNCTION youtubemd.top_10_monthly()
     RETURNS TABLE
@@ -236,6 +259,7 @@ BEGIN
                  FETCH FIRST 10 ROWS ONLY;
 END;
 $$ LANGUAGE plpgsql;
+--#
 
 CREATE FUNCTION youtubemd.clear_daily_stats() RETURNS VOID AS
 $$
@@ -243,6 +267,7 @@ BEGIN
     UPDATE youtubemd.YouTubeStats SET daily_requests = 0;
 END;
 $$ LANGUAGE plpgsql;
+--#
 
 CREATE FUNCTION youtubemd.clear_weekly_stats() RETURNS VOID AS
 $$
@@ -250,6 +275,7 @@ BEGIN
     UPDATE youtubemd.YouTubeStats SET weekly_requests = 0;
 END;
 $$ LANGUAGE plpgsql;
+--#
 
 CREATE FUNCTION youtubemd.clear_monthly_stats() RETURNS VOID AS
 $$
@@ -257,6 +283,7 @@ BEGIN
     UPDATE youtubemd.YouTubeStats SET monthly_requests = 0;
 END;
 $$ LANGUAGE plpgsql;
+--#
 
 -- Init the trigger
 CREATE TRIGGER stats_update
@@ -264,3 +291,4 @@ CREATE TRIGGER stats_update
     ON youtubemd.YouTube
     FOR EACH ROW
 EXECUTE PROCEDURE youtubemd.process_stats();
+--#
