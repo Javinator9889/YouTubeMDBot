@@ -24,9 +24,9 @@ before_script:
   - apt update
   - apt install -y --no-install-recommends libchromaprint-tools ffmpeg libpq-dev git postgresql sudo
   - /etc/init.d/postgresql start
-  - sudo -u postgres sh -c 'psql -U postgres -c "CREATE DATABASE youtubemd;"'
-  - sudo -u postgres sh -c 'psql -U postgres -c "CREATE USER $DATABASE_USER WITH ENCRYPTED PASSWORD \'$DATABASE_PASSWORD\';"'
-  - sudo -u postgres sh -c 'psql -U postgres -c "GRANT ALL PRIVILEGES ON DATABASE youtubemd TO $DATABASE_USER";'
+  - sudo -u postgres sh -c "psql -U postgres -c \"CREATE DATABASE youtubemd;\""
+  - sudo -u postgres sh -c "psql -U postgres -c \"CREATE USER $DATABASE_USER WITH ENCRYPTED PASSWORD '$DATABASE_PASSWORD';\""
+  - sudo -u postgres sh -c "psql -U postgres -c \"GRANT ALL PRIVILEGES ON DATABASE youtubemd TO $DATABASE_USER\";"
   - git clone https://github.com/beetbox/pyacoustid.git && cd pyacoustid
   - python setup.py install
   - cd .. && rm -rf pyacoustid/
