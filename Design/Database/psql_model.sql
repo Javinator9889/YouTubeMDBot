@@ -34,7 +34,8 @@ CREATE TABLE IF NOT EXISTS youtubemd.User
     "name"         VARCHAR(45),
     "tag"          VARCHAR(45),
     "lang"         VARCHAR(2),
-    "first_access" date
+    "first_access" date,
+    "is_premium"   BOOLEAN DEFAULT FALSE
 );
 --#
 
@@ -109,7 +110,7 @@ CREATE TABLE IF NOT EXISTS youtubemd.Video_Has_Metadata
 CREATE TABLE IF NOT EXISTS youtubemd.File
 (
     "id"            VARCHAR(50) UNIQUE NOT NULL,
-    "metadata_id"   INT         UNIQUE NOT NULL,
+    "metadata_id"   INT UNIQUE         NOT NULL,
     "audio_quality" AQUALITY           NOT NULL,
     "size"          INT,
     PRIMARY KEY ("id", "metadata_id"),
@@ -222,7 +223,7 @@ BEGIN
     RETURN QUERY SELECT DISTINCT youtubemd.YouTubeStats.id, youtubemd.YouTubeStats.daily_requests
                  FROM youtubemd.youtubestats
                  ORDER BY daily_requests DESC
-                 FETCH FIRST 10 ROWS ONLY;
+                     FETCH FIRST 10 ROWS ONLY;
 END;
 $$ LANGUAGE plpgsql;
 --#
@@ -239,7 +240,7 @@ BEGIN
     RETURN QUERY SELECT DISTINCT youtubemd.YouTubeStats.id, youtubemd.YouTubeStats.weekly_requests
                  FROM youtubemd.youtubestats
                  ORDER BY weekly_requests DESC
-                 FETCH FIRST 10 ROWS ONLY;
+                     FETCH FIRST 10 ROWS ONLY;
 END;
 $$ LANGUAGE plpgsql;
 --#
@@ -256,7 +257,7 @@ BEGIN
     RETURN QUERY SELECT DISTINCT youtubemd.YouTubeStats.id, youtubemd.YouTubeStats.monthly_requests
                  FROM youtubemd.youtubestats
                  ORDER BY monthly_requests DESC
-                 FETCH FIRST 10 ROWS ONLY;
+                     FETCH FIRST 10 ROWS ONLY;
 END;
 $$ LANGUAGE plpgsql;
 --#

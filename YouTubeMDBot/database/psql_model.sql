@@ -1,7 +1,7 @@
 -- PostgreSQL model for YouTubeMDBot application
 -- Created by Javinator9889 - thu, 24 October, 2019
--- Last modification: Sat, 29 February, 2020
--- Version 1.2
+-- Last modification: Sun, 17 May, 2020
+-- Version 1.3
 
 -- DROP schema - only for testing
 DROP SCHEMA IF EXISTS youtubemd CASCADE;
@@ -34,7 +34,8 @@ CREATE TABLE IF NOT EXISTS youtubemd.User
     "name"         VARCHAR(45),
     "tag"          VARCHAR(45),
     "lang"         VARCHAR(2),
-    "first_access" date
+    "first_access" date,
+    "is_premium"   BOOLEAN DEFAULT FALSE
 );
 --#
 
@@ -152,6 +153,7 @@ CREATE TABLE IF NOT EXISTS youtubemd.Playlist
     "id" VARCHAR(22) NOT NULL UNIQUE,
     PRIMARY KEY ("id")
 );
+--#
 
 -- ----------------------------------------------
 --             Table YouTube stats             --
@@ -185,9 +187,7 @@ DECLARE
     weekly_value  INT;
     monthly_value INT;
 BEGIN
-    IF (SELECT EXISTS(SELECT 1
-                      FROM youtubemd.YouTubeStats
-                      WHERE youtubemd.YouTubeStats.id = NEW.id)) THEN
+    IF (SELECT EXISTS(SELECT 1 FROM youtubemd.YouTubeStats WHERE youtubemd.YouTubeStats.id = NEW.id)) THEN
         SELECT INTO daily_value, weekly_value, monthly_value youtubemd.YouTubeStats.daily_requests,
                                                              youtubemd.YouTubeStats.weekly_requests,
                                                              youtubemd.YouTubeStats.monthly_requests
@@ -220,8 +220,7 @@ CREATE FUNCTION youtubemd.top_10_daily()
 AS
 $$
 BEGIN
-    RETURN QUERY SELECT DISTINCT youtubemd.YouTubeStats.id,
-                                 youtubemd.YouTubeStats.daily_requests
+    RETURN QUERY SELECT DISTINCT youtubemd.YouTubeStats.id, youtubemd.YouTubeStats.daily_requests
                  FROM youtubemd.youtubestats
                  ORDER BY daily_requests DESC
                      FETCH FIRST 10 ROWS ONLY;
@@ -238,8 +237,7 @@ CREATE FUNCTION youtubemd.top_10_weekly()
 AS
 $$
 BEGIN
-    RETURN QUERY SELECT DISTINCT youtubemd.YouTubeStats.id,
-                                 youtubemd.YouTubeStats.weekly_requests
+    RETURN QUERY SELECT DISTINCT youtubemd.YouTubeStats.id, youtubemd.YouTubeStats.weekly_requests
                  FROM youtubemd.youtubestats
                  ORDER BY weekly_requests DESC
                      FETCH FIRST 10 ROWS ONLY;
@@ -256,8 +254,7 @@ CREATE FUNCTION youtubemd.top_10_monthly()
 AS
 $$
 BEGIN
-    RETURN QUERY SELECT DISTINCT youtubemd.YouTubeStats.id,
-                                 youtubemd.YouTubeStats.monthly_requests
+    RETURN QUERY SELECT DISTINCT youtubemd.YouTubeStats.id, youtubemd.YouTubeStats.monthly_requests
                  FROM youtubemd.youtubestats
                  ORDER BY monthly_requests DESC
                      FETCH FIRST 10 ROWS ONLY;
