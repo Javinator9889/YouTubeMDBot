@@ -35,9 +35,9 @@ class YouTubeDownloader:
         the video.
         :param url: the video URL.
         """
-        self.__url: str = url
+        self.url: str = url
         self.__options: list = YDL_CLI_OPTIONS.copy()
-        self.__options.append(self.__url)
+        self.__options.append(self.url)
 
     def download(self) -> Tuple[BytesIO, bytes]:
         """
@@ -57,13 +57,6 @@ class YouTubeDownloader:
             raise RuntimeError("youtube-dl downloader exception - more info: " +
                                str(stderr.decode("utf-8")))
 
-    def get_url(self) -> str:
-        """
-        Obtains the video URL.
-        :return: str with the URL.
-        """
-        return self.__url
-
 
 class M4AYouTubeDownloader(YouTubeDownloader):
     def __init__(self, url: str, bitrate: str = None):
@@ -81,7 +74,7 @@ class M4AYouTubeDownloader(YouTubeDownloader):
         if ret != 0:
             m4a_file.close()
             raise RuntimeError("ffmpeg is unable to convert file - output: "
-                               + m4a_converter.get_extra().decode("utf-8"))
+                               + m4a_converter.extra.decode("utf-8"))
         with m4a_file:
             m4a_data = m4a_file.read()
         return BytesIO(m4a_data), m4a_data

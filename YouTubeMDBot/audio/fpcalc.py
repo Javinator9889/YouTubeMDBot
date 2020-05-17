@@ -52,16 +52,10 @@ class FPCalc:
         duration = re.search(duration_pattern, res)
         fingerprint = re.search(fingerprint_pattern, res)
 
-        self.__duration: int = int(duration.group(0))
+        self.duration: int = int(duration.group(0))
         self.__fp: str = str(fingerprint.group(0))
 
-    def duration(self) -> int:
-        """
-        Obtains the audio duration in seconds.
-        :return: duration in seconds.
-        """
-        return self.__duration
-
+    @property
     def fingerprint(self) -> str:
         """
         Obtains the audio fingerprint.

@@ -87,30 +87,30 @@ class IdentifierTest(unittest.TestCase):
         io, data = future.get()
         f_dl_t = time()
         print("Downloaded {} - elapsed time: {:.1f}s"
-              .format(downloader.get_url(), f_dl_t - st_dl_t))
+              .format(downloader.url, f_dl_t - st_dl_t))
         identifier = \
             YouTubeMetadataIdentifier(audio=data, downloader=downloader)
         valid = identifier.identify_audio()
         assert valid
-        song_info = {downloader.get_url(): {
+        song_info = {downloader.url: {
             "title": identifier.title,
             "artist": identifier.artist,
             "cover": identifier.cover
         }}
         if not identifier.youtube_data:
-            song_info[downloader.get_url()]["score"] = identifier.score
-            song_info[downloader.get_url()]["record_id"] = \
+            song_info[downloader.url]["score"] = identifier.score
+            song_info[downloader.url]["record_id"] = \
                 "https://musicbrainz.org/recording/{0}".format(
                     identifier.recording_id)
-            song_info[downloader.get_url()]["release_id"] = \
+            song_info[downloader.url]["release_id"] = \
                 "https://musicbrainz.org/release/{0}".format(
                     identifier.release_id)
-            song_info[downloader.get_url()]["album"] = identifier.album
+            song_info[downloader.url]["album"] = identifier.album
         else:
-            song_info[downloader.get_url()][
+            song_info[downloader.url][
                 "duration"] = identifier.duration
-            song_info[downloader.get_url()]["id"] = identifier.youtube_id
-            song_info[downloader.get_url()]["youtube_data"] = True
+            song_info[downloader.url]["id"] = identifier.youtube_id
+            song_info[downloader.url]["youtube_data"] = True
         self.barrier.wait()
         return io, data, song_info
 

@@ -13,9 +13,10 @@
 #
 #     You should have received a copy of the GNU General Public License
 #    along with this program. If not, see <http://www.gnu.org/licenses/>.
+from io import BytesIO
+from typing import List
 from mutagen.mp4 import MP4
 from mutagen.mp4 import MP4Cover
-from io import BytesIO
 
 
 class AudioMetadata:
@@ -24,6 +25,7 @@ class AudioMetadata:
     object. By using this class, it is possible to set the required information by
     using mutagen without having to remember the metadata keys.
     """
+
     def __init__(self, audio: BytesIO):
         """
         Generates a new instance.
@@ -32,35 +34,60 @@ class AudioMetadata:
         self._audio = MP4(audio)
         self._data = audio
 
-    def set_title(self, title: str):
+    @property
+    def title(self) -> str:
+        return self._audio[u"\xa9nam"]
+
+    @title.setter
+    def title(self, title):
         """
         Sets the audio title.
         :param title: the audio title.
         """
         self._audio[u"\xa9nam"] = title
 
-    def set_artist(self, artist: str):
+    @property
+    def artist(self) -> str:
+        return self._audio[u"\xa9ART"]
+
+    @artist.setter
+    def artist(self, artist: str):
         """
         Sets the audio artist.
         :param artist: the audio artist.
         """
         self._audio[u"\xa9ART"] = artist
 
-    def set_album(self, album: str):
+    @property
+    def album(self) -> str:
+        return self._audio[u"\xa9alb"]
+
+    @album.setter
+    def album(self, album: str):
         """
         Sets the audio album.
         :param album: the audio album
         """
         self._audio[u"\xa9alb"] = album
 
-    def set_extras(self, extras: list):
+    @property
+    def extras(self) -> str:
+        return self._audio[u"\xa9cmt"]
+
+    @extras.setter
+    def extras(self, extras: list):
         """
         Sets the audio extras.
         :param extras: a list of extras that will be added to the audio information.
         """
         self._audio[u"\xa9cmt"] = '; '.join(map(str, extras))
 
-    def set_cover(self, cover: bytes):
+    @property
+    def cover(self) -> List[MP4Cover]:
+        return self._audio[u"covr"]
+
+    @cover.setter
+    def cover(self, cover: bytes):
         """
         Sets the audio cover.
         :param cover: the audio cover.

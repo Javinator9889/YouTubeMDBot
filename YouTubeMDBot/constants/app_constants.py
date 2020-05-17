@@ -21,8 +21,7 @@ from multiprocessing import cpu_count
 PROGRAM_ARGS = sys.argv
 # YouTube DL options
 YDL_CLI_OPTIONS = ["youtube-dl", "--format", "bestaudio[ext=m4a]", "--quiet",
-                   "--output",
-                   "-"]
+                   "--output", "-"]
 
 # FPCalc command
 FPCALC = ["fpcalc", "-"]

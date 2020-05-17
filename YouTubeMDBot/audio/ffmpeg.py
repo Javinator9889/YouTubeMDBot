@@ -58,7 +58,7 @@ class FFmpeg(ABC):
         :param command: the ffmpeg command.
         """
         self._data = data
-        self.__command = command
+        self.command = command
         self.__out = None
         self.__err = None
 
@@ -67,40 +67,28 @@ class FFmpeg(ABC):
         Runs the ffmpeg command in a separate process and pipes both stdout and stderr.
         :return: the return code of the operation ('0' if everything is OK, > 0 if not).
         """
-        proc = Popen(self.__command, stdout=PIPE, stderr=PIPE, stdin=PIPE)
+        proc = Popen(self.command, stdout=PIPE, stderr=PIPE, stdin=PIPE)
         self.__out, self.__err = proc.communicate(self._data)
         return proc.returncode
 
-    def get_command(self) -> List[str]:
-        """
-        Get the command for editing.
-        :return: List[str] with the command - as this is a pointer, all editions done
-        to the list are directly changing the self object.
-        """
-        return self.__command
-
-    def set_command(self, command: List[str]):
-        """
-        Sets the new list, overriding every old implementation.
-        :param command: the new command.
-        """
-        self.__command = command
-
-    def get_output(self) -> bytes:
+    @property
+    def output(self) -> bytes:
         """
         Gets the stdout of the process.
         :return: bytes with the command output.
         """
         return self.__out
 
-    def get_extra(self) -> bytes:
+    @property
+    def extra(self) -> bytes:
         """
         Gets the stderr of the process.
         :return: bytes with extra information.
         """
         return self.__err
 
-    def get_volume(self) -> float:
+    @property
+    def volume(self) -> float:
         """
         Gets the maximum volume of the data input.
         :return: the volume.
@@ -153,15 +141,14 @@ class FFmpegMP3(FFmpegExporter):
     Exports audio data to MP3 format.
     """
     def convert(self) -> int:
-        command = super().get_command()
         if self._bitrate:
-            command.append("-b:a")
-            command.append(self._bitrate)
-        command.append("-acodec")
-        command.append("libmp3lame")
-        command.append("-f")
-        command.append("mp3")
-        command.append("-")
+            self.command.append("-b:a")
+            self.command.append(self._bitrate)
+        self.command.append("-acodec")
+        self.command.append("libmp3lame")
+        self.command.append("-f")
+        self.command.append("mp3")
+        self.command.append("-")
         return super().convert()
 
 
@@ -170,15 +157,14 @@ class FFmpegOGG(FFmpegExporter):
     Exports audio data to OGG format.
     """
     def convert(self) -> int:
-        command = super().get_command()
         if self._bitrate:
-            command.append("-b:a")
-            command.append(self._bitrate)
-        command.append("-c:a")
-        command.append("libvorbis")
-        command.append("-f")
-        command.append("ogg")
-        command.append("-")
+            self.command.append("-b:a")
+            self.command.append(self._bitrate)
+        self.command.append("-c:a")
+        self.command.append("libvorbis")
+        self.command.append("-f")
+        self.command.append("ogg")
+        self.command.append("-")
         return super().convert()
 
 
@@ -188,18 +174,17 @@ class FFmpegM4A(FFmpegExporter):
         self.filename = filename
 
     def convert(self) -> int:
-        command = super().get_command()
-        vol = self.get_volume() * -1
-        command.append("-af")
-        command.append(f"volume={vol}dB")
+        vol = self.volume * -1
+        self.command.append("-af")
+        self.command.append(f"volume={vol}dB")
         if self._bitrate:
-            command.append("-b:a")
-            command.append(self._bitrate)
-        command.append("-c:a")
-        command.append("aac")
-        command.append("-movflags")
-        command.append("faststart")
-        command.append("-f")
-        command.append("ipod")
-        command.append(self.filename)
+            self.command.append("-b:a")
+            self.command.append(self._bitrate)
+        self.command.append("-c:a")
+        self.command.append("aac")
+        self.command.append("-movflags")
+        self.command.append("faststart")
+        self.command.append("-f")
+        self.command.append("ipod")
+        self.command.append(self.filename)
         return super().convert()

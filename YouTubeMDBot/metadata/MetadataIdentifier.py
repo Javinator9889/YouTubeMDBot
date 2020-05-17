@@ -91,10 +91,10 @@ class MetadataIdentifier:
         :return: 'True' if the result is valid (the audio was correctly identified),
         else 'False'.
         """
-        fingerprint = FPCalc(self.audio)
+        fp_calc = FPCalc(self.audio)
         data: json = acoustid.lookup(apikey=ACOUSTID_KEY,
-                                     fingerprint=fingerprint.fingerprint(),
-                                     duration=fingerprint.duration(),
+                                     fingerprint=fp_calc.fingerprint,
+                                     duration=fp_calc.duration,
                                      meta="recordings releaseids releasegroups")
         self.result = data
         is_valid = self._is_valid_result(data)
@@ -162,7 +162,7 @@ class YouTubeMetadataIdentifier(MetadataIdentifier):
             if self._downloader:
                 from urllib.request import urlopen
 
-                video_id = youtube_utils.get_yt_video_id(self._downloader.get_url())
+                video_id = youtube_utils.get_yt_video_id(self._downloader.url)
                 video_data = YouTubeAPI.video_details(video_id)
                 self.title = video_data.title
                 self.artist = video_data.artist

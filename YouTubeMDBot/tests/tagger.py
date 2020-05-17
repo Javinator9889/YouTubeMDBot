@@ -15,7 +15,7 @@ from YouTubeMDBot.utils import youtube_utils
         print(f"Running test: find_metadata in {__file__}")
         io, data, song_info = super().find_metadata(future, downloader)
         tagger = AudioMetadata(io)
-        url = downloader.get_url()
+        url = downloader.url
 
         tagger.set_title(song_info[url]["title"])
         tagger.set_artist(song_info[url]["artist"])
