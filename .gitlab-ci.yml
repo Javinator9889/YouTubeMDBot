@@ -16,15 +16,19 @@ cache:
     - .cache/pip
     - venv/
 
+stages:
+  - test
+
 before_script:
   - python -V  # Print out python version for debugging
   - apt update
-  - apt install -y --no-install-recommends libchromaprint-tools ffmpeg libpq-dev git postgresql
+  - apt install -y --no-install-recommends libchromaprint-tools ffmpeg libpq-dev git postgresql sudo
   - pg_ctlcluster 11 main start
-  - su - postgres
+  - sudo -u postgres -i
   - psql -c "CREATE DATABASE youtubemd;"
   - psql -c "CREATE USER $DATABASE_USER WITH ENCRYPTED PASSWORD '$DATABASE_PASSWORD';"
   - psql -c "GRANT ALL PRIVILEGES ON DATABASE youtubemd TO $DATABASE_USER";
+  - exit
   - git clone https://github.com/beetbox/pyacoustid.git && cd pyacoustid
   - python setup.py install
   - cd .. && rm -rf pyacoustid/
@@ -32,10 +36,12 @@ before_script:
   - mkdir -p /run/user/$(id -u $(whoami))
 
 test:pylint:
+  stage: test
   script:
   - pip install pylint
   - pylint -j 0 --exit-zero --ignored-classes=_socketobject *.py YouTubeMDBot
 
 test:
+  stage: test
   script:
     - python -m unittest $(pwd)/YouTubeMDBot/tests/*.py
