@@ -26,19 +26,25 @@ from .. import MAX_PROCESS
 class ThreadPoolBase(ABC):
     __instance = None
 
-    def __new__(cls,
-                max_processes: int = MAX_PROCESS,
-                name: str = "ThreadBase",
-                **kwargs):
+    def __new__(cls, **kwargs):
         if ThreadPoolBase.__instance is None:
             cls.__instance = object.__new__(cls)
-            cls.__instance.__pool = ThreadPool(processes=max_processes)
-            cls.__instance.__lock = Lock()
-            cls.__instance.__finished = False
-            cls.__instance.name = name
-        for key, value in kwargs.items():
-            setattr(cls.__instance, key, value)
+            cls.__instance.must_initialize = True
         return cls.__instance
+
+    def __init__(self,
+                 max_processes: int = MAX_PROCESS,
+                 name: str = "ThreadBase",
+                 **kwargs):
+        if self.must_initialize:
+            self.__pool = ThreadPool(processes=max_processes)
+            self.__lock = Lock()
+            self.finished = False
+            self.name = name
+            self.must_initialize = False
+
+        for key, value in kwargs.items():
+            setattr(self, key, value)
 
     @property
     def finished(self) -> bool:
@@ -50,12 +56,6 @@ class ThreadPoolBase(ABC):
         with self.__lock:
             self.__finished = value
 
-    def __del__(self):
-        if not self.finished:
-            self.__pool.close()
-            self.__pool.join()
-            self.finished = True
-
     def wait_execute(self, func: Callable, *args, **kwargs) -> Any:
         if not self.finished:
             return self.__pool.apply(func=func, args=args, kwds=kwargs)
@@ -64,15 +64,26 @@ class ThreadPoolBase(ABC):
 
     def execute(self,
                 func: Callable,
-                args=(),
-                kwds={},
                 callback: Callable[[Any], Any] = None,
-                err_callback: Callable[[Any], Any] = None):
+                err_callback: Callable[[Any], Any] = None,
+                *args, **kwargs):
         if not self.finished:
             return self.__pool.apply_async(func=func,
                                            args=args,
-                                           kwds=kwds,
+                                           kwds=kwargs,
                                            callback=callback,
                                            error_callback=err_callback)
         else:
             raise FinishedException(f"The thread pool {self.name} has finished")
+
+    def close(self):
+        if not self.finished:
+            self.__pool.close()
+            self.__pool.join()
+            self.finished = True
+
+    def __del__(self):
+        try:
+            self.close()
+        except Exception as e:
+            print(e)

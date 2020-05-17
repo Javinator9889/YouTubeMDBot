@@ -19,9 +19,9 @@ from subprocess import PIPE
 from subprocess import Popen
 from typing import List
 
-from ..constants import FFMPEG_CONVERTER
-from ..constants import FFMPEG_OPENER
-from ..constants import FFMPEG_VOLUME
+from .. import FFMPEG_CONVERTER
+from .. import FFMPEG_OPENER
+from .. import FFMPEG_VOLUME
 
 
 def ffmpeg_available() -> bool:

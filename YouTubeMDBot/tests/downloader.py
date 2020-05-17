@@ -40,7 +40,7 @@ class DownloadTest(unittest.TestCase):
 
         self._barrier.wait()
 
-        del ytdl
+        ytdl.close()
 
     def write_to_file(self, future, name: str):
         _, data = future.get()

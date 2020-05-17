@@ -88,12 +88,6 @@ class M4AYouTubeDownloader(YouTubeDownloader):
 
 
 class MultipleYouTubeDownloader(ThreadPoolBase):
-    def __new__(cls,
-                max_processes: int = 4,
-                name: str = "YouTubeDownloader",
-                **kwargs):
-        return super().__new__(cls, max_processes, name, **kwargs)
-
     def download(self, yt_obj: YouTubeDownloader) -> Tuple[BytesIO, bytes]:
         return super().wait_execute(yt_obj.download)
 

@@ -4,12 +4,11 @@ import mutagen
 from io import BytesIO
 from typing import Tuple
 
-from YouTubeMDBot.tests.tagger import TaggerTest
+# from YouTubeMDBot.tests.tagger import TaggerTest
 from YouTubeMDBot.audio import FFmpegMP3
 from YouTubeMDBot.audio import FFmpegOGG
 
-
-class MyTestCase(TaggerTest):
+"""class MyTestCase(TaggerTest):
     def find_metadata(self, future, downloader) -> Tuple[BytesIO, bytes, dict]:
         print(f"Running test: find_metadata in {__file__}")
         io, data, song_info = super().find_metadata(future, downloader)
@@ -33,4 +32,4 @@ class MyTestCase(TaggerTest):
 
 
 if __name__ == '__main__':
-    unittest.main()
+    unittest.main()"""

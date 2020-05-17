@@ -6,13 +6,9 @@ from YouTubeMDBot.database import *
 
 class DatabaseTesting(unittest.TestCase):
     def test_creation(self):
-        db_item = PostgreSQLItem(min_ops=3)
+        db_item = PostgreSQLItem()
         db = Initializer(db_item)
         db.init()
-
-        db_item2 = PostgreSQLItem()
-        db_item3 = PostgreSQLItem()
-        db_item4 = PostgreSQLItem()
 
         user_db = UserDB(db_item)
         print(hex(id(db)))
@@ -30,13 +26,15 @@ class DatabaseTesting(unittest.TestCase):
         user_db.register_new_user(12333, "test", "test", "en")
         user_db.register_new_user(12344, "test", "test", "en")
 
-        time.sleep(1)
+        # time.sleep(1)
 
-        for uid in (12334, 12335, 12336, 12337, 12338, 12339, 12330, 12331,
-                    12332, 12333, 12344):
-            print(user_db.get_user_information(uid))
+        # for uid in (12334, 12335, 12336, 12337, 12338, 12339, 12330, 12331,
+        #             12332, 12333, 12344):
+        #     print(user_db.get_user_information(uid))
 
-        del db_item
+        db_item.stop()
+
+        # del db_item
 
 
 if __name__ == '__main__':

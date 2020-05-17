@@ -26,7 +26,6 @@ from collections import deque
 import os
 import psycopg2
 
-from .. import CQueue
 from .. import DB_HOST
 from .. import DB_NAME
 from .. import DB_PASSWORD
@@ -44,7 +43,7 @@ class Query:
         self.statement = statement
         self.values = values
         self.returning_id = returning_id
-        self.return_value: Future = Future()
+        self.return_value = Future()
 
 
 class PostgreSQLItem:
@@ -59,8 +58,6 @@ class PostgreSQLItem:
             return cls.__instance
 
     def __init__(self, min_ops: int = 100, **kwargs):
-        print("init called")
-        print(f"Must init?: {self.must_initialize}")
         if self.must_initialize:
             self.connection = psycopg2.connect(user=DB_USER,
                                                password=DB_PASSWORD,
@@ -69,7 +66,7 @@ class PostgreSQLItem:
                                                dbname=DB_NAME)
             self.min_ops = min_ops
             self.lock = Lock()
-            self.__close = False
+            self.close = False
             self.pending_ops = deque()
             self.waiting_ops = deque()
             self.updating_database = False
@@ -114,9 +111,8 @@ class PostgreSQLItem:
                 self.iucond.wait_for(
                     lambda: len(self.pending_ops) >= self.min_ops or self.close
                 )
-            print(
-                f"pending_ops {len(self.pending_ops)} >= min_ops {self.min_ops}")
-            print(hex(id(self.pending_ops)))
+            print(f"[iuhandler] - condition is true: pending ops: "
+                  f"{len(self.pending_ops)} or closed: {self.close}")
             self.updating_database = True
             with self.connection.cursor() as cursor:
                 while len(self.pending_ops) > 0:
@@ -130,6 +126,7 @@ class PostgreSQLItem:
             self.updating_database = False
             with self.qcond:
                 self.qcond.notify_all()
+        print("iuhandler exited")
 
     def __qhandler(self):
         while not self.close:
@@ -138,17 +135,17 @@ class PostgreSQLItem:
                     lambda: len(self.waiting_ops) > 0 and
                             not self.updating_database or self.close
                 )
-            print("qhandler - new item inserted")
-            print(hex(id(self.waiting_ops)))
-            print(hex(id(self.pending_ops)))
+            print(f"[qhandler] - condition is true: waiting ops: "
+                  f"{len(self.waiting_ops)} and not {self.updating_database} "
+                  f"or closed: {self.close}")
             while len(self.waiting_ops) > 0:
                 query = self.waiting_ops.pop()
                 if query is None:
                     continue
-                print(f"inserting item: {query}")
                 self.pending_ops.append(query)
             with self.iucond:
                 self.iucond.notify_all()
+        print("qhandler exited")
 
     def insert(self, query: str, args=(), returning_id: bool = False) -> Query:
         if not self.close:
@@ -195,7 +192,7 @@ class PostgreSQLItem:
                 cursor.callproc(proc, args)
                 return cursor.fetchall()
 
-    def __del__(self):
+    def stop(self):
         print("deleting class")
         self.close = True
         print(f"is there any waiting operation? {len(self.waiting_ops) > 0}")
@@ -211,9 +208,11 @@ class PostgreSQLItem:
         print("closing db connection")
         self.connection.close()
 
-        print("removing queues")
-        del self.waiting_ops
-        del self.pending_ops
+    def __del__(self):
+        try:
+            self.stop()
+        except Exception as e:
+            print(e)
 
 
 class PostgreSQLBase(ABC):

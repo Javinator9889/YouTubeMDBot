@@ -9,7 +9,8 @@ from YouTubeMDBot.tests.identifier import IdentifierTest
 from YouTubeMDBot.utils import youtube_utils
 
 
-class TaggerTest(IdentifierTest):
+"""class TaggerTest(IdentifierTest):
+    
     def find_metadata(self, future, downloader) -> Tuple[BytesIO, bytes, dict]:
         print(f"Running test: find_metadata in {__file__}")
         io, data, song_info = super().find_metadata(future, downloader)
@@ -41,4 +42,4 @@ class TaggerTest(IdentifierTest):
 
 
 if __name__ == '__main__':
-    unittest.main()
+    unittest.main()"""

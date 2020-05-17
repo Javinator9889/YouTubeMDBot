@@ -2,7 +2,6 @@ import threading
 import unittest
 from io import BytesIO
 from pprint import pprint
-from time import sleep
 from time import time
 from typing import Tuple
 from threading import Barrier
@@ -80,10 +79,8 @@ class IdentifierTest(unittest.TestCase):
         t6.start()
 
         self.barrier.wait()
-
         pprint("Finished")
-
-        del ytdl
+        ytdl.close()
 
     def find_metadata(self, future, downloader) -> Tuple[BytesIO, bytes, dict]:
         st_dl_t = time()
