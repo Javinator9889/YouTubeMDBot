@@ -5,8 +5,6 @@ from YouTubeMDBot.downloader import YouTubeDownloader
 from YouTubeMDBot.downloader import M4AYouTubeDownloader
 from YouTubeMDBot.downloader import MultipleYouTubeDownloader
 
-from YouTubeMDBot.utils import CBarrier
-
 log = logging.basicConfig()
 
 
@@ -59,12 +57,12 @@ class DownloadTest(unittest.TestCase):
         self.assertEqual(io.read(), data)
 
     def _download_finished_callback(self, data):
-        print("Video download finished")
-        print(type(data))
+        log.info("Video download finished")
+        log.debug(type(data))
         self.finished += 1
 
     def _download_failed_callback(self, err):
-        print(f"Captured error: {err}")
+        log.error(f"Captured error: {err}")
 
 
 if __name__ == '__main__':
