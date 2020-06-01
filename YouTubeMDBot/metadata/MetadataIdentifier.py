@@ -114,13 +114,26 @@ class MetadataIdentifier:
                         self.release_id = \
                             recording["releasegroups"][0]["releases"][0]["id"]
                         self.album = recording["releasegroups"][0]["title"]
-                        self.cover = musicbrainzngs.get_image_front(self.release_id)
+                        self.cover = musicbrainzngs.get_image_front(
+                            self.release_id)
                     self.recording_id = recording["id"]
                     self.duration = recording["duration"]
                     is_valid = True
                     break
                 break
         return is_valid
+
+    def __str__(self):
+        return f"Title: {self.title}\n" \
+               f"Artist: {self.artist}\n" \
+               f"Release ID: {self.release_id}\n" \
+               f"Recording ID: {self.recording_id}\n" \
+               f"Score: {self.score}\n" \
+               f"Cover [length]: {len(self.cover)}\n" \
+               f"Album: {self.album}\n" \
+               f"Duration: {self.duration}\n" \
+               f"Is YT data?: {self.youtube_data}\n" \
+               f"YT ID: {self.youtube_id}"
 
 
 class YouTubeMetadataIdentifier(MetadataIdentifier):

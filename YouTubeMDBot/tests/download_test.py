@@ -1,13 +1,15 @@
 import unittest
 import logging
 
+from time import sleep
 from threading import Lock
 
 from YouTubeMDBot.downloader import YouTubeDownloader
 from YouTubeMDBot.downloader import M4AYouTubeDownloader
 from YouTubeMDBot.downloader import MultipleYouTubeDownloader
 
-log = logging.basicConfig()
+logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+                     level=logging.INFO)
 
 
 class DownloadTest(unittest.TestCase):
@@ -59,12 +61,12 @@ class DownloadTest(unittest.TestCase):
         self.assertEqual(io.read(), data)
 
     def _download_finished_callback(self, data):
-        log.info("Video download finished")
-        log.debug(type(data))
+        logging.info("Video download finished")
+        logging.debug(type(data))
         self.finished += 1
 
     def _download_failed_callback(self, err):
-        log.error(f"Captured error: {err}")
+        logging.error(f"Captured error: {err}")
 
 
 if __name__ == '__main__':
