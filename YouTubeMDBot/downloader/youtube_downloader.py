@@ -86,7 +86,7 @@ class MultipleYouTubeDownloader(ThreadPoolBase):
 
     def download_async(self,
                        yt_obj: YouTubeDownloader,
-                       callback: Callable[[Any], Any] = None,
+                       callback: Callable[[tuple], Any] = None,
                        error_callback: Callable[[Any], Any] = None):
         return super().execute(yt_obj.download,
                                callback=callback,
