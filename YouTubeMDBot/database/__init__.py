@@ -14,12 +14,13 @@
 #     You should have received a copy of the GNU General Public License
 #    along with this program. If not, see <http://www.gnu.org/licenses/>.
 from ..database.psql import Initializer
-from ..database.psql import YouTubeDB
-from ..database.psql import MetadataDB
-from ..database.psql import HistoryDB
-from ..database.psql import PreferencesDB
-from ..database.psql import YouTubeStatsDB
-from ..database.psql import Query
-from ..database.psql import FileDB
-from ..database.psql import UserDB
+from ..database.psql import PostgreSQLBase
 from ..database.psql import PostgreSQLItem
+
+from ..database.file import FileDB
+from ..database.user import UserDB
+from ..database.youtube import YouTubeDB
+from ..database.history import HistoryDB
+from ..database.metadata import MetadataDB
+from ..database.stats import YouTubeStatsDB
+from ..database.preferences import PreferencesDB

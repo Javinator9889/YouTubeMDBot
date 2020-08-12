@@ -1,7 +1,7 @@
 -- PostgreSQL model for YouTubeMDBot application
 -- Created by Javinator9889 - thu, 24 October, 2019
--- Last modification: Sun, 17 May, 2020
--- Version 1.3
+-- Last modification: Wed, 12 Aug, 2020
+-- Version 1.31
 
 -- DROP schema - only for testing
 DROP SCHEMA IF EXISTS youtubemd CASCADE;
@@ -64,6 +64,7 @@ CREATE TABLE IF NOT EXISTS youtubemd.Preferences
 CREATE TABLE IF NOT EXISTS youtubemd.YouTube
 (
     "id"              VARCHAR(11) UNIQUE NOT NULL,
+    "file_id"         VARCHAR(50) UNIQUE NOT NULL,
     "times_requested" INT                NOT NULL DEFAULT 0,
     PRIMARY KEY ("id")
 );
