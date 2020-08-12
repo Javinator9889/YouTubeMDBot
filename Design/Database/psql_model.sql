@@ -146,16 +146,6 @@ CREATE TABLE IF NOT EXISTS youtubemd.History
 );
 --#
 
--- ------------------------------------------
---               Table Playlist            --
--- ------------------------------------------
-CREATE TABLE IF NOT EXISTS youtubemd.Playlist
-(
-    "id" VARCHAR(22) NOT NULL UNIQUE,
-    PRIMARY KEY ("id")
-);
---#
-
 -- ----------------------------------------------
 --             Table YouTube stats             --
 -- ----------------------------------------------
