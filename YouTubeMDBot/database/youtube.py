@@ -17,11 +17,11 @@ from . import PostgreSQLBase
 
 
 class YouTubeDB(PostgreSQLBase):
-    def set_youtube_id(self, youtube_id: str):
+    def set_youtube_id(self, youtube_id: str, file_id: str):
         self.insert(
-            """INSERT INTO youtubemd.YouTube(id) VALUES (%s) 
+            """INSERT INTO youtubemd.YouTube(id, file_id) VALUES (%s, %s) 
             ON CONFLICT DO NOTHING""",
-            (youtube_id,)
+            (youtube_id, file_id)
         )
 
     def increment_times_requested(self, youtube_id: str):

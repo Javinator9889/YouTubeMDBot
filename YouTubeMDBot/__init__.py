@@ -49,7 +49,6 @@ from .database import MetadataDB
 from .database import HistoryDB
 from .database import PreferencesDB
 from .database import YouTubeStatsDB
-from .database import Query
 from .database import FileDB
 from .database import UserDB
 

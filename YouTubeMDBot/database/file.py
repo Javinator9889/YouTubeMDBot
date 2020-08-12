@@ -13,6 +13,7 @@
 #
 #     You should have received a copy of the GNU General Public License
 #    along with this program. If not, see <http://www.gnu.org/licenses/>.
+from typing import Optional
 from datetime import datetime
 from . import PostgreSQLBase, YouTubeDB, MetadataDB
 
@@ -39,7 +40,7 @@ class FileDB(PostgreSQLBase):
     def get_file_info_by_id(self, file_id: str) -> dict:
         data = self.fetchone(
             """SELECT id, metadata_id, audio_quality, size 
-            FROM youtubemd.File WHERE file_id = %s""", (file_id,)
+            FROM youtubemd.File WHERE id = %s""", (file_id,)
         )
         return {
             "id": data[0],
@@ -59,6 +60,6 @@ class FileDB(PostgreSQLBase):
 
     def get_file_for_metadata_id(self, metadata_id: int) -> str:
         return self.fetchone(
-            """SELECT file_id FROM youtubemd.File WHERE metadata_id = %s""",
+            """SELECT id FROM youtubemd.File WHERE metadata_id = %s""",
             (metadata_id,)
         )[0]
