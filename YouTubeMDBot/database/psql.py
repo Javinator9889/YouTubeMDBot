@@ -118,11 +118,15 @@ class PostgreSQLItem:
                         continue
                     cursor.execute(query.statement, query.values)
                     if query.returning_id:
-                        query.return_value.set_result(cursor.fetchone()[0])
+                        try:
+                            query.return_value.set_result(cursor.fetchone()[0])
+                        except psycopg2.ProgrammingError:
+                            query.return_value.set_result(query.values)
             self.connection.commit()
             self.updating_database = False
-            with self.qcond:
-                self.qcond.notify_all()
+            if not self.close:
+                with self.qcond:
+                    self.qcond.notify_all()
         print("iuhandler exited")
 
     def __qhandler(self):
@@ -193,16 +197,13 @@ class PostgreSQLItem:
         print("deleting class")
         self.close = True
         print(f"is there any waiting operation? {len(self.waiting_ops) > 0}")
-        if len(self.waiting_ops) > 0:
-            with self.qcond:
-                self.qcond.notify_all()
-            self._qthread.join()
-        print(f"is there any pending operation? {len(self.pending_ops) > 0}")
-        if len(self.pending_ops) > 0:
-            with self.iucond:
-                self.iucond.notify_all()
-            self._iuthread.join()
+        with self.qcond:
+            self.qcond.notify_all()
+        self._qthread.join()
+        self._iuthread.join()
         print("closing db connection")
+        if self.lock.locked():
+            self.lock.release()
         self.connection.close()
 
     def __del__(self):

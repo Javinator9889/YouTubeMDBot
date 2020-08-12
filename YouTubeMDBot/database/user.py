@@ -46,16 +46,17 @@ class UserDB(PostgreSQLBase):
             })
         return result
 
-    def register_new_user(self, user_id: int, name: str, tag: str, lang: str):
+    def register_new_user(self, user_id: int, name: str, tag: str, lang: str,
+                          returning_id: bool = False):
         now = datetime.now()
         query = """
         INSERT INTO youtubemd.User (id, name, tag, lang, first_access) 
         VALUES (%s, %s, %s, %s, %s)
         """
         self.insert(query, (user_id, name, tag, lang, now))
-        self.insert(
+        return self.insert(
             """INSERT INTO youtubemd.Preferences (user_id) VALUES (%s)""",
-            (user_id,)
+            (user_id,), returning_id=returning_id
         )
 
     def update_username(self, user_id: int, name: str):
