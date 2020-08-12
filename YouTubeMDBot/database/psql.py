@@ -193,15 +193,15 @@ class PostgreSQLItem:
         print("deleting class")
         self.close = True
         print(f"is there any waiting operation? {len(self.waiting_ops) > 0}")
-        # if len(self.waiting_ops) > 0:
-        with self.qcond:
-            self.qcond.notify_all()
-        self._qthread.join()
+        if len(self.waiting_ops) > 0:
+            with self.qcond:
+                self.qcond.notify_all()
+            self._qthread.join()
         print(f"is there any pending operation? {len(self.pending_ops) > 0}")
-        # if len(self.pending_ops) > 0:
-        with self.iucond:
-            self.iucond.notify_all()
-        self._iuthread.join()
+        if len(self.pending_ops) > 0:
+            with self.iucond:
+                self.iucond.notify_all()
+            self._iuthread.join()
         print("closing db connection")
         self.connection.close()
 
