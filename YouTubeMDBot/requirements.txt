@@ -7,3 +7,4 @@ youtube_dl
 python-telegram-bot
 psycopg2
 pyacoustid
+redis

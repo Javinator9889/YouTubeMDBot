@@ -16,6 +16,7 @@
 import os
 import sys
 
+from logging import INFO, WARNING, DEBUG
 from multiprocessing import cpu_count
 
 PROGRAM_ARGS = sys.argv
@@ -54,3 +55,17 @@ DB_USER = os.environ["DATABASE_USER"]
 DB_PASSWORD = os.environ["DATABASE_PASSWORD"]
 DB_HOST = "127.0.0.1"
 DB_PORT = 5432
+
+# Redis constants
+
+# Logging constants
+LOGGER_NAME = "youtubemd:logger"
+LOG_FILE = "youtubemd.log"
+LOG_DEFAULT_FORMAT = \
+    "%(process)d[%(thread)d] - %(asctime)s | [%(levelname)s]: %(message)s"
+
+PRODUCTION_CONSOLE_LOG_LEVEL = INFO
+PRODUCTION_FILE_LOG_LEVEL = WARNING
+
+DEV_CONSOLE_LOG_LEVEL = DEBUG
+DEV_FILE_LOG_LEVEL = DEBUG

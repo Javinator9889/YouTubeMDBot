@@ -21,8 +21,8 @@ stages:
 
 before_script:
   - python -V  # Print out python version for debugging
-  - apt update
-  - apt install -y --no-install-recommends libchromaprint-tools ffmpeg libpq-dev git postgresql sudo
+  - apt-get update
+  - apt-get install -y --no-install-recommends libchromaprint-tools ffmpeg libpq-dev git postgresql sudo
   - /etc/init.d/postgresql start
   - sudo -u postgres sh -c "psql -U postgres -c \"CREATE DATABASE youtubemd;\""
   - sudo -u postgres sh -c "psql -U postgres -c \"CREATE USER $DATABASE_USER WITH ENCRYPTED PASSWORD '$DATABASE_PASSWORD';\""

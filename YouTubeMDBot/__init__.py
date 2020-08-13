@@ -13,10 +13,9 @@
 #
 #     You should have received a copy of the GNU General Public License
 #    along with this program. If not, see <http://www.gnu.org/licenses/>.
-from .logging_utils import LoggingHandler
-from .logging_utils import setup_logging
-
 from .constants import *
+
+from .logging_utils import init_logging
 
 from .errors import EmptyBodyError
 from .errors import FinishedException

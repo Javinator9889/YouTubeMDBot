@@ -15,7 +15,7 @@ class DatabaseTest(unittest.TestCase):
         user = UserDB(item=self.item)
         q = user.register_new_user(user_id=1, name="John", tag="@John",
                                    lang="es", returning_id=True)
-        id = q.return_value.result()
+        id = q.return_value.result()[0]
         info = user.get_user_information(user_id=id)
         print(info)
 
