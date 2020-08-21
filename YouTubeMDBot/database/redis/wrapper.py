@@ -22,11 +22,8 @@ except ImportError:
 from abc import ABC
 from typing import Union, Optional
 from threading import Lock
-from . import (
-    PostgreSQLItem, UserDB, PreferencesDB, MetadataDB, YouTubeDB,
-    YouTubeStatsDB, HistoryDB, FileDB, Initializer
-)
-from .. import REDIS_UNIX_SOCKET
+from database import PostgreSQLItem
+from YouTubeMDBot import REDIS_UNIX_SOCKET
 
 wrapper_lock = Lock()
 
@@ -52,10 +49,10 @@ class BaseWrapper:
             self.__must_initialize = False
 
 
-class DatabaseWrapper:
+class DatabaseWrapper(ABC):
     def __init__(self, name: str, **kwargs):
         super().__init__()
-        self.__item = PostgreSQLItem()
+        self.item = PostgreSQLItem()
         self.__wrapper = BaseWrapper()
         self.redis = self.__wrapper.redis
         self.name = name

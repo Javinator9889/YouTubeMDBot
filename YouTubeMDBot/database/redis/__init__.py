@@ -1,5 +1,5 @@
 #                             YouTubeMDBot
-#                  Copyright (C) 2019 - Javinator9889
+#                  Copyright (C) 2020 - Javinator9889
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -13,16 +13,4 @@
 #
 #     You should have received a copy of the GNU General Public License
 #    along with this program. If not, see <http://www.gnu.org/licenses/>.
-from ..database.psql import Initializer
-from ..database.psql import PostgreSQLBase
-from ..database.psql import PostgreSQLItem
-
-from ..database.youtube import YouTubeDB
-from ..database.metadata import MetadataDB
-from ..database.file import FileDB
-from ..database.user import UserDB
-from ..database.history import HistoryDB
-from ..database.stats import YouTubeStatsDB
-from ..database.preferences import PreferencesDB
-
-from ..database.redis import DatabaseWrapper
+from .wrapper import DatabaseWrapper
