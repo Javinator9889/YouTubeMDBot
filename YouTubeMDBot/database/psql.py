@@ -44,15 +44,15 @@ class Query:
 
 
 class PostgreSQLItem:
-    __instance = None
+    __instance__ = None
 
     def __new__(cls,
                 **kwargs):
         with instance_lock:
-            if PostgreSQLItem.__instance is None:
-                cls.__instance = object.__new__(cls)
-                cls.__instance.must_initialize = True
-            return cls.__instance
+            if not PostgreSQLItem.__instance__:
+                cls.__instance__ = object.__new__(cls)
+                cls.__instance__.must_initialize = True
+            return cls.__instance__
 
     def __init__(self, min_ops: int = 100, **kwargs):
         if self.must_initialize:

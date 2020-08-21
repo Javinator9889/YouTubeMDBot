@@ -57,6 +57,7 @@ DB_HOST = "127.0.0.1"
 DB_PORT = 5432
 
 # Redis constants
+REDIS_UNIX_SOCKET = os.environ["REDIS_SOCKET"]
 
 # Logging constants
 LOGGER_NAME = "youtubemd:logger"
