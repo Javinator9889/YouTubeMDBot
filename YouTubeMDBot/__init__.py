@@ -50,6 +50,7 @@ from .database import PreferencesDB
 from .database import YouTubeStatsDB
 from .database import FileDB
 from .database import UserDB
+from .database.redis import DatabaseWrapper
 
 from .downloader import YouTubeDownloader
 from .downloader import MultipleYouTubeDownloader

@@ -22,8 +22,9 @@ except ImportError:
 from abc import ABC
 from typing import Union, Optional
 from threading import Lock
-from database import PostgreSQLItem
-from YouTubeMDBot import REDIS_UNIX_SOCKET
+
+from .. import PostgreSQLItem
+from .. import REDIS_UNIX_SOCKET
 
 wrapper_lock = Lock()
 

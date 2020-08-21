@@ -13,16 +13,16 @@
 #
 #     You should have received a copy of the GNU General Public License
 #    along with this program. If not, see <http://www.gnu.org/licenses/>.
+from ..database.file import FileDB
+from ..database.history import HistoryDB
+from ..database.metadata import MetadataDB
+from ..database.preferences import PreferencesDB
 from ..database.psql import Initializer
 from ..database.psql import PostgreSQLBase
 from ..database.psql import PostgreSQLItem
-
-from ..database.youtube import YouTubeDB
-from ..database.metadata import MetadataDB
-from ..database.file import FileDB
-from ..database.user import UserDB
-from ..database.history import HistoryDB
-from ..database.stats import YouTubeStatsDB
-from ..database.preferences import PreferencesDB
-
 from ..database.redis import DatabaseWrapper
+from ..database.stats import YouTubeStatsDB
+from ..database.user import UserDB
+from ..database.youtube import YouTubeDB
+
+from .. import REDIS_UNIX_SOCKET
