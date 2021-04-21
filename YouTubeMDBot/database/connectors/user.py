@@ -15,8 +15,8 @@
 #    along with this program. If not, see <http://www.gnu.org/licenses/>.
 from typing import Optional, Any
 from datetime import datetime
-from .. import UserDB
-from . import DatabaseWrapper
+from database import UserDB
+from database.redis import DatabaseWrapper
 
 
 class History(DatabaseWrapper):
@@ -25,7 +25,7 @@ class History(DatabaseWrapper):
 
 class User(DatabaseWrapper):
     def __init__(self, user_id: int):
-        super(User, self).__init__(name=str(user_id))
+        super(User, self).__init__(identifier=f"user:{user_id}")
         self.user_id = user_id
         self._user = UserDB(self.item)
 
@@ -35,7 +35,7 @@ class User(DatabaseWrapper):
 
     @name.setter
     def name(self, value: str):
-        self.delete("name")
+        self["name"] = value
         self._user.update_username(self.user_id, name=value)
 
     @property
@@ -44,7 +44,7 @@ class User(DatabaseWrapper):
 
     @tag.setter
     def tag(self, value: Optional[str]):
-        self.delete("tag")
+        self["tag"] = value
         self._user.update_user_tag(self.user_id, tag=value)
 
     @property
@@ -53,7 +53,7 @@ class User(DatabaseWrapper):
 
     @lang.setter
     def lang(self, value: str):
-        self.delete("lang")
+        self["lang"] = value
         self._user.update_user_lang(self.user_id, lang=value)
 
     @property
@@ -65,9 +65,9 @@ class User(DatabaseWrapper):
         pass  # TODO
 
     def _get_or_query(self, attr: str) -> Any:
-        value = self.get(attr)
-        if value:
+        value = self[attr]
+        if value is not None:
             return value
         value = self._user.get_user_information(self.user_id)[attr]
-        self.set(attr, value)
+        self[attr] = value
         return value

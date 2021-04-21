@@ -51,12 +51,12 @@ class BaseWrapper:
 
 
 class DatabaseWrapper(ABC):
-    def __init__(self, name: str, **kwargs):
+    def __init__(self, identifier: str, **kwargs):
         super().__init__()
         self.item = PostgreSQLItem()
         self.__wrapper = BaseWrapper()
         self.redis = self.__wrapper.redis
-        self.name = name
+        self.name = identifier
         for key, value in kwargs.items():
             setattr(self, key, value)
 
@@ -76,3 +76,18 @@ class DatabaseWrapper(ABC):
 
     def delete(self, *keys: str):
         self.redis.hdel(name=self.name, *keys)
+
+    def update(self,
+               key: Union[str, bytes, int, float],
+               value: Union[dict, Union[str, bytes, int, float]]):
+        return self.set(key, value)
+
+    def __getitem__(self,
+                    item: Union[str, bytes, int, float]) -> \
+            Optional[Union[str, bytes, int, float, dict]]:
+        return self.get(item)
+
+    def __setitem__(self,
+                    key: Union[str, bytes, int, float],
+                    value: Union[dict, Union[str, bytes, int, float]]):
+        return self.set(key, value)
